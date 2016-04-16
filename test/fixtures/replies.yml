@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  link_hash: MyString
+  answers: 
+  survey_id: 
+  mail_message_id: 
+  github_user_id: 
+
+two:
+  link_hash: MyString
+  answers: 
+  survey_id: 
+  mail_message_id: 
+  github_user_id: 
