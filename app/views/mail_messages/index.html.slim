@@ -1,0 +1,39 @@
+#notice
+  = notice
+
+
+.container
+  .pull-right
+    = link_to 'New Mail', new_form_mail_message_path(@form),  class: "btn btn-info"
+  h1 Listing Mails
+
+  table#mail_messages-table.table.table-bordered.table-striped
+    thead
+      tr
+        th(rowspan="2") Subject
+        th(rowspan="2") Replies
+        th(rowspan="2") Answered Replies
+        th(colspan="4"class="table-actions text-center") Actions
+      tr
+        th(width="100px"class="text-center") Send Mails
+        th(width="100px"class="text-center") CVS
+        th(width="100px"class="text-center") Edit
+        th(width="100px"class="text-center") Destroy
+    tbody
+      - @mail_messages.each do |mail_message|
+        tr
+          td
+            = mail_message.subject
+          td
+            = mail_message.replies.size
+          td
+            = mail_message.replies.where(:answers.exists => true).size
+          td.text-center
+            = link_to "<i class='fa fa-mail-forward'></i>".html_safe, deliver_form_mail_message_path(@form, mail_message), method: :post
+          td.text-center
+            = link_to "<i class='fa fa-download'></i>".html_safe, answers_as_form_mail_message_path(@form, mail_message, format: :csv)
+          td.text-center
+            = link_to "<i class='fa fa-pencil'></i>".html_safe, edit_form_mail_message_path(@form, mail_message)
+          td.text-center
+            = link_to "<i class='fa fa-times'></i>".html_safe, form_mail_message_path(@form, mail_message), method: :delete, data: { confirm: 'Are you sure?' }
+

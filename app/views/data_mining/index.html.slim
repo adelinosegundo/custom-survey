@@ -1,0 +1,12 @@
+#content
+  h6
+    = notice
+  H1 Mining Actions
+  Section#Users
+    h3 
+      | Users 
+      | Currently have
+      = " #{GithubUser.all.size}"
+    = link_to "Mine new users", data_mining_mine_users_path
+    br
+    = link_to "Destroy All", data_mining_destroy_all_path

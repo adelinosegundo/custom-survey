@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+html
+  head
+    title CustomSurvey
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    nav.navbar
+      .container
+        .navbar-header
+          button[type="button"class="navbar-toggle"data-toggle="collapse"data-target="#navbar-menu"]
+            span[class="sr-only"]
+              | Menu 
+            | MENU 
+            i[class="fa fa-bars"]
+          a[href="/"class="navbar-brand"]
+            strong
+              | coop
+            | era:lab
+        .collapse.navbar-collapse#navbar-menu
+          ul.nav.navbar-nav.navbar-right
+            li
+              a[href="/forms"] Forms
+            li
+              a[href="#"] Home
+            li
+              a[href="#"] The Team
+            li
+              a[href="#"] Projects
+            li
+              a[href="#"] Contact
+    #content
+      = yield
+    footer

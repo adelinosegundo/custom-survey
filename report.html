@@ -282,72 +282,22 @@ a {
 <div id="div_group_1" class="example_group passed">
   <dl style="margin-left: 0px;">
   <dt id="example_group_1" class="passed">Survey</dt>
-    <script type="text/javascript">makeRed('rspec-header');</script>
-    <script type="text/javascript">makeRed('div_group_1');</script>
-    <script type="text/javascript">makeRed('example_group_1');</script>
-    <script type="text/javascript">moveProgressBar('25.0');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">should have many :items</span>
-      <span class="duration">0.03976s</span>
-      <div class="failure" id="failure_1">
-        <div class="message"><pre>expected #&lt;Survey:0x007faef1a13860&gt; to respond to `has_many?`</pre></div>
-        <div class="backtrace"><pre>./spec/models/survey_spec.rb:4:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">2</span>
-<span class="linenum">3</span>RSpec.describe Survey, type: :model do
-<span class="offending"><span class="linenum">4</span>  it { should have_many(:items) }</span>
-<span class="linenum">5</span>  it { should have_many(:mail_messages) }
-<span class="linenum">6</span>
-<span class="linenum">7</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+    <script type="text/javascript">moveProgressBar('16.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have many items</span><span class='duration'>0.01163s</span></dd>
+    <script type="text/javascript">moveProgressBar('33.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have many mail_messages</span><span class='duration'>0.00482s</span></dd>
     <script type="text/javascript">moveProgressBar('50.0');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">should have many :mail_messages</span>
-      <span class="duration">0.00322s</span>
-      <div class="failure" id="failure_2">
-        <div class="message"><pre>expected #&lt;Survey:0x007faef3bc30c8&gt; to respond to `has_many?`</pre></div>
-        <div class="backtrace"><pre>./spec/models/survey_spec.rb:5:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">3</span>RSpec.describe Survey, type: :model do
-<span class="linenum">4</span>  it { should have_many(:items) }
-<span class="offending"><span class="linenum">5</span>  it { should have_many(:mail_messages) }</span>
-<span class="linenum">6</span>
-<span class="linenum">7</span>  it { should validate_presence_of :name }
-<span class="linenum">8</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
-    <script type="text/javascript">moveProgressBar('75.0');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">example at ./spec/models/survey_spec.rb:7</span>
-      <span class="duration">0.00190s</span>
-      <div class="failure" id="failure_3">
-        <div class="message"><pre>undefined method `validate_presence_of&#39; for #&lt;RSpec::ExampleGroups::Survey:0x007faef1058848&gt;</pre></div>
-        <div class="backtrace"><pre>./spec/models/survey_spec.rb:7:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">5</span>  it { should have_many(:mail_messages) }
-<span class="linenum">6</span>
-<span class="offending"><span class="linenum">7</span>  it { should validate_presence_of :name }</span>
-<span class="linenum">8</span>  it { should validate_presence_of :title }
-<span class="linenum">9</span>end
-<span class="linenum">10</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+    <dd class="example passed"><span class="passed_spec_name">should have many replies</span><span class='duration'>0.00355s</span></dd>
+    <script type="text/javascript">moveProgressBar('66.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have many github_users</span><span class='duration'>0.00333s</span></dd>
+    <script type="text/javascript">moveProgressBar('83.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should validate that :name cannot be empty/falsy</span><span class='duration'>0.00736s</span></dd>
     <script type="text/javascript">moveProgressBar('100.0');</script>
-    <dd class="example failed">
-      <span class="failed_spec_name">example at ./spec/models/survey_spec.rb:8</span>
-      <span class="duration">0.00219s</span>
-      <div class="failure" id="failure_4">
-        <div class="message"><pre>undefined method `validate_presence_of&#39; for #&lt;RSpec::ExampleGroups::Survey:0x007faef3b8a160&gt;</pre></div>
-        <div class="backtrace"><pre>./spec/models/survey_spec.rb:8:in `block (2 levels) in &lt;top (required)&gt;&#39;</pre></div>
-    <pre class="ruby"><code><span class="linenum">6</span>
-<span class="linenum">7</span>  it { should validate_presence_of :name }
-<span class="offending"><span class="linenum">8</span>  it { should validate_presence_of :title }</span>
-<span class="linenum">9</span>end
-<span class="linenum">10</span><span class="comment"># Install the coderay gem to get syntax highlighting</span></code></pre>
-      </div>
-    </dd>
+    <dd class="example passed"><span class="passed_spec_name">should validate that :title cannot be empty/falsy</span><span class='duration'>0.00264s</span></dd>
   </dl>
 </div>
-<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>0.11621 seconds</strong>";</script>
-<script type="text/javascript">document.getElementById('totals').innerHTML = "4 examples, 4 failures";</script>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>0.07997 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "6 examples, 0 failures";</script>
 </div>
 </div>
 </body>

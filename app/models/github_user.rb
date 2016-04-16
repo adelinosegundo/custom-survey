@@ -44,4 +44,45 @@
 
 class GithubUser < ActiveRecord::Base
   has_many :replies
+
+  def self.mine till=300
+    while GithubUser.all.size < till
+      github = Github.new oauth_token: ENV['GITHUB_OAUTH_TOKEN']
+      users_starting_number = get_new_user_id
+      users_data = github.users.list since: users_starting_number
+      users_data.each_with_index do |user_data, index|
+        github_user = GithubUser.find_or_initialize_by(github_uid: user_data["id"].to_s)
+        user_full_data = github.users.get(user:user_data["login"]).to_hash
+        user_full_data["github_type"] = user_full_data.delete("type") if user_full_data["type"]
+        user_full_data["github_uid"] = user_full_data.delete("id") if user_full_data["id"]
+        github_user.attributes=user_full_data
+        github_user.save if github_user.email
+      end
+    end
+    true
+  end
+
+  def self.get_new_user_id
+    uid = rand(15205150).to_s 
+    begin
+      GithubUser.find_by github_uid: uid
+    rescue Exception => e
+      return uid
+    else
+      return get_new_user_id
+    end
+  end
+
+
+  def self.mine_default
+    github_user = GithubUser.find_or_initialize_by(login: "adelinosegundo")
+    github = Github.new oauth_token: ENV['GITHUB_OAUTH_TOKEN']
+    user_full_data = github.users.get("adelinosegundo").to_hash
+    puts user_full_data
+    user_full_data["github_type"] = user_full_data.delete("type") if user_full_data["type"]
+    user_full_data["github_uid"] = user_full_data.delete("id") if user_full_data["id"]
+    github_user.attributes=user_full_data
+    github_user.email = "adelinosegundo@gmail.com"
+    github_user.save
+  end
 end

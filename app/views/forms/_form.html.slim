@@ -1,0 +1,20 @@
+= form_for(@form) do |f|
+  #form.container
+    .row
+      .col-xs-12
+        .form-group
+          = f.text_field :name, placeholder: :name, class: "form-control"
+          = f.text_field :title, placeholder: :title, class: "form-control"
+        h2 Items
+        #items
+          = f.fields_for :items do |item|
+            = render 'item_fields', f: item
+  .add-links
+    .container
+      .row
+        = link_to_add_association 'New Page', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = PageBreak.new }
+        = link_to_add_association 'Message', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = Message.new }
+        = link_to_add_association 'Text Question', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = Question.new }
+        = link_to_add_association 'Multiple Choice Question', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = MultipleChoiceQuestion.new }
+      .row
+        = f.submit "Submit", class: "btn btn-default col-xs-12"

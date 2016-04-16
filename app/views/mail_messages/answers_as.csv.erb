@@ -1,0 +1,4 @@
+<%= CSV.generate_line(@form.questions.map(&:number))  %>
+<% @answers.each do |answer| %>
+<%= CSV.generate_line(answer.values)  %>
+<% end %>

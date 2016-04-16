@@ -1,0 +1,7 @@
+= f.text_field :number, placeholder: :number, class: "form-control"
+= f.text_field :title, placeholder: :title, class: "form-control"
+= f.text_area :description, placeholder: :description, class: "form-control"
+.checkbox
+  = f.label :is_required
+    = f.check_box :is_required
+    | Is required?

@@ -15,4 +15,8 @@ class Item < ActiveRecord::Base
   actable
   
   belongs_to :survey
+
+  def get_form_template_name
+    "item"
+  end
 end
