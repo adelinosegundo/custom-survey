@@ -16,14 +16,18 @@ gem 'active_record-acts_as'
 gem "cocoon"
 gem "slim"
 gem "slim-rails", :require => false
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'ckeditor'
 
 gem 'unicorn'
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
   gem 'byebug'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
