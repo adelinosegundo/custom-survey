@@ -123,7 +123,6 @@ ActiveRecord::Schema.define(version: 20160416004803) do
   create_table "replies", force: :cascade do |t|
     t.string   "link_hash"
     t.json     "answers"
-    t.integer  "survey_id"
     t.integer  "mail_message_id"
     t.integer  "github_user_id"
     t.datetime "created_at",      null: false
@@ -132,7 +131,6 @@ ActiveRecord::Schema.define(version: 20160416004803) do
 
   add_index "replies", ["github_user_id"], name: "index_replies_on_github_user_id", using: :btree
   add_index "replies", ["mail_message_id"], name: "index_replies_on_mail_message_id", using: :btree
-  add_index "replies", ["survey_id"], name: "index_replies_on_survey_id", using: :btree
 
   create_table "surveys", force: :cascade do |t|
     t.string   "name"
@@ -146,5 +144,4 @@ ActiveRecord::Schema.define(version: 20160416004803) do
   add_foreign_key "mail_messages", "surveys"
   add_foreign_key "replies", "github_users"
   add_foreign_key "replies", "mail_messages"
-  add_foreign_key "replies", "surveys"
 end
