@@ -22,7 +22,11 @@ gem 'unicorn'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'launchy'
   gem 'database_cleaner'
+  
   gem 'byebug'
 end
 
@@ -33,6 +37,7 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'annotate'
 end
 
 group :production do
