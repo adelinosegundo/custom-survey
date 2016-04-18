@@ -16,6 +16,13 @@ class Item < ActiveRecord::Base
   
   belongs_to :survey
 
+  accepts_nested_attributes_for :actable, allow_destroy: true
+
+  def actable_attributes=(actable_attributes)
+    self.actable ||= actable_type.constantize.new
+    actable.assign_attributes(actable_attributes)
+  end
+
   def get_survey_template_name
     specific.get_survey_template_name
   end

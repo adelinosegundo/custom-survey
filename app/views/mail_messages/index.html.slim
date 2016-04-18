@@ -4,7 +4,7 @@
 
 .container
   .pull-right
-    = link_to 'New Mail', new_survey_mail_message_path(@survey),  class: "btn btn-info"
+    = link_to 'New Mail', new_mail_message_path,  class: "btn btn-info"
   h1 Listing Mails
 
   table#mail_messages-table.table.table-bordered.table-striped
@@ -27,13 +27,13 @@
           td
             = mail_message.replies.size
           td
-            = mail_message.replies.where(:answers.exists => true).size
+            = mail_message.replies.where.not(:answers => nil).size
           td.text-center
-            = link_to "<i class='fa fa-mail-forward'></i>".html_safe, deliver_survey_mail_message_path(@survey, mail_message), method: :post
+            = link_to "<i class='fa fa-mail-forward'></i>".html_safe, deliver_mail_message_path(mail_message), method: :post
           td.text-center
-            = link_to "<i class='fa fa-download'></i>".html_safe, answers_as_survey_mail_message_path(@survey, mail_message, surveyat: :csv)
+            = link_to "<i class='fa fa-download'></i>".html_safe, answers_as_mail_message_path(mail_message, surveyat: :csv)
           td.text-center
-            = link_to "<i class='fa fa-pencil'></i>".html_safe, edit_survey_mail_message_path(@survey, mail_message)
+            = link_to "<i class='fa fa-pencil'></i>".html_safe, edit_mail_message_path(mail_message)
           td.text-center
-            = link_to "<i class='fa fa-times'></i>".html_safe, survey_mail_message_path(@survey, mail_message), method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to "<i class='fa fa-times'></i>".html_safe, mail_message_path(mail_message), method: :delete, data: { confirm: 'Are you sure?' }
 

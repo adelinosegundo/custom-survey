@@ -1,7 +1,7 @@
-= survey_for( [@survey, @mail_message] ) do |f|
+= form_for @mail_message do |f|
   = f.label :subject, class: "control-label"
   = f.text_field :subject, class: "form-control"
   = f.label :content, class: "control-label"
   = f.cktext_area :content, class: "form-control"
-  = collection_check_boxes(:mail_message, :user_ids, User.all, :id, :name)
+  = collection_check_boxes(:mail_message, :github_users, GithubUser.all, :id, :name)
   = f.submit "Submit", class: "btn btn-default"

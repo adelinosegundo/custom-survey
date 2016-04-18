@@ -7,20 +7,14 @@
           = f.text_field :title, placeholder: :title, class: "form-control"
         h2 Items
         #items
-          = f.fields_for :page_breaks do |item|
-            = render 'item_fields', f: item
-          = f.fields_for :messages do |item|
-            = render 'item_fields', f: item
-          = f.fields_for :questions do |item|
-            = render 'item_fields', f: item
-          = f.fields_for :multiple_choice_questions do |item|
+          = f.fields_for :items do |item|
             = render 'item_fields', f: item
   .add-links
     .container
       .row
-        = link_to_add_association 'New Page', f, :page_breaks, partial: "item_fields", id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = PageBreak.new }
-        = link_to_add_association 'Message', f, :messages, partial: "item_fields", id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = Message.new }
-        = link_to_add_association 'Text Question', f, :questions, partial: "item_fields", id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = Question.new }
-        = link_to_add_association 'Multiple Choice Question', f, :multiple_choice_questions, partial: "item_fields", id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = MultipleChoiceQuestion.new }
+        = link_to_add_association 'New Page', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = Item.new(actable: PageBreak.new )}
+        = link_to_add_association 'Message', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = Item.new(actable: Message.new )}
+        = link_to_add_association 'Text Question', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = Item.new(actable: Question.new )}
+        = link_to_add_association 'Multiple Choice Question', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn btn-info", :wrap_object => Proc.new { |item| item = Item.new(actable: MultipleChoiceQuestion.new )}
       .row
         = f.submit "Submit", class: "btn btn-default col-xs-12"

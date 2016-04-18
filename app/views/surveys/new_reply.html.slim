@@ -1,12 +1,13 @@
 .container
   .row
     .col-xs-12
-      = survey_for(@survey, url: {controller: "surveys", action: "create_reply", id: @survey.id}, html: {id: :edit_survey}) do |f|
+      = form_for(@survey, url: {controller: "surveys", action: "create_reply", id: @survey.id}, html: {id: :edit_survey}) do |f|
         = f.fields_for :replies, @reply do |reply|
           h1
             = @survey.name
           = reply.fields_for :answers do |answers|
-            - @survey.items.each do |item|
-              = render 'surveys/items_types_reply/'+item.get_survey_template_name, f: answers, item: item 
+            - @survey.items.order(:sequence).each do |item|
+              = item.to_json
+              = render 'surveys/items_types_reply/'+item.get_survey_template_name, f: answers, item: item.specific
           hr
           = f.submit 'Send Answer', class: 'btn btn-default pull-right'

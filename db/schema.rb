@@ -23,8 +23,6 @@ ActiveRecord::Schema.define(version: 20160416005419) do
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "alternatives", ["multiple_choice_question_id"], name: "index_alternatives_on_multiple_choice_question_id", using: :btree
-
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -81,12 +79,6 @@ ActiveRecord::Schema.define(version: 20160416005419) do
     t.json     "plan"
   end
 
-  create_table "images", force: :cascade do |t|
-    t.string   "file"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "items", force: :cascade do |t|
     t.integer  "sequence"
     t.integer  "survey_id"
@@ -134,10 +126,8 @@ ActiveRecord::Schema.define(version: 20160416005419) do
     t.string   "title"
     t.text     "description"
     t.boolean  "is_required"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "actable_id"
-    t.string   "actable_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "replies", force: :cascade do |t|

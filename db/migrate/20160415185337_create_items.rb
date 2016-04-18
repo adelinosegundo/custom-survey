@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration
       
       t.timestamps null: false
 
-      t.actable null: false
+      t.actable
     end
   end
 end

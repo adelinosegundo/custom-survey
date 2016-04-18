@@ -31,21 +31,6 @@ class SurveysController < ApplicationController
     render text: translate_tags(user, render_to_string(:new_reply)), layout: false
   end
 
-  # GET /surveys/1/create_reply
-  def create_reply
-    # render :new_reply
-    puts survey_params
-    respond_to do |surveyat|
-      if @survey.update(survey_params)
-        surveyat.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
-        surveyat.json { render :show, status: :ok, location: @survey }
-      else
-        surveyat.html { render :new_reply }
-        surveyat.json { render json: @survey.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
 
   # POST /surveys
   # POST /surveys.json

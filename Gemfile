@@ -28,7 +28,9 @@ gem 'active_record-acts_as'
 gem "cocoon"
 gem "slim"
 gem "slim-rails", :require => false
+
 gem "github_api"
+gem "figaro"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

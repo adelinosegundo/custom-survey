@@ -14,4 +14,6 @@
 class Reply < ActiveRecord::Base
   belongs_to :mail_message
   belongs_to :github_user
+
+  has_one :survey, through: :mail_message
 end

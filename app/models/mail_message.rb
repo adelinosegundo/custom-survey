@@ -13,5 +13,13 @@
 class MailMessage < ActiveRecord::Base
   belongs_to :survey
 
-  has_many :replies
+  has_many :replies, dependent: :destroy
+  has_many :github_users, through: :replies
+
+  def generate_new_links
+    GithubUser.all.each do |github_user|
+      reply = Reply.find_or_create_by mail_message: self, github_user: github_user
+    end
+    true
+  end
 end
