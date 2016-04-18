@@ -14,6 +14,9 @@
 #
 
 class Question < ActiveRecord::Base
-  actable
   acts_as :item
+
+  def get_survey_template_name
+    "question"
+  end
 end

@@ -17,6 +17,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'ckeditor'
 
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
+
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'active_record-acts_as'

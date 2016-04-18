@@ -1,0 +1,36 @@
+#notice
+  = notice
+
+
+.container
+  .pull-right
+    = link_to 'New Survey', new_survey_path,  class: "btn btn-info"
+  h1 Listing Surveys
+
+  table#surveys-table.table.table-bordered.table-striped
+    thead
+      tr
+        th(rowspan="2") Name
+        th(rowspan="2") Replies
+        th(colspan="4"class="table-actions text-center") Actions
+      tr
+        th(width="100px"class="text-center") Mails
+        th(width="100px"class="text-center") Show
+        th(width="100px"class="text-center") Edit
+        th(width="100px"class="text-center") Destroy
+    tbody
+      - @surveys.each do |survey|
+        tr
+          td
+            = survey.name
+          td
+            = survey.replies.size
+          td.text-center
+            = link_to "<i class='fa fa-envelope'></i>".html_safe, survey_mail_messages_path(survey)
+          td.text-center
+            = link_to "<i class='fa fa-search'></i>".html_safe, survey
+          td.text-center
+            = link_to "<i class='fa fa-pencil'></i>".html_safe, edit_survey_path(survey)
+          td.text-center
+            = link_to "<i class='fa fa-times'></i>".html_safe, survey, method: :delete, data: { confirm: 'Are you sure?' }
+

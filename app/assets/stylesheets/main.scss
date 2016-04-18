@@ -1,0 +1,97 @@
+body {
+  background-color: #FFF;
+  color: #00303e;
+  font-family: 'Open Sans',sans-serif;
+}
+
+.navbar{
+  background-color: #fff;
+}
+
+a.navbar-brand{
+  background: url(image_path("coopera_logo.png")) no-repeat;
+  background-size: auto 70%;
+  background-position: center left;
+  padding-left: 80px;
+  color: #00303e;
+}
+
+#forms-table {
+  th{
+    vertical-align: top;
+  }
+}
+
+#form {
+  input, textarea{
+    border-radius: 0;
+    margin-bottom: 10px;
+  }
+  input {
+    line-height: 25px;
+    &:hover, &:focus{
+      box-shadow: none;
+    }
+  }
+}
+
+.add-links {
+  border-top: 10px;
+  border-bottom: 10px;
+  background-color: #FFF;
+  margin-top: 20px;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  a, input {
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    background-color: #FFF;
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #00A0C0;
+    float: left;
+    padding: 15px 10px;
+    color: #00303e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    font-weight: 400;
+    // &:first-child {
+    //   border-left: 1px solid #00A0C0;
+    // }
+    &:last-child {
+      border-right: none;
+    }
+    &:hover {
+      background-color: #00A0C0;
+      color: #fff;
+    }
+  }
+  a {
+    width: 25%;
+    margin-bottom: 10px;
+  }
+
+}
+
+.page-break {
+  height: 45px;
+  border: 1px dashed;
+  line-height: 45px;
+  text-transform: uppercase;
+}
+
+.remove-item{
+  float: right;
+  color: red;
+  font-size: 22px;
+}
+
+footer{
+  height: 250px;
+}

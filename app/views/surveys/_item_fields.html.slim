@@ -1,10 +1,9 @@
 .nested-fields.animated.slideInDown
   hr
-  = f.hidden_field :order
-  = f.hidden_field :_type
+  = f.text_field :sequence
   .row
     .col-xs-12
       = link_to_remove_association "<i class='remove-item fa fa-times'></i>".html_safe, f
   .content
-    = render 'forms/items_types/'+f.object.get_form_template_name, f: f
+    = render 'surveys/items_types/'+f.object.get_survey_template_name, f: f
   

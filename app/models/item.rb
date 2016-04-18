@@ -3,7 +3,7 @@
 # Table name: items
 #
 #  id           :integer          not null, primary key
-#  order        :integer
+#  sequence     :integer
 #  survey_id    :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -16,7 +16,7 @@ class Item < ActiveRecord::Base
   
   belongs_to :survey
 
-  def get_form_template_name
-    "item"
+  def get_survey_template_name
+    specific.get_survey_template_name
   end
 end

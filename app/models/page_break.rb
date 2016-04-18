@@ -9,4 +9,8 @@
 
 class PageBreak < ActiveRecord::Base
   acts_as :item
+
+  def get_survey_template_name
+    "page_break"
+  end
 end

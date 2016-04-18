@@ -7,7 +7,6 @@ class CreateQuestions < ActiveRecord::Migration
       t.boolean :is_required
 
       t.timestamps null: false
-      t.actable
     end
   end
 end

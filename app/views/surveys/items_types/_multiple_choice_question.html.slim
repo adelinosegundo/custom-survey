@@ -2,8 +2,8 @@
 = f.text_field :title, placeholder: :title, class: "form-control"
 = f.text_area :description, placeholder: :description, class: "form-control"
 h6.inline Alternatives
-= link_to_add_association '<i class="fa fa-plus"></i>'.html_safe, f, :alternatives, id: :add_alternative, data: {'association-insertion-node': "#alternatives#{f.object.order}", 'association-insertion-method': 'append'}
-div[id="alternatives#{f.object.order}"]
+= link_to_add_association '<i class="fa fa-plus"></i>'.html_safe, f, :alternatives, id: :add_alternative, data: {'association-insertion-node': "#alternatives#{f.object.sequence}", 'association-insertion-method': 'append'}
+div[id="alternatives#{f.object.sequence}"]
   = f.fields_for :alternatives do |alternative|
     = render 'alternative_fields', f: alternative
 .checkbox

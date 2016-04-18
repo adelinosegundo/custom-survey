@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
+  
   get 'data_mining/index'
   get 'data_mining/mine_users'
   get 'data_mining/destroy_all'
 
-  root to: 'forms#index'
+  root to: 'surveys#index'
 
-  resources :forms do 
+  resources :surveys do 
     collection do
       get 'new_reply'
     end
