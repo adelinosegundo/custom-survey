@@ -14,7 +14,7 @@ class MailMessage < ActiveRecord::Base
   belongs_to :survey
 
   has_many :replies, dependent: :destroy
-  has_many :github_users, through: :replies
+  has_many :recipients, through: :replies
 
   def generate_new_links
     GithubUser.all.each do |github_user|

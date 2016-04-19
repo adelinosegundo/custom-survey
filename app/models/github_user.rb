@@ -44,7 +44,6 @@
 
 class GithubUser < ActiveRecord::Base
   acts_as :recipient
-  has_many :replies
 
   def self.mine till=300
     while GithubUser.all.size < till

@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
 gem 'dotenv-rails', :require => 'dotenv/rails-now'
+gem 'active_record-acts_as'
 
 gem 'pg', '~> 0.15'
 gem 'unicorn'
@@ -10,6 +11,9 @@ gem 'sidekiq'
 gem 'redis'
 gem 'httparty'
 
+gem 'carrierwave'
+gem 'mini_magick'
+gem "github_api"
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -23,15 +27,13 @@ gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'active_record-acts_as'
 
 gem "cocoon"
 gem "slim"
 gem "slim-rails", :require => false
+gem 'jquery-datatables-rails'
+gem 'ajax-datatables-rails'
 
-gem "github_api"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

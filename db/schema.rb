@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419023824) do
+ActiveRecord::Schema.define(version: 20160419172302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,24 +143,24 @@ ActiveRecord::Schema.define(version: 20160419023824) do
 
   create_table "recipients", force: :cascade do |t|
     t.string   "email"
-    t.boolean  "subscribed"
+    t.boolean  "subscribed",   default: true
     t.integer  "actable_id"
     t.string   "actable_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "replies", force: :cascade do |t|
     t.string   "link_hash"
     t.json     "answers"
     t.integer  "mail_message_id"
-    t.integer  "github_user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "recipient_id"
   end
 
-  add_index "replies", ["github_user_id"], name: "index_replies_on_github_user_id", using: :btree
   add_index "replies", ["mail_message_id"], name: "index_replies_on_mail_message_id", using: :btree
+  add_index "replies", ["recipient_id"], name: "index_replies_on_recipient_id", using: :btree
 
   create_table "surveys", force: :cascade do |t|
     t.string   "name"
@@ -173,6 +173,5 @@ ActiveRecord::Schema.define(version: 20160419023824) do
   add_foreign_key "items", "surveys"
   add_foreign_key "logs", "replies"
   add_foreign_key "mail_messages", "surveys"
-  add_foreign_key "replies", "github_users"
   add_foreign_key "replies", "mail_messages"
 end

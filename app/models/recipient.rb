@@ -13,4 +13,9 @@
 
 class Recipient < ActiveRecord::Base
   actable
+
+  scope :active, -> { where(subscribed: true) }
+
+  has_many :replies
+  has_many :mail_messages, through: :replies
 end
