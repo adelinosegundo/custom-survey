@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 
 gem 'rails', '4.2.5'
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
+
 gem 'pg', '~> 0.15'
 gem 'unicorn'
 gem 'sidekiq'
@@ -30,7 +32,6 @@ gem "slim"
 gem "slim-rails", :require => false
 
 gem "github_api"
-gem "figaro"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

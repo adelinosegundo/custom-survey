@@ -24,6 +24,10 @@ class Item < ActiveRecord::Base
   end
 
   def get_survey_template_name
-    specific.get_survey_template_name
+    if specific
+      specific.get_survey_template_name
+    else
+      "item"
+    end
   end
 end

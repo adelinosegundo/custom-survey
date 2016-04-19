@@ -4,8 +4,8 @@ class MailMessagesController < ApplicationController
 
   # GET /mail_messages
   def index
-    @mail_messages = MailMessage.where(suvery_id: params[:survey_id]) if params[:survey_id]
     @mail_messages = MailMessage.all unless params[:survey_id]
+    @mail_messages = MailMessage.where(survey_id: params[:survey_id]) if params[:survey_id]
   end
 
   # GET /mail_messages/1

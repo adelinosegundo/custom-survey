@@ -1,9 +1,11 @@
 class CreateGithubUsers < ActiveRecord::Migration
   def change
     create_table :github_users do |t|
+      t.boolean :active
       t.string :github_uid
       t.string :github_type
       t.string :login
+      t.string :email
       t.string :avatar_url
       t.string :gravatar_id
       t.string :url
@@ -22,7 +24,6 @@ class CreateGithubUsers < ActiveRecord::Migration
       t.string :company
       t.string :blog
       t.string :location
-      t.string :email
       t.boolean :hireable
       t.string :bio
       t.integer :public_repos
@@ -38,6 +39,7 @@ class CreateGithubUsers < ActiveRecord::Migration
       t.string :disk_usage
       t.string :collaborators
       t.json :plan
+
 
       t.timestamps null: false
     end

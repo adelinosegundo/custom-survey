@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416005419) do
+ActiveRecord::Schema.define(version: 20160419023824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160416005419) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "github_users", force: :cascade do |t|
+    t.boolean  "active"
     t.string   "github_uid"
     t.string   "github_type"
     t.string   "login"
@@ -61,7 +62,6 @@ ActiveRecord::Schema.define(version: 20160416005419) do
     t.string   "company"
     t.string   "blog"
     t.string   "location"
-    t.string   "email"
     t.boolean  "hireable"
     t.string   "bio"
     t.integer  "public_repos"
@@ -89,6 +89,17 @@ ActiveRecord::Schema.define(version: 20160416005419) do
   end
 
   add_index "items", ["survey_id"], name: "index_items_on_survey_id", using: :btree
+
+  create_table "logs", force: :cascade do |t|
+    t.string   "action"
+    t.string   "value"
+    t.integer  "question_number"
+    t.integer  "reply_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "logs", ["reply_id"], name: "index_logs_on_reply_id", using: :btree
 
   create_table "mail_messages", force: :cascade do |t|
     t.string   "subject"
@@ -130,6 +141,15 @@ ActiveRecord::Schema.define(version: 20160416005419) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "recipients", force: :cascade do |t|
+    t.string   "email"
+    t.boolean  "subscribed"
+    t.integer  "actable_id"
+    t.string   "actable_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "replies", force: :cascade do |t|
     t.string   "link_hash"
     t.json     "answers"
@@ -151,6 +171,7 @@ ActiveRecord::Schema.define(version: 20160416005419) do
 
   add_foreign_key "alternatives", "multiple_choice_questions"
   add_foreign_key "items", "surveys"
+  add_foreign_key "logs", "replies"
   add_foreign_key "mail_messages", "surveys"
   add_foreign_key "replies", "github_users"
   add_foreign_key "replies", "mail_messages"

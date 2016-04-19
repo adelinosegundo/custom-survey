@@ -3,6 +3,7 @@
 # Table name: github_users
 #
 #  id                  :integer          not null, primary key
+#  active              :boolean
 #  github_uid          :string
 #  github_type         :string
 #  login               :string
@@ -24,7 +25,6 @@
 #  company             :string
 #  blog                :string
 #  location            :string
-#  email               :string
 #  hireable            :boolean
 #  bio                 :string
 #  public_repos        :integer
@@ -43,6 +43,7 @@
 #
 
 class GithubUser < ActiveRecord::Base
+  acts_as :recipient
   has_many :replies
 
   def self.mine till=300

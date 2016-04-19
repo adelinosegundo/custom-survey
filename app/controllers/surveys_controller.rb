@@ -31,6 +31,14 @@ class SurveysController < ApplicationController
     render text: translate_tags(user, render_to_string(:new_reply)), layout: false
   end
 
+  # PATCH /surveys/1/create_reply
+  def create_reply
+    @reply = Reply.find(params[:reply_id])
+    @survey = @reply.survey
+    user = @reply.github_user
+    render text: translate_tags(user, render_to_string(:new_reply)), layout: false
+  end
+
 
   # POST /surveys
   # POST /surveys.json
