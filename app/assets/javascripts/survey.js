@@ -1,10 +1,10 @@
-function ready(){
+function survey_ready(){
   rearrage();
   cocoon_after_insert_question();
 }
 
-$(document).ready(ready)
-$(document).on('page:load', ready)
+$(document).ready(survey_ready)
+$(document).on('page:load', survey_ready)
 
 function cocoon_after_insert_question(){
   $('#items').on('cocoon:after-insert', function(e, insertedItem) {

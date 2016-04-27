@@ -13,7 +13,6 @@ gem 'httparty'
 
 gem 'carrierwave'
 gem 'mini_magick'
-gem "github_api"
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -42,7 +41,7 @@ group :development, :test do
   gem 'capybara-screenshot'
   gem 'launchy'
   gem 'database_cleaner'
-  
+
   gem 'byebug'
 end
 

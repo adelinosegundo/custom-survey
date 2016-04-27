@@ -22,7 +22,7 @@ class GithubUserDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    # insert query here
+    GithubUser.all
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

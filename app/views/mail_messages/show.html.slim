@@ -1,0 +1,19 @@
+.container
+  .row
+    .col-xs-12
+      h3 Mail Subject
+      = @mail_message.subject
+  .row
+    .col-xs-12
+      h3 Mail Content
+      = @mail_message.content.html_safe
+  hr
+  .row
+    .col-xs-12
+      | Recipients
+      table[data-source="#{recipients_mail_message_path(@mail_message)}" class="mail_message_recipients_table"]
+        thead
+          tr
+            th Email
+            th
+        tbody

@@ -2,9 +2,11 @@
   #survey.container
     .row
       .col-xs-12
-        .survey-group
+        .form-group
           = f.text_field :name, placeholder: :name, class: "form-control"
           = f.text_field :title, placeholder: :title, class: "form-control"
+          = f.label :recipient_kind
+          = f.select :recipient_kind, Recipient::KINDS, {include_blank: true}, {class: "form-control"}
         h2 Items
         #items
           = f.fields_for :items do |item|

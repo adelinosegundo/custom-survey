@@ -4,8 +4,14 @@ class MailMessagesController < ApplicationController
 
   # GET /mail_messages
   def index
-    @mail_messages = MailMessage.all unless params[:survey_id]
-    @mail_messages = MailMessage.where(survey_id: params[:survey_id]) if params[:survey_id]
+    @mail_messages = MailMessage.eager_load(:survey).all
+  end
+
+  # GET /mail_messages/1/recipients
+  def recipients
+    respond_to do |format|
+      format.json { render json: MailMessageRecipientsDatatable.new(view_context , {mail_message_id: params[:id]}) }
+    end
   end
 
   # GET /mail_messages/1
@@ -48,9 +54,7 @@ class MailMessagesController < ApplicationController
 
   # POST /mail_messages/:id/deliver
   def deliver
-    Reply.destroy_all
-    puts @mail_message.to_json
-    @mail_message.generate_new_links
+    # @mail_message.generate_new_links
     # SuportMailer.deliver_survey_mail_message(@mail_message).deliver_now
     redirect_to mail_messages_path(@survey)
   end

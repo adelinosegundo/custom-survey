@@ -16,10 +16,14 @@ class MailMessage < ActiveRecord::Base
   has_many :replies, dependent: :destroy
   has_many :recipients, through: :replies
 
-  def generate_new_links
-    GithubUser.all.each do |github_user|
-      reply = Reply.find_or_create_by mail_message: self, github_user: github_user
-    end
+  def deliver
     true
+  end
+
+  def recipients_avaliable
+    Recipient.where.not(id: recipients.map(&:id))
+  end
+
+  def recipients_that_replied
   end
 end

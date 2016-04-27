@@ -12,8 +12,8 @@
 class Survey < ActiveRecord::Base
   has_many :mail_messages
   has_many :replies, through: :mail_messages
-  has_many :github_users, through: :replies  
-  
+  has_many :recipients, through: :replies
+
   has_many :items, dependent: :destroy
   accepts_nested_attributes_for :items, allow_destroy: true
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419172302) do
+ActiveRecord::Schema.define(version: 20160426184813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,44 +39,30 @@ ActiveRecord::Schema.define(version: 20160419172302) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
-  create_table "github_users", force: :cascade do |t|
-    t.boolean  "active"
-    t.string   "github_uid"
-    t.string   "github_type"
-    t.string   "login"
-    t.string   "avatar_url"
-    t.string   "gravatar_id"
-    t.string   "url"
-    t.string   "html_url"
-    t.string   "followers_url"
-    t.string   "following_url"
-    t.string   "gists_url"
-    t.string   "starred_url"
-    t.string   "subscriptions_url"
-    t.string   "organizations_url"
-    t.string   "repos_url"
-    t.string   "events_url"
-    t.string   "received_events_url"
-    t.boolean  "site_admin"
+  create_table "github_repo_users", force: :cascade do |t|
+    t.integer  "github_user_id"
+    t.integer  "github_repo_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "github_repo_users", ["github_repo_id"], name: "index_github_repo_users_on_github_repo_id", using: :btree
+  add_index "github_repo_users", ["github_user_id"], name: "index_github_repo_users_on_github_user_id", using: :btree
+
+  create_table "github_repos", force: :cascade do |t|
     t.string   "name"
-    t.string   "company"
-    t.string   "blog"
-    t.string   "location"
-    t.boolean  "hireable"
-    t.string   "bio"
-    t.integer  "public_repos"
-    t.integer  "public_gists"
-    t.integer  "followers"
-    t.integer  "following"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "user_hash"
-    t.string   "private_gists"
-    t.string   "total_private_repos"
-    t.string   "owned_private_repos"
-    t.string   "disk_usage"
-    t.string   "collaborators"
-    t.json     "plan"
+    t.string   "link"
+    t.string   "language"
+    t.string   "kind"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "github_users", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -165,11 +151,14 @@ ActiveRecord::Schema.define(version: 20160419172302) do
   create_table "surveys", force: :cascade do |t|
     t.string   "name"
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "recipient_kind"
   end
 
   add_foreign_key "alternatives", "multiple_choice_questions"
+  add_foreign_key "github_repo_users", "github_repos"
+  add_foreign_key "github_repo_users", "github_users"
   add_foreign_key "items", "surveys"
   add_foreign_key "logs", "replies"
   add_foreign_key "mail_messages", "surveys"
