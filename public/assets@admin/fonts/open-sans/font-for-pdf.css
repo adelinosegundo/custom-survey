@@ -1,0 +1,95 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url('<%= Rails.root.join('public', 'assets@admin', 'fonts', 'open-sans', 'OpenSans-Light.eot') %>'); /* IE9 Compat Modes */
+
+
+  font-style:   normal;
+  font-weight:  300;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('<%= Rails.root.join('public', 'assets@admin', 'fonts', 'open-sans', 'OpenSans-LightItalic.eot') %>'); /* IE9 Compat Modes */
+
+
+  font-style:   italic;
+  font-weight:  300;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('<%= Rails.root.join('public', 'assets@admin', 'fonts', 'open-sans', 'OpenSans-Regular.eot') %>'); /* IE9 Compat Modes */
+
+
+  font-style:   normal;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('<%= Rails.root.join('public', 'assets@admin', 'fonts', 'open-sans', 'OpenSans-Italic.eot') %>'); /* IE9 Compat Modes */
+
+
+  font-style:   italic;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('<%= Rails.root.join('public', 'assets@admin', 'fonts', 'open-sans', 'OpenSans-Semibold.eot') %>'); /* IE9 Compat Modes */
+
+
+  font-style:   normal;
+  font-weight:  600;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('<%= Rails.root.join('public', 'assets@admin', 'fonts', 'open-sans', 'OpenSans-SemiboldItalic.eot') %>'); /* IE9 Compat Modes */
+
+
+  font-style:   italic;
+  font-weight:  600;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('<%= Rails.root.join('public', 'assets@admin', 'fonts', 'open-sans', 'OpenSans-Bold.eot') %>'); /* IE9 Compat Modes */
+
+
+  font-style:   normal;
+  font-weight:  700;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('<%= Rails.root.join('public', 'assets@admin', 'fonts', 'open-sans', 'OpenSans-BoldItalic.eot') %>'); /* IE9 Compat Modes */
+
+
+  font-style:   italic;
+  font-weight:  700;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('<%= Rails.root.join('public', 'assets@admin', 'fonts', 'open-sans', 'OpenSans-ExtraBold.eot') %>'); /* IE9 Compat Modes */
+
+
+  font-style:   normal;
+  font-weight:  800;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('<%= Rails.root.join('public', 'assets@admin', 'fonts', 'open-sans', 'OpenSans-ExtraBoldItalic.eot') %>'); /* IE9 Compat Modes */
+
+
+  font-style:   italic;
+  font-weight:  800;
+}
+
+
+
+
+
+

@@ -2,17 +2,36 @@
 html
   head
     title CustomSurvey
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    //styles
+    link href="/assets@admin/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"
+    link href="/assets@admin/fonts/font-awesome/css/font-awesome.css" rel="stylesheet"
+    link href="/assets@admin/fonts/open-sans/font.css" rel="stylesheet"
+    link href="/assets@admin/vendor/animate/animate.css" rel="stylesheet"
+
+    //styles::additional
+    link href="/assets@admin/vendor/jasny/jasny-bootstrap.min.css" rel="stylesheet"
+    link href="/assets@admin/vendor/chosen/chosen.css" rel="stylesheet"
+    link href="/assets@admin/vendor/sweetalert/sweetalert.css" rel="stylesheet"
+    link href="/assets@admin/vendor/datapicker/datepicker3.css" rel="stylesheet"
+    link href="/assets@admin/vendor/dataTables/dataTables.bootstrap.css" rel="stylesheet"
+    link href="/assets@admin/vendor/dataTables/dataTables.responsive.css" rel="stylesheet"
+    link href="/assets@admin/vendor/dataTables/dataTables.tableTools.min.css" rel="stylesheet"
+    link href="/assets@admin/vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet"
+    link href="/assets@admin/vendor/dropzone/dropzone.css" rel="stylesheet"
+    link href="/assets@admin/bower_components/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet"
+    link href="/assets@admin/bower_components/ion.rangeSlider/css/ion.rangeSlider.skinNice.css" rel="stylesheet"
+
+    //styles::main
+    link href="/assets@admin/styles/main.css" rel="stylesheet"
   body
     nav.navbar
       .container
         .navbar-header
           button[type="button"class="navbar-toggle"data-toggle="collapse"data-target="#navbar-menu"]
             span[class="sr-only"]
-              | Menu 
-            | MENU 
+              | Menu
+            | MENU
             i[class="fa fa-bars"]
           a[href="/"class="navbar-brand"]
             strong
@@ -33,3 +52,29 @@ html
     #content
       = yield
     footer
+      //scripts
+      script src="/assets@admin/bower_components/jquery/dist/jquery.min.js"
+      script src="/assets@admin/bower_components/bootstrap/dist/js/bootstrap.min.js"
+      script src="/assets@admin/vendor/metisMenu/jquery.metisMenu.js"
+      script src="/assets@admin/vendor/slimscroll/jquery.slimscroll.min.js"
+      script src="/assets@admin/vendor/pace/pace.min.js"
+      script src="/assets@admin/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js"
+
+      //scripts::additional
+      script src="/assets@admin/vendor/jasny/jasny-bootstrap.min.js"
+      script src="/assets@admin/vendor/chosen/chosen.jquery.js"
+      script src="/assets@admin/vendor/sweetalert/sweetalert.min.js"
+      script src="/assets@admin/vendor/validate/jquery.validate.min.js"
+      script src="/assets@admin/vendor/datapicker/bootstrap-datepicker.js"
+      script src="/assets@admin/vendor/dataTables/jquery.dataTables.js"
+      script src="/assets@admin/vendor/dataTables/dataTables.bootstrap.js"
+      script src="/assets@admin/vendor/dataTables/dataTables.responsive.js"
+      script src="/assets@admin/vendor/dataTables/dataTables.tableTools.min.js"
+      script src="/assets@admin/vendor/nestable/jquery.nestable.js"
+      script src="/assets@admin/vendor/dropzone/dropzone.js"
+      script src="/assets@admin/bower_components/highcharts/highcharts.js"
+
+      //scripts::main
+      = javascript_include_tag 'application', 'data-turbolinks-track' => true
+      script src="/assets@admin/scripts/main.min.js"
+

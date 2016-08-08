@@ -1,0 +1,243 @@
+div.alwaysbreak { page-break-before: always; }
+div.nobreak:before { clear:both; }
+div.nobreak { page-break-inside: avoid; }
+
+.va-middle {
+	vertical-align: middle !important;
+}
+.input-group .input-group-btn .btn {
+    margin-bottom: 0;
+}
+
+.n-m-t {
+    margin-top: 0;
+}
+
+.n-m-b {
+    margin-bottom: 0;
+}
+
+.low-padding {
+    padding: 0px 5px !important;
+}
+
+a[disabled="disabled"] {
+   pointer-events: none;
+   cursor: default;
+}
+
+.dl-horizontal dt {
+    float: left;
+    width: 160px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dl-horizontal dd {
+    margin-left: 180px;
+}
+
+// .tooltip-inner { width:400px; max-width: 400px; }
+
+.checkbox-input {
+    position: absolute;
+    opacity: 0;
+
+    & + .checkbox-label {
+        padding-left: 27px;
+        padding-right: 5px;
+        margin: 0;
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        line-height: 22px;
+        font-weight: 400;
+    }
+    & + .checkbox-label:before {
+        content: " ";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 22px;
+        width: 22px;
+        background-image: url(../images/checkradio.png);
+        background-size: auto 22px;
+        background-position: 154px top;
+    }
+    & + .checkbox-label:hover:before {
+        background-position: 198px top;
+
+    }
+    &:checked + .checkbox-label:before {
+        background-position: 176px top;
+    }
+}
+
+.radiobutton-input {
+    position: absolute;
+    opacity: 0;
+
+    & + .radiobutton-label {
+        padding-left: 27px;
+        padding-right: 5px;
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        line-height: 22px;
+        font-weight: 400;
+        margin: 0;
+    }
+    & + .radiobutton-label:before {
+        content: " ";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 22px;
+        width: 22px;
+        background-image: url(../images/checkradio.png);
+        background-size: auto 22px;
+        background-position: 45px top;
+    }
+    & + .radiobutton-label:hover:before {
+        background-position: 89px top;
+
+    }
+    &:checked + .radiobutton-label:before {
+        background-position: 67px top;
+    }
+}
+
+.big-control-label {
+
+}
+.float-e-margins .btn {
+    margin-bottom: 0;
+}
+
+.profile-photo {
+    height: 48px;
+    width: 48px;
+    display: block;
+    background-size: auto 48px;
+    background-position: center center;
+    border-radius: 50%;
+}
+
+.dashboard-photo {
+    height: 100px;
+    width: 100px;
+    display: block;
+    background-size: auto 100px;
+    background-position: center center;
+    border-radius: 50%;
+}
+
+.no-border {
+    border: 0 !important;
+}
+
+.no-border-top {
+    border-top: 0 !important;
+}
+
+.form-group {
+    .form-input-group {
+        & > div {
+            margin-bottom: 10px;
+        }
+    }
+    .big-control-label {
+        text-align: center;
+        font-size: 20px;
+        line-height: 3;
+    }
+}
+
+.form-inline {
+    .radio, .checkbox {
+        display: inline-block;
+        margin-right: 15px;
+    }
+}
+
+.navbar-default .danger_zone a {
+}
+.navbar-default .danger_zone a:hover {
+}
+.navbar-default .danger_zone a span.label {
+}
+
+#side-menu {
+    .nav li.active {
+        border: 0;
+        .nav-hidden-level {
+            display: none;
+        }
+    }
+}
+
+#page-heading {
+    .page-heading__right-columnn {
+        margin-top: 20px;
+    }
+}
+
+#page-wrapper {
+    position: relative;
+}
+
+#preloader {
+    border-bottom-right-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    position: absolute;
+    display: none;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 200%;
+    height: 200%;
+    opacity: 0.8;
+    background-color: #fff;
+    .preloader__gif {
+        position: absolute;
+        top: 160px;
+        left: 20px;
+    }
+}
+
+#grade-filter label {
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+#student-dashboard-performance {
+    padding-bottom: 0;
+}
+
+/*
+ *
+ * Tables
+ */
+table {
+    .student-name {
+        font-size: 12px;
+    }
+    .student-score {
+        font-size: 12px;
+    }
+}
+.table-student-report {
+    tbody tr td {
+        font-size: 12px;
+    }
+}
+.va-middle {
+    vertical-align: middle !important;
+}
+

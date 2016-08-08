@@ -6,7 +6,13 @@ Rails.application.routes.draw do
   get 'data_mining/mine_users'
   get 'data_mining/destroy_all'
 
-  root to: 'surveys#index'
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
+
+  authenticated :user do
+    root to: 'surveys#index', as: :authenticated_root
+  end
 
   resources :surveys do
     collection do

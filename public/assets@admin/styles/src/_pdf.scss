@@ -1,0 +1,278 @@
+/*
+ *
+ * PDF
+ */
+
+.page-breaker { display:block; clear:both; page-break-after:always; }
+.resource-processing_stats {
+    padding: 5px 5px;
+}
+
+body#pdf {
+    margin: 5px;
+    table {
+        margin-bottom: 0;
+        thead {
+            tr {
+                th {
+                    vertical-align: middle;
+                    padding: 10px 8px;
+                    font-size: 11px;
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    vertical-align: middle;
+                    padding: 8px 8px;
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+
+
+    background-color: #fff;
+    & img {
+        width: 100%;
+    }
+    & .wrapper-content {
+        padding-top: 0;
+    }
+    table, tr, td, th, tbody, thead, tfoot {
+        page-break-inside: avoid !important;
+    }
+    th.featured {
+        background-color: #ececec;
+        // text-transform: uppercase;
+    }
+    .page-breaker {
+        page-break-after: always;
+    }
+    .pdf__header-wrapper {
+        position: relative;
+    }
+    .pdf__header-table-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+    }
+    .pdf__header {
+        display: table;
+        height: 100%;
+        width: 100%;
+        text-align: right;
+        .pdf__header-heading {
+            color: #fff;
+            vertical-align: middle;
+            display: table-cell;
+            font-style: italic;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding-right: 20px;
+            font-size: 25px;
+        }
+    }
+}
+
+body#pdf .answer-card {
+    header {
+        height: 385px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    table.choices {
+        border-collapse: collapse;
+        padding: 0;
+        margin: 0;
+        display: table;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-radius: 4px;
+        tbody {
+            tr {
+                td {
+                    padding-top: 0px;
+                    padding-bottom: 3px;
+                    padding-left: 2px;
+                    padding-right: 2px;
+                    text-align: center;
+                    &.number {
+                        text-align: center;
+                        font-size: 11px;
+                        font-weight: 400;
+                    }
+                    &.choice span {
+                        border-radius: 50%;
+                        display: inline-block;
+                        height: 15px;
+                        width: 15px;
+                        line-height: 14px;
+                        text-align: center;
+                        background-color: #fff;
+                        border: 1px solid #3f3f3f;
+                        color: #3f3f3f;
+                        font-size: 9px;
+                    }
+                }
+
+                &:nth-child(even) {
+                    background-color: #ececec;
+                    border-top: 1px solid lightgrey;
+                    border-bottom: 1px solid lightgrey;
+                }
+            }
+        }
+    }
+    table.card {
+        tbody {
+            tr {
+                &:first-child {
+                    border-top: 1px solid lightgrey;
+                }
+                td {
+                    padding: 3px 2px;
+                }
+            }
+        }
+    }
+
+    .column, .columns {
+        &:not(:first-child) {
+            padding-left: 6px;
+        }
+        &:not(:last-child) {
+            padding-right: 6px;
+        }
+    }
+    h1, h2, h3, h4, h5, h6, p {
+        font-family: "Arial";
+        white-space:nowrap;
+        overflow: hidden;
+    }
+    .akstyle {
+        text-transform: uppercase;
+    }
+    .ak {
+        display: inline-block;
+        position: relative;
+        .ak__name {
+            text-transform: uppercase;
+            font-weight: 600;
+            border-bottom: 2px solid #FE3C46;
+            display: inline-block;
+            color: #000;
+            padding: 5px 0 5px 0;
+            margin: 0;
+            line-height: 1;
+        }
+        .ak__meta-wrapper {
+            width: 161px;
+            position: relative;
+        }
+        .ak__simulated-test-number,
+        .ak__grade {
+            text-transform: uppercase;
+            padding: 4px 0 0 0;
+            margin: 0;
+            color: #3f3f3f;
+            display: inline-block;
+        }
+        .ak__grade {
+            float: right;
+        }
+    }
+    .day {
+        text-align: center;
+        padding-top: 10px;
+        line-height: 1;
+    }
+    .logo {
+        margin-top: 0;
+    }
+    .info {
+        border: 1px solid #3f3f3f;
+        border-radius: 10px;
+        padding: 0;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        height: 120px;
+        overflow: hidden;
+        .info__section {
+            padding: 10px 10px 5px 10px;
+            min-height: 112px;
+            &.bordered {
+                border-left: 1px dashed #3f3f3f;
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+        .info-text {
+            font-size: 14px;
+            text-transform: uppercase;
+            margin: 0;
+            white-space:nowrap;
+            overflow: hidden;
+            strong {
+                text-transform: initial;
+            }
+        }
+        .info__signature {
+            text-align: center;
+            .info__signature-line {
+                width: 80%;
+                margin: 40px auto 0;
+                border-color: #3f3f3f;
+            }
+            .info__signature-text {
+                font-size: 13px;
+                margin-bottom: 0;
+                padding-bottom: 0;
+                line-height: 1.2;
+            }
+        }
+        .info__id {
+            text-align: center;
+            // padding-top: 20px;
+            font-size: 33px;
+        }
+        .info__idexam {
+            text-align: center;
+            padding-top: 8px;
+            padding-bottom: 0;
+            font-size: 33px;
+        }
+        .info__type-text {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            font-size: 12px;
+        }
+        .info__type-table {
+            margin-bottom: 5px;
+            border-left: none;
+            border-right: none;
+            border-color: #585858;
+
+
+        }
+    }
+    .instructions {
+        .instructions__title {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 15px;
+        }
+        ul {
+            li {
+                font-size: 13px;
+            }
+        }
+    }
+}

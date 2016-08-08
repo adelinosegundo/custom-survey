@@ -1,0 +1,369 @@
+/*
+ * Import modules
+ * ----------------------------------------------------- */
+/*
+ * Colors
+ */
+/*
+ * Color palette
+ * ----------------------------------------------------- */
+/*
+ * Pace theme
+ */
+.pace .pace-progress {
+  background: #63a287; }
+
+/*
+ * Import partials
+ * ----------------------------------------------------- */
+.dl-horizontal dt {
+  float: left;
+  width: 160px;
+  overflow: hidden;
+  clear: left;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+
+.dl-horizontal dd {
+  margin-left: 180px; }
+
+.tooltip-inner {
+  width: 400px;
+  max-width: 400px; }
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0; }
+  .checkbox-input + .checkbox-label {
+    padding-left: 27px;
+    padding-right: 5px;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 22px;
+    font-weight: 400; }
+  .checkbox-input + .checkbox-label:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 22px;
+    width: 22px;
+    background-image: url(../images/checkradio.png);
+    background-size: auto 22px;
+    background-position: 154px top; }
+  .checkbox-input + .checkbox-label:hover:before {
+    background-position: 198px top; }
+  .checkbox-input:checked + .checkbox-label:before {
+    background-position: 176px top; }
+
+.radiobutton-input {
+  position: absolute;
+  opacity: 0; }
+  .radiobutton-input + .radiobutton-label {
+    padding-left: 27px;
+    padding-right: 5px;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 22px;
+    font-weight: 400;
+    margin: 0; }
+  .radiobutton-input + .radiobutton-label:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 22px;
+    width: 22px;
+    background-image: url(../images/checkradio.png);
+    background-size: auto 22px;
+    background-position: 45px top; }
+  .radiobutton-input + .radiobutton-label:hover:before {
+    background-position: 89px top; }
+  .radiobutton-input:checked + .radiobutton-label:before {
+    background-position: 67px top; }
+
+.float-e-margins .btn {
+  margin-bottom: 0; }
+
+.profile-photo {
+  height: 48px;
+  width: 48px;
+  display: block;
+  background-size: auto 48px;
+  background-position: center center;
+  border-radius: 50%; }
+
+.dashboard-photo {
+  height: 100px;
+  width: 100px;
+  display: block;
+  background-size: auto 100px;
+  background-position: center center;
+  border-radius: 50%; }
+
+.no-border {
+  border: 0 !important; }
+
+.no-border-top {
+  border-top: 0 !important; }
+
+.form-group .form-input-group > div {
+  margin-bottom: 10px; }
+
+.form-group .big-control-label {
+  text-align: center;
+  font-size: 20px;
+  line-height: 3; }
+
+.form-inline .radio, .form-inline .checkbox {
+  display: inline-block;
+  margin-right: 15px; }
+
+#side-menu .nav li.active {
+  border: 0; }
+  #side-menu .nav li.active .nav-hidden-level {
+    display: none; }
+
+#page-heading .page-heading__right-columnn {
+  margin-top: 20px; }
+
+#page-wrapper {
+  position: relative; }
+
+#preloader {
+  border-bottom-right-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  position: absolute;
+  display: none;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 200%;
+  height: 200%;
+  opacity: 0.8;
+  background-color: #fff; }
+  #preloader .preloader__gif {
+    position: absolute;
+    top: 160px;
+    left: 20px; }
+
+#grade-filter label {
+  font-size: 12px;
+  margin-top: 6px; }
+
+#student-dashboard-performance {
+  padding-bottom: 0; }
+
+/*
+ *
+ * Tables
+ */
+table .student-name {
+  font-size: 12px; }
+
+table .student-score {
+  font-size: 12px; }
+
+.table-student-report tbody tr td {
+  font-size: 12px; }
+
+.va-middle {
+  vertical-align: middle !important; }
+
+/*
+ *
+ * PDF
+ */
+.page-breaker {
+  display: block;
+  clear: both;
+  page-break-after: always; }
+
+body#pdf {
+  background-color: #fff; }
+  body#pdf img {
+    width: 100%; }
+  body#pdf .wrapper-content {
+    padding-top: 0; }
+  body#pdf table, body#pdf tr, body#pdf td, body#pdf th, body#pdf tbody, body#pdf thead, body#pdf tfoot {
+    page-break-inside: avoid !important; }
+  body#pdf th.featured {
+    background-color: #ececec; }
+  body#pdf .page-breaker {
+    page-break-after: always; }
+  body#pdf .pdf__header-wrapper {
+    position: relative; }
+  body#pdf .pdf__header-table-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%; }
+  body#pdf .pdf__header {
+    display: table;
+    height: 100%;
+    width: 100%;
+    text-align: right; }
+    body#pdf .pdf__header .pdf__header-heading {
+      color: #fff;
+      vertical-align: middle;
+      display: table-cell;
+      font-style: italic;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding-right: 20px;
+      font-size: 25px; }
+
+#answers-keys .column:not(:first-child), #answers-keys .columns:not(:first-child) {
+  padding-left: 6px; }
+
+#answers-keys .column:not(:last-child), #answers-keys .columns:not(:last-child) {
+  padding-right: 6px; }
+
+#answers-keys h1, #answers-keys h2, #answers-keys h3, #answers-keys h4, #answers-keys h5, #answers-keys h6, #answers-keys p {
+  font-family: "Arial";
+  white-space: nowrap;
+  overflow: hidden; }
+
+#answers-keys .akstyle {
+  text-transform: uppercase; }
+
+#answers-keys .ak {
+  display: inline-block;
+  position: relative; }
+  #answers-keys .ak .ak__name {
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 2px solid #FE3C46;
+    display: inline-block;
+    color: #000;
+    padding: 5px 0 5px 0;
+    margin: 0;
+    line-height: 1; }
+  #answers-keys .ak .ak__meta-wrapper {
+    width: 217px;
+    position: relative; }
+  #answers-keys .ak .ak__simulated-test-number,
+  #answers-keys .ak .ak__grade {
+    text-transform: uppercase;
+    padding: 4px 0 0 0;
+    margin: 0;
+    color: #3f3f3f;
+    display: inline-block; }
+  #answers-keys .ak .ak__grade {
+    float: right; }
+
+#answers-keys .day {
+  text-align: center;
+  padding-top: 10px;
+  line-height: 1; }
+
+#answers-keys .logo {
+  margin-top: 0; }
+
+#answers-keys .info {
+  border: 1px solid #3f3f3f;
+  border-radius: 10px;
+  padding: 0;
+  margin-bottom: 10px;
+  margin-top: 10px; }
+  #answers-keys .info .info__section {
+    padding: 10px 10px 5px 10px;
+    min-height: 112px; }
+    #answers-keys .info .info__section.bordered {
+      border-left: 1px dashed #3f3f3f;
+      padding-left: 0;
+      padding-right: 0; }
+  #answers-keys .info .info-text {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden; }
+    #answers-keys .info .info-text strong {
+      text-transform: initial; }
+  #answers-keys .info .info__signature {
+    text-align: center; }
+    #answers-keys .info .info__signature .info__signature-line {
+      width: 80%;
+      margin: 40px auto 0;
+      border-color: #3f3f3f; }
+    #answers-keys .info .info__signature .info__signature-text {
+      font-size: 13px;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      line-height: 1.2; }
+  #answers-keys .info .info__id {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 33px; }
+  #answers-keys .info .info__idexam {
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 0;
+    font-size: 33px; }
+  #answers-keys .info .info__type-text {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 12px; }
+  #answers-keys .info .info__type-table {
+    margin-bottom: 5px;
+    border-left: none;
+    border-right: none;
+    border-color: #585858; }
+
+#answers-keys .instructions .instructions__title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 15px; }
+
+#answers-keys .instructions ul li {
+  font-size: 13px; }
+
+#answers-keys table {
+  border-collapse: collapse;
+  padding: 0;
+  margin: 0;
+  display: table;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 4px; }
+  #answers-keys table tr td {
+    padding-top: 0px;
+    padding-bottom: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
+    text-align: center; }
+    #answers-keys table tr td.number {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 400; }
+    #answers-keys table tr td.choice span {
+      border-radius: 50%;
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+      line-height: 14px;
+      text-align: center;
+      background-color: #fff;
+      border: 1px solid #3f3f3f;
+      color: #3f3f3f;
+      font-size: 9px; }
+  #answers-keys table tr:nth-child(even) {
+    background-color: #ececec;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey; }
+
+.resource-processing_stats {
+  padding: 5px 5px; }
