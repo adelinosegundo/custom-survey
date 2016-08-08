@@ -11,6 +11,8 @@ gem 'sidekiq'
 gem 'redis'
 gem 'httparty'
 
+gem 'devise'
+
 gem 'carrierwave'
 gem 'mini_magick'
 
