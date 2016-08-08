@@ -25,56 +25,40 @@ html
     //styles::main
     link href="/assets@admin/styles/main.css" rel="stylesheet"
   body
-    nav.navbar
-      .container
-        .navbar-header
-          button[type="button"class="navbar-toggle"data-toggle="collapse"data-target="#navbar-menu"]
-            span[class="sr-only"]
-              | Menu
-            | MENU
-            i[class="fa fa-bars"]
-          a[href="/"class="navbar-brand"]
-            strong
-              | coop
-            | era:lab
-        .collapse.navbar-collapse#navbar-menu
-          ul.nav.navbar-nav.navbar-right
-            li
-              a[href="/surveys"] Surveys
-            li
-              a[href="#"] Home
-            li
-              a[href="#"] The Team
-            li
-              a[href="#"] Projects
-            li
-              a[href="#"] Contact
-    #content
-      = yield
-    footer
-      //scripts
-      script src="/assets@admin/bower_components/jquery/dist/jquery.min.js"
-      script src="/assets@admin/bower_components/bootstrap/dist/js/bootstrap.min.js"
-      script src="/assets@admin/vendor/metisMenu/jquery.metisMenu.js"
-      script src="/assets@admin/vendor/slimscroll/jquery.slimscroll.min.js"
-      script src="/assets@admin/vendor/pace/pace.min.js"
-      script src="/assets@admin/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js"
+    #wrapper
+      nav.navbar-default.navbar-static-side[role="navigation"]
+        .sidebar-collapse
+          = render 'layouts/side_menu'
+      #page-wrapper.gray-bg.dashbard-1
+        .row.border-bottom
+          = render '/layouts/header'
+        #page
+          = yield
+          .footer
+            p.pull-right produzido por <strong> Coopera Lab </strong>.
+    //scripts
+    script src="/assets@admin/bower_components/jquery/dist/jquery.min.js"
+    script src="/assets@admin/bower_components/bootstrap/dist/js/bootstrap.min.js"
+    script src="/assets@admin/vendor/metisMenu/jquery.metisMenu.js"
+    script src="/assets@admin/vendor/slimscroll/jquery.slimscroll.min.js"
+    script src="/assets@admin/vendor/pace/pace.min.js"
+    script src="/assets@admin/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js"
 
-      //scripts::additional
-      script src="/assets@admin/vendor/jasny/jasny-bootstrap.min.js"
-      script src="/assets@admin/vendor/chosen/chosen.jquery.js"
-      script src="/assets@admin/vendor/sweetalert/sweetalert.min.js"
-      script src="/assets@admin/vendor/validate/jquery.validate.min.js"
-      script src="/assets@admin/vendor/datapicker/bootstrap-datepicker.js"
-      script src="/assets@admin/vendor/dataTables/jquery.dataTables.js"
-      script src="/assets@admin/vendor/dataTables/dataTables.bootstrap.js"
-      script src="/assets@admin/vendor/dataTables/dataTables.responsive.js"
-      script src="/assets@admin/vendor/dataTables/dataTables.tableTools.min.js"
-      script src="/assets@admin/vendor/nestable/jquery.nestable.js"
-      script src="/assets@admin/vendor/dropzone/dropzone.js"
-      script src="/assets@admin/bower_components/highcharts/highcharts.js"
+    //scripts::additional
+    script src="/assets@admin/vendor/jasny/jasny-bootstrap.min.js"
+    script src="/assets@admin/vendor/chosen/chosen.jquery.js"
+    script src="/assets@admin/vendor/sweetalert/sweetalert.min.js"
+    script src="/assets@admin/vendor/validate/jquery.validate.min.js"
+    script src="/assets@admin/vendor/datapicker/bootstrap-datepicker.js"
+    script src="/assets@admin/vendor/dataTables/jquery.dataTables.js"
+    script src="/assets@admin/vendor/dataTables/dataTables.bootstrap.js"
+    script src="/assets@admin/vendor/dataTables/dataTables.responsive.js"
+    script src="/assets@admin/vendor/dataTables/dataTables.tableTools.min.js"
+    script src="/assets@admin/vendor/nestable/jquery.nestable.js"
+    script src="/assets@admin/vendor/dropzone/dropzone.js"
+    script src="/assets@admin/bower_components/highcharts/highcharts.js"
 
-      //scripts::main
-      = javascript_include_tag 'application', 'data-turbolinks-track' => true
-      script src="/assets@admin/scripts/main.min.js"
+    //scripts::main
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    script src="/assets@admin/scripts/main.min.js"
 

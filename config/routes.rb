@@ -7,12 +7,15 @@ Rails.application.routes.draw do
   get 'data_mining/destroy_all'
 
   devise_scope :user do
-    root to: "devise/sessions#new"
+    unauthenticated do
+      root to: "devise/sessions#new"
+    end
+    authenticated do
+      root to: 'surveys#index', as: :authenticated_home
+    end
   end
 
-  authenticated :user do
-    root to: 'surveys#index', as: :authenticated_root
-  end
+
 
   resources :surveys do
     collection do

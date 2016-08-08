@@ -1,0 +1,16 @@
+ul#side-menu.nav
+  li.nav-header
+    .dropdown.profile-element
+      a.dropdown-toggle[data-toggle="dropdown" href="#"]
+        span.clear
+          span.block.m-t-xs
+            strong.font-bold
+              = current_user.email.upcase
+  li
+    a[href="#{authenticated_home_path}"]
+      i.fa.fa-th-large
+      |  Dashboard
+  li
+    a[href="#{surveys_path}"]
+      i.fa.fa-th-large
+      |  Surveys
