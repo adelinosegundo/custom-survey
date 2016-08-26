@@ -1,6 +1,21 @@
-.container
+.row.wrapper.border-bottom.white-bg.page-heading
+  #page-heading
+    .col-xs-6
+      h2
+        = 'Mail Messages'
+      ol.breadcrumb
+        li
+          = link_to 'Mail Messages', survey_mail_messages_path(@survey)
+        li.active
+          strong Edit Mail Message
+    .col-xs-6.text-right
+      = link_to 'Voltar'.html_safe, survey_mail_messages_path(@survey), class: "btn btn-lg btn-outline btn-white m-t-lg m-r-sm"
+.wrapper.wrapper-content.animated.fadeInRight
   .row
-    .col-xs-12
-      h1 Edit Mail
-  hr
-  = render 'form'
+    .ibox.float-e-margins
+      .ibox-title
+        h5
+          | Edit Mail Message
+          small
+      .ibox-content
+        = render 'form'
