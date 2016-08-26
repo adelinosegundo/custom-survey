@@ -14,11 +14,11 @@
   .row
     .col-xs-12
       | Results
-  - @survey.questions.each do |question|
+  - @survey.items.each do |item|
     .row
       .col-xs-12
         strong
-          = question.number
+          = item.sequence
   .row
     .col-xs-12
       = link_to 'Edit', edit_survey_path(@survey)

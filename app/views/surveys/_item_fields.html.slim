@@ -1,11 +1,12 @@
 .nested-fields.animated.slideInDown
-  hr
-  = f.text_field :sequence
-  = f.text_field :actable_type
-  .row
-    .col-xs-12
-      = link_to_remove_association "<i class='remove-item fa fa-times'></i>".html_safe, f
+  .hr-line-dashed
+  .form-group
+    = link_to_remove_association "<i class='remove-item fa fa-times'></i>".html_safe, f
+  .form-group
+    = f.label :sequence, class: "col-sm-2 control-label"
+    .col-sm-3
+      = f.text_field :sequence, class: "form-control"
+  = f.hidden_field :actable_type, class: "form-control"
   .content
     = f.fields_for :actable do |ff|
       = render 'surveys/items_types/'+f.object.get_survey_template_name, f: ff
-  

@@ -1,7 +1,16 @@
-= f.text_field :number, placeholder: :number, class: "form-control"
-= f.text_field :title, placeholder: :title, class: "form-control"
-= f.text_area :description, placeholder: :description, class: "form-control"
-.checkbox
-  = f.label :is_required
-    = f.check_box :is_required
-    | Is required?
+.form-group
+  = f.label :number, class: "col-sm-2 control-label"
+  .col-sm-3
+    = f.text_field :number, class: "form-control"
+.form-group
+  = f.label :title, class: "col-sm-2 control-label"
+  .col-sm-3
+   = f.text_field :title, class: "form-control"
+.form-group
+  = f.label :description, class: "col-sm-2 control-label"
+  .col-sm-3
+    = f.text_area :description, class: "form-control"
+.form-group
+  = f.label :is_required, class: "col-sm-2 control-label"
+  .col-sm-3
+    = f.check_box :is_required, class: "form-control"

@@ -5,5 +5,4 @@
   = f.text_field :subject, class: "form-control"
   = f.label :content, class: "control-label"
   = f.cktext_area :content, class: "form-control"
-  = collection_check_boxes(:mail_message, :github_users, GithubUser.all, :id, :name)
   = f.submit "Submit", class: "btn btn-default"

@@ -1,16 +1,26 @@
-= f.text_field :number, placeholder: :number, class: "form-control"
-= f.text_field :title, placeholder: :title, class: "form-control"
-= f.text_area :description, placeholder: :description, class: "form-control"
-h6.inline Alternatives
-= link_to_add_association '<i class="fa fa-plus"></i>'.html_safe, f, :alternatives, id: :add_alternative, data: {'association-insertion-node': "#alternatives#{f.object.sequence}", 'association-insertion-method': 'append'}
+.form-group
+  = f.label :number, class: "col-sm-2 control-label"
+  .col-sm-3
+    = f.text_field :number, class: "form-control"
+.form-group
+  = f.label :title, class: "col-sm-2 control-label"
+  .col-sm-3
+   = f.text_field :title, class: "form-control"
+.form-group
+  = f.label :description, class: "col-sm-2 control-label"
+  .col-sm-3
+    = f.text_area :description, class: "form-control"
+.form-group
+  = f.label :is_required, class: "col-sm-2 control-label"
+  .col-sm-3
+    = f.check_box :is_required, class: "form-control"
+.form-group
+  = f.label :accepts_multiple, class: "col-sm-2 control-label"
+  .col-sm-3
+    = f.check_box :accepts_multiple, class: "form-control"
+.form-group
+  label.col-sm-2.control-label Alternatives
+  = link_to_add_association 'add', f, :alternatives, id: :add_alternative, class: "btn btn-primary", data: {'association-insertion-node': "#alternatives#{f.object.sequence}", 'association-insertion-method': 'append'}
 div[id="alternatives#{f.object.sequence}"]
   = f.fields_for :alternatives do |alternative|
     = render 'alternative_fields', f: alternative
-.checkbox
-  = f.label :is_required
-    = f.check_box :is_required
-    | Is required?
-.checkbox
-  = f.label :accepts_multiple
-    = f.check_box :accepts_multiple
-    | Accepts multiple?
