@@ -15,7 +15,7 @@
     .ibox.float-e-margins
       .ibox-title
         h5
-          | New Survey
+          | List Survey
           small
       .ibox-content
         table#surveys-table.table.table-bordered.table-striped
@@ -37,7 +37,7 @@
                 td
                   = survey.replies.size
                 td.text-center
-                  = link_to "<i class='fa fa-envelope'></i>".html_safe, mail_messages_path
+                  = link_to "<i class='fa fa-envelope'></i>".html_safe, survey_mail_messages_path(survey)
                 td.text-center
                   = link_to "<i class='fa fa-search'></i>".html_safe, survey
                 td.text-center

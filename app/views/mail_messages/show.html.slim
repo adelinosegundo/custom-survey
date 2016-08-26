@@ -1,19 +1,26 @@
-.container
+.row.wrapper.border-bottom.white-bg.page-heading
+  #page-heading
+    .col-xs-6
+      h2
+        = 'Mail Messages'
+      ol.breadcrumb
+        li
+          = link_to 'Mail Messages', survey_mail_messages_path(@survey)
+        li.active
+          strong Mail Message
+    .col-xs-6.text-right
+      = link_to 'Voltar'.html_safe, survey_mail_messages_path(@survey), class: "btn btn-lg btn-outline btn-white m-t-lg m-r-sm"
+.wrapper.wrapper-content.animated.fadeInRight
   .row
-    .col-xs-12
-      h3 Mail Subject
-      = @mail_message.subject
-  .row
-    .col-xs-12
-      h3 Mail Content
-      = @mail_message.content.html_safe
-  hr
-  .row
-    .col-xs-12
-      | Recipients
-      table[data-source="#{recipients_mail_message_path(@mail_message)}" class="mail_message_recipients_table"]
-        thead
-          tr
-            th Email
-            th
-        tbody
+    .ibox.float-e-margins
+      .ibox-title
+        h5
+          | Mail Message
+          small
+      .ibox-content
+        table[data-source="#{recipients_survey_mail_message_path(@survey, @mail_message)}" class="mail_message_recipients_table"]
+          thead
+            tr
+              th Email
+              th
+          tbody

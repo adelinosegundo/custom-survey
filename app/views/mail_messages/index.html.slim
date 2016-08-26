@@ -1,8 +1,44 @@
-#notice
-  = notice
+.row.wrapper.border-bottom.white-bg.page-heading
+  #page-heading
+    .col-xs-6
+      h2
+        = 'Mail Messages'
+      ol.breadcrumb
+        li
+          = link_to 'Mail Messages', survey_mail_messages_path(@survey)
+        li.active
+          strong Listing Mail Messages
+    .col-xs-6.text-right
+      = link_to 'New Mail Message'.html_safe, new_survey_mail_message_path(@survey), class: "btn btn-lg btn-outline btn-primary m-t-lg m-r-sm"
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .ibox.float-e-margins
+      .ibox-title
+        h5
+          | List Mail Messages
+          small
+      .ibox-content
+        table#surveys-table.table.table-bordered.table-striped
+          thead
+            tr
+              th(rowspan="2") Subject
+              th(rowspan="2") Replies
+              th(colspan="3" class="table-actions text-center") Actions
+            tr
+              th(width="100px"class="text-center") Show
+              th(width="100px"class="text-center") Edit
+              th(width="100px"class="text-center") Destroy
+          tbody
+            - @mail_messages.each do |mail_message|
+              tr
+                td
+                  = link_to mail_message.subject, survey_mail_message_path(@survey, mail_message)
+                td
+                  = mail_message.replies.size
+                td.text-center
+                  = link_to "<i class='fa fa-search'></i>".html_safe, survey_mail_message_path(@survey, mail_message)
+                td.text-center
+                  = link_to "<i class='fa fa-pencil'></i>".html_safe, edit_survey_mail_message_path(@survey, mail_message)
+                td.text-center
+                  = link_to "<i class='fa fa-times'></i>".html_safe, survey_mail_message_path(@survey, mail_message), method: :delete, data: { confirm: 'Are you sure?' }
 
-
-.container
-  .pull-right
-    = link_to 'New Mail', new_mail_message_path,  class: "btn btn-info"
-  h1 Send To

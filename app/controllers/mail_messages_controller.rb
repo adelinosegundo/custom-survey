@@ -1,10 +1,11 @@
 class MailMessagesController < ApplicationController
+  before_action :set_survey
   before_action :set_mail_message, only: [:show, :edit, :update, :destroy, :deliver, :answers_as]
 
 
   # GET /mail_messages
   def index
-    @mail_messages = MailMessage.eager_load(:survey).all
+    @mail_messages = @survey.mail_messages
   end
 
   # GET /mail_messages/1/recipients
@@ -20,7 +21,7 @@ class MailMessagesController < ApplicationController
 
   # GET /mail_messages/new
   def new
-    @mail_message = MailMessage.new
+    @mail_message = @survey.mail_messages.build
   end
 
   # GET /mail_messages/1/edit
@@ -29,9 +30,9 @@ class MailMessagesController < ApplicationController
 
   # POST /mail_messages
   def create
-    @mail_message = MailMessage.new(mail_message_params)
+    @mail_message = @survey.mail_messages.build(mail_message_params)
     if @mail_message.save
-      redirect_to mail_messages_url, notice: 'Mail message was successfully created.'
+      redirect_to survey_mail_messages_url(@survey), notice: 'Mail message was successfully created.'
     else
       render :new
     end
@@ -40,7 +41,7 @@ class MailMessagesController < ApplicationController
   # PATCH/PUT /mail_messages/1
   def update
     if @mail_message.update(mail_message_params)
-      redirect_to mail_messages_url, notice: 'Mail message was successfully updated.'
+      redirect_to survey_mail_messages_url(@survey), notice: 'Mail message was successfully updated.'
     else
       render :edit
     end
@@ -49,14 +50,14 @@ class MailMessagesController < ApplicationController
   # DELETE /mail_messages/1
   def destroy
     @mail_message.destroy
-    redirect_to mail_messages_url, notice: 'Mail message was successfully destroyed.'
+    redirect_to survey_mail_messages_url(@survey), notice: 'Mail message was successfully destroyed.'
   end
 
   # POST /mail_messages/:id/deliver
   def deliver
     # @mail_message.generate_new_links
     # SuportMailer.deliver_survey_mail_message(@mail_message).deliver_now
-    redirect_to mail_messages_path(@survey)
+    redirect_to survey_mail_messages_path(@survey)
   end
 
   # GET /mail_messages/:id/answers_as
@@ -67,9 +68,13 @@ class MailMessagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+    def set_survey
+      @survey = Survey.find(params[:survey_id])
+    end
+
     def set_mail_message
-      @mail_message = MailMessage.find(params[:id])
+      @mail_message = @survey.mail_messages.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

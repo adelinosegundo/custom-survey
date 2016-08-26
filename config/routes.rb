@@ -24,12 +24,12 @@ Rails.application.routes.draw do
     member do
       patch 'create_reply'
     end
-  end
-  resources :mail_messages do
-    member do
-      get 'recipients'
-      get 'answers_as'
-      post 'deliver'
+    resources :mail_messages do
+      member do
+        get 'recipients'
+        get 'answers_as'
+        post 'deliver'
+      end
     end
   end
 end
