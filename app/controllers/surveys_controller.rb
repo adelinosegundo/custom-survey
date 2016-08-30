@@ -85,7 +85,6 @@ class SurveysController < ApplicationController
         users_data_file = params[:survey].delete :users_data
         users_data_json = users_data_file.tempfile.read
         params[:survey][:users_data] = JSON.parse users_data_json
-        byebug
       end
     end
     # Use callbacks to share common setup or constraints between actions.

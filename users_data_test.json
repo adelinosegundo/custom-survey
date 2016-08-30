@@ -1,12 +1,12 @@
 {
 	"users": [
-		{ "email": "adelinosegundo@gmail.com" },
-		{ "email": "user1@mail.com" },
-		{ "email": "user2@mail.com" },
-		{ "email": "user3@mail.com" },
-		{ "email": "user4@mail.com" },
-		{ "email": "user5@mail.com" },
-		{ "email": "user6@mail.com" },
-		{ "email": "user7@mail.com" }
+		{ "email": "adelinosegundo@gmail.com", "repository":"rep1"  },
+		{ "email": "user1@mail.com", "repository":"rep2" },
+		{ "email": "user2@mail.com", "repository":"rep3" },
+		{ "email": "user3@mail.com", "repository":"rep4" },
+		{ "email": "user4@mail.com", "repository":"rep5" },
+		{ "email": "user5@mail.com", "repository":"rep6" },
+		{ "email": "user6@mail.com", "repository":"rep7" },
+		{ "email": "user7@mail.com", "repository":"rep8" }
 	]
 }
