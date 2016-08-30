@@ -22,7 +22,9 @@
           thead
             tr
               th(rowspan="2") Subject
-              th(rowspan="2") Replies
+              th(rowspan="2") Recipients
+              th(rowspan="2") Sent
+              th(rowspan="2") Replied
               th(colspan="3" class="table-actions text-center") Actions
             tr
               th(width="100px"class="text-center") Show
@@ -35,6 +37,10 @@
                   = link_to mail_message.subject, survey_mail_message_path(@survey, mail_message)
                 td
                   = mail_message.replies.size
+                td
+                  = mail_message.replies.where(sended: true).size
+                td
+                  = mail_message.replies.where.not(answers: nil).size
                 td.text-center
                   = link_to "<i class='fa fa-search'></i>".html_safe, survey_mail_message_path(@survey, mail_message)
                 td.text-center

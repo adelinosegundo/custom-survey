@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
   include ApplicationHelper
   before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :create_reply]
-
+  before_action :resolve_json, only: [:create, :update]
   # GET /surveys
   # GET /surveys.json
   def index
@@ -80,6 +80,14 @@ class SurveysController < ApplicationController
   end
 
   private
+    def resolve_json
+      if params[:survey][:users_data]
+        users_data_file = params[:survey].delete :users_data
+        users_data_json = users_data_file.tempfile.read
+        params[:survey][:users_data] = JSON.parse users_data_json
+        byebug
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_survey
       @survey = Survey.find(params[:id])
@@ -88,29 +96,5 @@ class SurveysController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
       params.require(:survey).permit!
-      # (:name, :title,
-      #   items_attributes: [
-      #     :id,
-      #     :_destroy,
-      #     :_type,
-      #     :order,
-          
-      #     #message_attributes
-      #     :text,
-
-      #     #image_attributes
-      #     :file,
-
-      #     #question_attributes
-      #     :number,
-      #     :title,
-      #     :description,
-      #     :is_required,
-
-      #     #multiple_choice_question_attributes
-      #     :accepts_multiple,
-      #     alternatives_attributes: [ :_id, :_destroy, :name, :value ]
-      #   ]
-      # )
     end
 end

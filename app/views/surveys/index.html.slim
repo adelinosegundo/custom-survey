@@ -35,7 +35,7 @@
                 td
                   = survey.name
                 td
-                  = survey.replies.size
+                  = survey.replies.where.not(answers: nil).size
                 td.text-center
                   = link_to "<i class='fa fa-envelope'></i>".html_safe, survey_mail_messages_path(survey)
                 td.text-center

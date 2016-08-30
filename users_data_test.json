@@ -1,0 +1,12 @@
+{
+	"users": [
+		{ "email": "adelinosegundo@gmail.com" },
+		{ "email": "user1@mail.com" },
+		{ "email": "user2@mail.com" },
+		{ "email": "user3@mail.com" },
+		{ "email": "user4@mail.com" },
+		{ "email": "user5@mail.com" },
+		{ "email": "user6@mail.com" },
+		{ "email": "user7@mail.com" }
+	]
+}

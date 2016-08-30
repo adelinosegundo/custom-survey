@@ -2,10 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   mount Ckeditor::Engine => '/ckeditor'
 
-  get 'data_mining/index'
-  get 'data_mining/mine_users'
-  get 'data_mining/destroy_all'
-
   devise_scope :user do
     unauthenticated do
       root to: "devise/sessions#new"

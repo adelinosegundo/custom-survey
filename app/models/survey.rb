@@ -18,4 +18,17 @@ class Survey < ActiveRecord::Base
   accepts_nested_attributes_for :items, allow_destroy: true
 
   validates :name, :title, presence: true
+
+  after_save :update_recipients
+
+  def update_recipients
+	self.users_data_mails.each do |email|
+		Recipient.where(email: email).first_or_create
+	end
+  end
+
+  def users_data_mails
+  	self.users_data['users'].collect{|user| user['email']} rescue []
+  end
+
 end

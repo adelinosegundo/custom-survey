@@ -55,9 +55,8 @@ class MailMessagesController < ApplicationController
 
   # POST /mail_messages/:id/deliver
   def deliver
-    # @mail_message.generate_new_links
-    # SuportMailer.deliver_survey_mail_message(@mail_message).deliver_now
-    redirect_to survey_mail_messages_path(@survey)
+    @mail_message.deliver params[:reply_id] || nil
+    redirect_to survey_mail_message_path(@survey, @mail_message), notice: 'Successfully started delivering'
   end
 
   # GET /mail_messages/:id/answers_as

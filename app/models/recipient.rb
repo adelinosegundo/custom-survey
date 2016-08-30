@@ -12,17 +12,10 @@
 #
 
 class Recipient < ActiveRecord::Base
-  actable
-
-  KINDS = {
-    "Github Users" => "GithubUser"
-  }
-
-  scope :active, -> { where(subscribed: true) }
-  scope :avaliable, -> (mail_message_id) { where(actable_type: MailMessage.eager_load(:survey).find(mail_message_id).survey.recipient_kind ) }
+  scope :active, -> { where.not(subscribed: false) }
 
   has_many :replies
   has_many :mail_messages, through: :replies
 
-
+  validates :email, uniqueness: true
 end

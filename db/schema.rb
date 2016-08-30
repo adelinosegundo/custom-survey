@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826022551) do
+ActiveRecord::Schema.define(version: 20160829124532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,20 +103,19 @@ ActiveRecord::Schema.define(version: 20160826022551) do
 
   create_table "recipients", force: :cascade do |t|
     t.string   "email"
-    t.boolean  "subscribed",   default: true
-    t.integer  "actable_id"
-    t.string   "actable_type"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "subscribed", default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "replies", force: :cascade do |t|
     t.string   "link_hash"
     t.json     "answers"
     t.integer  "mail_message_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "recipient_id"
+    t.boolean  "sended",          default: false
   end
 
   add_index "replies", ["mail_message_id"], name: "index_replies_on_mail_message_id", using: :btree
@@ -125,9 +124,8 @@ ActiveRecord::Schema.define(version: 20160826022551) do
   create_table "surveys", force: :cascade do |t|
     t.string   "name"
     t.string   "title"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "recipient_kind"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.json     "users_data"
   end
 
