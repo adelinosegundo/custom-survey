@@ -1,6 +1,8 @@
 ul#side-menu.nav
   li.nav-header
-    = current_user.email.upcase
+    span.block.m-t-xs
+      strong.font-bold
+        = link_to current_user.email.upcase, edit_user_registration_path
   li
     a[href="#{authenticated_home_path}"]
       i.fa.fa-th-large

@@ -7,6 +7,6 @@ nav#header.navbar.navbar-static-top[role="navigation" style="margin-bottom: 0"]
       span.m-r-sm.text-muted.welcome-message
         | Bem-vindo ao Custom Survey
     li
-      = link_to "Profile", edit_user_registration_path(current_user), :method => :get
+      = link_to "Profile", edit_user_registration_path
     li
       = link_to "Logout".html_safe, destroy_user_session_path, :method => :delete

@@ -58,6 +58,17 @@ html
     script src="/assets@admin/vendor/dropzone/dropzone.js"
     script src="/assets@admin/bower_components/highcharts/highcharts.js"
 
+    - if notice
+        - status = flash[:status] ? flash[:status] : "success"
+        javascript: 
+            $(document).ready(function() { 
+                swal({
+                    title: "#{status == "success" ? "Success!" : "Fail!"}", 
+                    text: "#{notice}", 
+                    type: "#{status}", 
+                }); 
+            })
+
     //scripts::main
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     script src="/assets@admin/scripts/main.min.js"
