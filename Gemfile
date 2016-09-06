@@ -26,8 +26,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'ckeditor'
 
 gem "therubyracer"
-gem "less-rails"
-gem "twitter-bootstrap-rails"
 
 gem "cocoon"
 gem "slim"
@@ -43,8 +41,6 @@ group :development, :test do
   gem 'capybara-screenshot'
   gem 'launchy'
   gem 'database_cleaner'
-
-  gem 'byebug'
 end
 
 group :test do
@@ -56,6 +52,11 @@ group :development do
   gem 'spring'
   gem 'annotate'
   gem "letter_opener"
+end
+
+group :development, :test do
+  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
+  gem 'pry-byebug'
 end
 
 group :production do
