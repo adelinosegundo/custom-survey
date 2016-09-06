@@ -10,6 +10,7 @@ gem 'unicorn'
 gem 'sidekiq'
 gem 'redis'
 gem 'httparty'
+gem "figaro"
 
 gem 'devise'
 
