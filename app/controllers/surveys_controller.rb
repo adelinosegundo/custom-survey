@@ -1,7 +1,11 @@
 class SurveysController < ApplicationController
   include ApplicationHelper
-  before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :create_reply]
+  before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :new_reply, :create_reply]
+  before_action :set_reply, only: [:new_reply, :create_reply]
   before_action :resolve_json, only: [:create, :update]
+
+  layout 'coopera', only: :new_reply
+
   # GET /surveys
   # GET /surveys.json
   def index
@@ -25,20 +29,14 @@ class SurveysController < ApplicationController
   
   # GET /surveys/new_reply
   def new_reply
-    @reply = Reply.find(params[:reply_id])
-    @survey = @reply.survey
-    user = @reply.github_user
-    render text: translate_tags(user, render_to_string(:new_reply)), layout: false
+    recipient_data = @reply.mail_message.survey
+      .users_data["users"].select {|data| data["email"] == @reply.recipient.email }[0]
+    render text: translate_tags(recipient_data, render_to_string(:new_reply)), layout: false
   end
 
   # PATCH /surveys/1/create_reply
   def create_reply
-    @reply = Reply.find(params[:reply_id])
-    @survey = @reply.survey
-    user = @reply.github_user
-    render text: translate_tags(user, render_to_string(:new_reply)), layout: false
   end
-
 
   # POST /surveys
   # POST /surveys.json
@@ -90,6 +88,10 @@ class SurveysController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_survey
       @survey = Survey.find(params[:id])
+    end
+
+    def set_reply
+      @reply = Reply.find_by link_hash: params[:link_hash]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

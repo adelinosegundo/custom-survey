@@ -14,11 +14,9 @@ Rails.application.routes.draw do
 
 
   resources :surveys do
-    collection do
-      get 'new_reply'
-    end
     member do
-      patch 'create_reply'
+      get 'new_reply/:link_hash', to: 'surveys#new_reply', as: 'new_reply'
+      patch 'create_reply/:link_hash', to: 'surveys#create_reply', as: 'create_reply'
     end
     resources :mail_messages do
       member do
