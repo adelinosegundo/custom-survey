@@ -10,7 +10,7 @@
 #
 
 class Survey < ActiveRecord::Base
-  has_many :mail_messages
+  has_many :mail_messages, dependent: :destroy
   has_many :replies, through: :mail_messages
   has_many :recipients, through: :replies
 

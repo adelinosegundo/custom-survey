@@ -12,7 +12,7 @@
 #
 
 class Item < ActiveRecord::Base
-  actable
+  actable dependent: :destroy
   
   belongs_to :survey
 
