@@ -16,7 +16,7 @@ require 'mina/data_sync'
 
 set :domain, '104.236.97.231'
 set :deploy_to, '/home/rails/application'
-set :repository, 'git@github.com:adelinosegundo/portal-mej.git'
+set :repository, 'git@github.com:adelinosegundo/custom-survey.git'
 set :branch, 'master'
 set :user, 'root'
 set :forward_agent, true
