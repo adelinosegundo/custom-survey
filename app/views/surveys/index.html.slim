@@ -22,7 +22,6 @@
           thead
             tr
               th(rowspan="2") Name
-              th(rowspan="2") Replies
               th(colspan="4"class="table-actions text-center") Actions
             tr
               th(width="100px"class="text-center") Mails
@@ -34,8 +33,6 @@
               tr
                 td
                   = survey.name
-                td
-                  = survey.replies.where.not(answers: nil).size
                 td.text-center
                   = link_to "<i class='fa fa-envelope'></i>".html_safe, survey_mail_messages_path(survey)
                 td.text-center
