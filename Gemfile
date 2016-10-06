@@ -60,7 +60,11 @@ group :development, :test do
 end
 
 group :production do
-  gem 'rails_12factor'
+  gem 'unicorn'
+  gem 'mina'
+  gem 'mina-data_sync', :require => false
+  gem 'mina-sidekiq', :require => false
+  gem 'mina-unicorn', :require => false
 end
 
 gem 'sdoc', '~> 0.4.0', group: :doc
