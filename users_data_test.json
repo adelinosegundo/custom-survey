@@ -1,12 +1,10 @@
 {
-	"users": [
-		{ "email": "adelinosegundo@gmail.com", "repository":"rep1"  },
-		{ "email": "user1@mail.com", "repository":"rep2" },
-		{ "email": "user2@mail.com", "repository":"rep3" },
-		{ "email": "user3@mail.com", "repository":"rep4" },
-		{ "email": "user4@mail.com", "repository":"rep5" },
-		{ "email": "user5@mail.com", "repository":"rep6" },
-		{ "email": "user6@mail.com", "repository":"rep7" },
-		{ "email": "user7@mail.com", "repository":"rep8" }
-	]
+	"adelinosegundo@gmail.com" : { "repository":"rep1"  },
+	"user1@mail.com" : { "repository":"rep2" },
+	"user2@mail.com" : { "repository":"rep3" },
+	"user3@mail.com" : { "repository":"rep4" },
+	"user4@mail.com" : { "repository":"rep5" },
+	"user5@mail.com" : { "repository":"rep6" },
+	"user6@mail.com" : { "repository":"rep7" },
+	"user7@mail.com" : { "repository":"rep8" }
 }

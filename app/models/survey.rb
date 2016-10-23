@@ -22,13 +22,13 @@ class Survey < ActiveRecord::Base
   after_save :update_recipients
 
   def update_recipients
-	self.users_data_mails.each do |email|
-		Recipient.where(email: email).first_or_create
-	end
+  	self.users_data_mails.each do |email|
+  		Recipient.where(email: email).first_or_create
+  	end
   end
 
   def users_data_mails
-  	self.users_data['users'].collect{|user| user['email']} rescue []
+  	self.users_data.keys
   end
 
 end

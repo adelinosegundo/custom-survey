@@ -3,6 +3,7 @@ module ApplicationHelper
     tags = text.scan(/&lt;&lt;(.*?)&gt;&gt;/imu).flatten
     # tags = text.scan(/<<(.*?)>>/).flatten
     tags.each do |tag|
+      tag = tag.strip
       text = text.sub(/&lt;&lt;#{tag}&gt;&gt;/, user_data[tag])
       # text["<<#{tag}>>"] = user_data[tag]
     end
