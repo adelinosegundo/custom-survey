@@ -80,3 +80,5 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => '104.236.97.231' }
   config.action_controller.default_url_options = { host: '104.236.97.231' }
 end
+
+Rails.application.routes.default_url_options[:host] = '104.236.97.231'
