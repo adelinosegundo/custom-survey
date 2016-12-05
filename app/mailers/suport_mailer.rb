@@ -7,13 +7,7 @@ class SuportMailer < ApplicationMailer
     @content = translate_tags(
     	recipient_data, 
     	reply.mail_message.content.dup, 
-    	url_for(
-	    	controller: 'surveys',
-	    	action: 'new_reply',
-	    	id: reply.mail_message.survey.id,
-	    	link_hash: reply.link_hash,
-	    	host: '104.236.97.231'
-		)
+    	"http://104.236.97.231/surveys/#{reply.mail_message.survey.id}/new_reply/#{reply.link_hash}"
 	)
     reply.update(sended: true)
     mail(:to => reply.recipient.email, :subject => reply.mail_message.subject)
