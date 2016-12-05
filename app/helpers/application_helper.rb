@@ -7,7 +7,7 @@ module ApplicationHelper
       text = text.sub(/&lt;&lt;#{tag}&gt;&gt;/, user_data[tag])
       # text["<<#{tag}>>"] = user_data[tag]
     end
-    text = text.sub(/reply_link/, reply_link) if reply_link
+    # text = text.sub(/reply_link/, reply_link) if reply_link
     text
   end
 end
