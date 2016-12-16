@@ -6,9 +6,10 @@
 #  link_hash       :string
 #  answers         :json
 #  mail_message_id :integer
-#  github_user_id  :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  recipient_id    :integer
+#  sended          :boolean          default(FALSE)
 #
 
 class Reply < ActiveRecord::Base

@@ -11,9 +11,13 @@
         = f.text_field :title, class: "form-control"
 
     .form-group
-      = f.label :users_data, class: "col-sm-2 control-label"
+      = f.label :users_data_file, class: "col-sm-2 control-label"
       .col-sm-3
-        = f.file_field :users_data, class: "form-control"
+        = f.file_field :users_data_file, class: "form-control"
+    .form-group
+      = f.label :email_tag, class: "col-sm-2 control-label"
+      .col-sm-3
+        = f.text_field :email_tag, class: "form-control"
   #items
     = f.fields_for :items do |item|
       = render 'item_fields', f: item

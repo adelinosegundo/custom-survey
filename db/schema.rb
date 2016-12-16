@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829124532) do
+ActiveRecord::Schema.define(version: 20161216122259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,9 +124,12 @@ ActiveRecord::Schema.define(version: 20160829124532) do
   create_table "surveys", force: :cascade do |t|
     t.string   "name"
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.json     "users_data"
+    t.string   "avaliable_tags",  default: [],              array: true
+    t.string   "email_tag"
+    t.string   "users_data_file"
   end
 
   create_table "users", force: :cascade do |t|

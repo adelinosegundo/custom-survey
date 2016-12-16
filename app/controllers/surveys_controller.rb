@@ -2,7 +2,6 @@ class SurveysController < ApplicationController
   include ApplicationHelper
   before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :new_reply, :create_reply]
   before_action :set_reply, only: [:new_reply, :create_reply]
-  before_action :resolve_json, only: [:create, :update]
 
   layout 'coopera', only: :new_reply
 
@@ -42,14 +41,10 @@ class SurveysController < ApplicationController
   # POST /surveys.json
   def create
     @survey = Survey.new(survey_params)
-    respond_to do |surveyat|
-      if @survey.save
-        surveyat.html { redirect_to @survey, notice: 'Survey was successfully created.' }
-        surveyat.json { render :show, status: :created, location: @survey }
-      else
-        surveyat.html { render :new }
-        surveyat.json { render json: @survey.errors, status: :unprocessable_entity }
-      end
+    if @survey.save
+      redirect_to @survey, notice: 'Survey was successfully created.'
+    else
+      render :new 
     end
   end
 
@@ -78,13 +73,6 @@ class SurveysController < ApplicationController
   end
 
   private
-    def resolve_json
-      if params[:survey][:users_data]
-        users_data_file = params[:survey].delete :users_data
-        users_data_json = users_data_file.tempfile.read
-        params[:survey][:users_data] = JSON.parse users_data_json
-      end
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_survey
       @survey = Survey.find(params[:id])

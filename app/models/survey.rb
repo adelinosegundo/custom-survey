@@ -2,11 +2,15 @@
 #
 # Table name: surveys
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  title      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  name            :string
+#  title           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  users_data      :json
+#  avaliable_tags  :string           default([]), is an Array
+#  email_tag       :string
+#  users_data_file :string
 #
 
 class Survey < ActiveRecord::Base
@@ -17,9 +21,13 @@ class Survey < ActiveRecord::Base
   has_many :items, dependent: :destroy
   accepts_nested_attributes_for :items, allow_destroy: true
 
-  validates :name, :title, presence: true
+  validates :name, :title, :users_data_file, :users_data, :email_tag, presence: true
+
+  mount_uploader :users_data_file, UsersDataUploader
 
   after_save :update_recipients
+
+  before_validation :tags_and_json_from_csv
 
   def update_recipients
   	self.users_data_mails.each do |email|
@@ -31,4 +39,31 @@ class Survey < ActiveRecord::Base
   	self.users_data.keys
   end
 
+  def tags_and_json_from_csv
+    filename = self.users_data_file.current_path
+    file = File.open(filename, "rb")
+    csv = file.read.gsub(/\r/, '').gsub(';', ',')
+    csv_data =  CSV.parse(csv)
+
+    result_json = {}
+
+    tags = csv_data[0]
+
+    main_index = tags.index(email_tag)
+
+    return false unless main_index
+
+    csv_data[1..-1].each do |csv_row|
+      key = csv_row[main_index]
+      result_json[key] = {}
+      tags.each_with_index do |tag, i|
+        result_json[key][tag] = csv_row[i].force_encoding('ISO-8859-1')
+      end
+    end
+
+    self.avaliable_tags = tags
+    self.users_data = result_json
+
+    return true
+  end
 end
