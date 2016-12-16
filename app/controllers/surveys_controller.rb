@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   include ApplicationHelper
-  before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :new_reply, :create_reply]
+  before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :new_reply, :create_reply, :edit_questions, :update_questions]
   before_action :set_reply, only: [:new_reply, :create_reply]
 
   layout 'coopera', only: :new_reply
@@ -25,6 +25,9 @@ class SurveysController < ApplicationController
   # GET /surveys/1/edit
   def edit
   end
+
+  def edit_questions
+  end
   
   # GET /surveys/new_reply
   def new_reply
@@ -42,7 +45,7 @@ class SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
     if @survey.save
-      redirect_to @survey, notice: 'Survey was successfully created.'
+      redirect_to edit_questions_survey_path(@survey), notice: 'Survey was successfully created.'
     else
       render :new 
     end
@@ -51,14 +54,18 @@ class SurveysController < ApplicationController
   # PATCH/PUT /surveys/1
   # PATCH/PUT /surveys/1.json
   def update
-    respond_to do |surveyat|
-      if @survey.update(survey_params)
-        surveyat.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
-        surveyat.json { render :show, status: :ok, location: @survey }
-      else
-        surveyat.html { render :edit }
-        surveyat.json { render json: @survey.errors, status: :unprocessable_entity }
-      end
+    if @survey.update(survey_params)
+      redirect_to edit_survey_path(@survey), notice: 'Survey was successfully updated.'
+    else 
+      render :edit
+    end
+  end
+
+  def update_questions
+    if @survey.update(survey_questions_params)
+      redirect_to edit_questions_survey_path(@survey), notice: 'Survey was successfully updated.'
+    else
+      render :edit_questions
     end
   end
 
@@ -84,6 +91,19 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit!
+      params.require(:survey).permit(:name, :title, :users_data_file, :email_tag)
+    end
+
+    def survey_questions_params
+      params.require(:survey).permit(items_attributes: [
+        :id, :_destroy, :sequence, :actable_type, 
+        { actable_attributes: 
+          [
+            :id, :_destroy, :title, :number, :description, :is_required, # Question Attributes
+            :accepts_multiple, { alternatives_attributes: [:id, :_destroy, :value]}, # MultipleChoiceQuestion Attributes
+            :content # Message Attributes
+          ]
+        }
+      ])
     end
 end

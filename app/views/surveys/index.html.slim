@@ -22,11 +22,12 @@
           thead
             tr
               th(rowspan="2") Name
-              th(colspan="4"class="table-actions text-center") Actions
+              th(colspan="5"class="table-actions text-center") Actions
             tr
               th(width="100px"class="text-center") Mails
               th(width="100px"class="text-center") Show
               th(width="100px"class="text-center") Edit
+              th(width="100px"class="text-center") Edit Questions
               th(width="100px"class="text-center") Destroy
           tbody
             - @surveys.each do |survey|
@@ -39,6 +40,8 @@
                   = link_to "<i class='fa fa-search'></i>".html_safe, survey
                 td.text-center
                   = link_to "<i class='fa fa-pencil'></i>".html_safe, edit_survey_path(survey)
+                td.text-center
+                  = link_to "<i class='fa fa-pencil'></i>".html_safe, edit_questions_survey_path(survey)
                 td.text-center
                   = link_to "<i class='fa fa-times'></i>".html_safe, survey, method: :delete, data: { confirm: 'Are you sure?' }
 

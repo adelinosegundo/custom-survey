@@ -1,0 +1,21 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  #page-heading
+    .col-xs-6
+      h2
+        = 'Surveys'
+      ol.breadcrumb
+        li
+          = link_to 'Surveys', surveys_path
+        li.active
+          strong Edit Survey
+    .col-xs-6.text-right
+      = link_to 'Back'.html_safe, surveys_path, class: "btn btn-lg btn-outline btn-white m-t-lg m-r-sm"
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .ibox.float-e-margins
+      .ibox-title
+        h5
+          | Edit Survey
+          small
+      .ibox-content
+        = render 'form_questions'

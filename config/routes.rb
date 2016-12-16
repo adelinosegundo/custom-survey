@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :surveys do
     member do
+      get 'edit_questions'
+      patch 'update_questions'
       get 'new_reply/:link_hash', to: 'surveys#new_reply', as: 'new_reply'
       patch 'create_reply/:link_hash', to: 'surveys#create_reply', as: 'create_reply'
     end

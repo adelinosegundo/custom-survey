@@ -18,14 +18,6 @@
       = f.label :email_tag, class: "col-sm-2 control-label"
       .col-sm-3
         = f.text_field :email_tag, class: "form-control"
-  #items
-    = f.fields_for :items do |item|
-      = render 'item_fields', f: item
-  .add-links
-    .form-group
-      = link_to_add_association 'New Page', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn col-sm-3", :wrap_object => Proc.new { |item| item = Item.new(actable: PageBreak.new )}
-      = link_to_add_association 'Message', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn col-sm-3", :wrap_object => Proc.new { |item| item = Item.new(actable: Message.new )}
-      = link_to_add_association 'Text Question', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn col-sm-3", :wrap_object => Proc.new { |item| item = Item.new(actable: Question.new )}
-      = link_to_add_association 'Multiple Choice Question', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn col-sm-3", :wrap_object => Proc.new { |item| item = Item.new(actable: MultipleChoiceQuestion.new )}
-    .form-group
-      = f.submit "Submit", class: "form-control m-l-sm"
+    .add-links
+      .form-group
+        = f.submit "Submit", class: "form-control m-l-sm"
