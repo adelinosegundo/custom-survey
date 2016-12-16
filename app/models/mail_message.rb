@@ -25,8 +25,10 @@ class MailMessage < ActiveRecord::Base
   end
   
   def deliver reply_id
-    self.replies.undelivered
+    self.replies
+      .undelivered
       .where(id: reply_id ? [reply_id] : self.replies.pluck(:id))
+      .limit(100)
       .collect{ |reply| SuportMailer.deliver_survey_mail_message(reply).deliver_later }
   end
 
