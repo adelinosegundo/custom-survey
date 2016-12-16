@@ -25,9 +25,9 @@ class MailMessage < ActiveRecord::Base
   end
   
   def deliver reply_id
-    self.replies
+    self.replies.undelivered
       .where(id: reply_id ? [reply_id] : self.replies.pluck(:id))
-      .collect{ |reply| SuportMailer.deliver_survey_mail_message(reply).deliver_later }
+      .collect{ |reply| puts reply.link_hash;SuportMailer.deliver_survey_mail_message(reply).deliver_later }
   end
 
   def recipients_avaliable

@@ -2,7 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'
-# require 'mina_sidekiq/tasks'
+require 'mina_sidekiq/tasks'
 require 'mina/unicorn'
 require 'mina/rvm'
 require 'mina/data_sync'
@@ -84,7 +84,7 @@ task :deploy => :environment do
     to :launch do
       # invoke :'bower_install'
       invoke :'precompile_assets'
-      # invoke :'sidekiq:restart'
+      invoke :'sidekiq:restart'
       invoke :'unicorn:restart'
     end
   end

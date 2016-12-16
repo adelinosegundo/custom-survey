@@ -16,5 +16,8 @@ class Reply < ActiveRecord::Base
   belongs_to :mail_message
   belongs_to :recipient
 
+  scope :delivered, -> { where(sended: true) }
+  scope :undelivered, -> { where(sended: false) }
+
   has_one :survey, through: :mail_message
 end
