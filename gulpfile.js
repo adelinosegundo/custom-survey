@@ -77,5 +77,5 @@ gulp.task('watch_admin', function() {
 });
 
 // The default task (called when you run `gulp` from cli)
-// gulp.task('default', ['watch', 'sass', 'scripts', 'watch_admin', 'sass_admin', 'scripts_admin']);
-gulp.task('default', ['watch_admin', 'sass_admin', 'scripts_admin']);
+gulp.task('default', ['watch', 'sass', 'scripts', 'watch_admin', 'sass_admin', 'scripts_admin']);
+// gulp.task('default', ['watch_admin', 'sass_admin', 'scripts_admin']);

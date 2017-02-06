@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 
 
   resources :surveys do
+    collection do
+      get 'confirm'
+    end
     member do
       get 'edit_questions'
       patch 'update_questions'

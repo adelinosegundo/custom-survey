@@ -3,7 +3,10 @@
 
 // @import "animated";
 
-
+body {
+    background: $white;
+}
+    
 .dl-horizontal dt {
     float: left;
     width: 160px;

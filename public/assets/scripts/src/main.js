@@ -1,5 +1,3 @@
-Dropzone.autoDiscover = false;
-
 /*
  *
  * Document ready

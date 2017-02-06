@@ -3,16 +3,18 @@ class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :new_reply, :create_reply, :edit_questions, :update_questions]
   before_action :set_reply, only: [:new_reply, :create_reply]
 
-  layout 'coopera', only: :new_reply
+  layout 'coopera', only: [:new_reply, :confirm]
 
   # GET /surveys
-  # GET /surveys.json
   def index
     @surveys = Survey.all
   end
 
+  # GET /surveys/confim
+  def confirm
+  end
+
   # GET /surveys/1
-  # GET /surveys/1.json
   def show
   end
 
@@ -32,16 +34,19 @@ class SurveysController < ApplicationController
   # GET /surveys/new_reply
   def new_reply
     recipient_data = @reply.mail_message.survey
-      .users_data["users"].select {|data| data["email"] == @reply.recipient.email }[0]
+      .users_data[@reply.recipient.email]
     render text: translate_tags(recipient_data, render_to_string(:new_reply)), layout: false
   end
 
   # PATCH /surveys/1/create_reply
   def create_reply
+    @reply.answers = reply_params[:replies][:answers]
+    @reply.save
+
+    redirect_to confirm_surveys_path
   end
 
   # POST /surveys
-  # POST /surveys.json
   def create
     @survey = Survey.new(survey_params)
     if @survey.save
@@ -52,7 +57,6 @@ class SurveysController < ApplicationController
   end
 
   # PATCH/PUT /surveys/1
-  # PATCH/PUT /surveys/1.json
   def update
     if @survey.update(survey_params)
       redirect_to edit_survey_path(@survey), notice: 'Survey was successfully updated.'
@@ -70,7 +74,6 @@ class SurveysController < ApplicationController
   end
 
   # DELETE /surveys/1
-  # DELETE /surveys/1.json
   def destroy
     @survey.destroy
     respond_to do |surveyat|
@@ -87,6 +90,10 @@ class SurveysController < ApplicationController
 
     def set_reply
       @reply = Reply.find_by link_hash: params[:link_hash]
+    end
+
+    def reply_params
+      params.require(:survey).permit!
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

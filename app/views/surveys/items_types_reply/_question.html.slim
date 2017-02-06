@@ -1,8 +1,7 @@
 h5
-  = item.number
-h5
-  = item.title
+  = "#{'*' if item.is_required }#{item.number}. #{item.title}"
 p
   = item.description
 p
-  = f.text_field item.number, placeholder: :answer, class: "form-control"
+  = f.text_field item.number, placeholder: 'Answer', class: "form-control", required: item.is_required
+hr
