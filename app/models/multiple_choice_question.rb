@@ -18,8 +18,4 @@ class MultipleChoiceQuestion < ActiveRecord::Base
   has_many :alternatives, dependent: :destroy
 
   accepts_nested_attributes_for :alternatives, allow_destroy: true
-  
-  def get_survey_template_name
-    "multiple_choice_question"
-  end
 end

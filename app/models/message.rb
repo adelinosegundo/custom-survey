@@ -12,8 +12,4 @@ class Message < ActiveRecord::Base
   acts_as :item
 
   validates :content, presence: true
-
-  def get_survey_template_name
-    "message"
-  end
 end

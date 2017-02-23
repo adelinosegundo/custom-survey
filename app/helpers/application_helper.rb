@@ -16,7 +16,7 @@ module ApplicationHelper
       text["<<#{tag}>>"] = user_data[tag]
     end
 
-    # text = text.sub(/reply_link/, reply_link) if reply_link
+    
     text
   end
 

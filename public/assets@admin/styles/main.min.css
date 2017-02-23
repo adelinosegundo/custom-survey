@@ -2907,6 +2907,9 @@ a.forum-item-title:hover {
   top: 0;
   border-top: none; }
 
+.nav-header {
+  color: #fff; }
+
 .sidebar-container ul.nav-tabs {
   border: none; }
 

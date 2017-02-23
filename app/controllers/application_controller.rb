@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   private
 
   def layout_by_resource
-    if devise_controller? and not user_signed_in?
+    if devise_controller? && !current_user
       "public"
     else
       "application"

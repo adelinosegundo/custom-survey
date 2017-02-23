@@ -1,11 +1,12 @@
 .container
   .col-xs-12
-    = form_for(@survey, url: {controller: "surveys", action: "create_reply", id: @survey.id}, html: {id: :edit_survey, class: "form"}) do |f|
+    h1
+      = @survey.name
+    = form_for(@survey, url: {controller: "surveys", action: "create_reply", id: @survey.id}, html: {id: :edit_survey, class: "form wizard-big"}) do |f|
       = f.fields_for :replies, @reply do |reply|      
-        h1
-          = @survey.name
         = reply.fields_for :answers do |answers|
-          - @survey.items.order(:sequence).each do |item|
-            = render 'surveys/items_types_reply/'+item.get_survey_template_name, f: answers, item: item.specific
-        hr
-        = f.submit 'Send Answer', class: 'btn btn-default pull-right'
+          h1 .
+          fieldset
+            .row
+              - @survey.items.order(:sequence).each do |item|
+                = render 'surveys/items_types_reply/'+item.get_survey_template_name, f: answers, item: item.specific

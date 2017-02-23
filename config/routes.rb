@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   
-  devise_for :users
+  devise_for :users, :skip => [:registrations] 
+  as :user do
+    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
+    put 'users' => 'devise/registrations#update', :as => 'user_registration'
+  end
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_scope :user do
@@ -15,6 +19,8 @@ Rails.application.routes.draw do
   end
 
 
+  get ':link_hash', to: 'surveys#new_reply', as: 'new_reply_survey'
+  patch ':link_hash', to: 'surveys#create_reply', as: 'create_reply_survey'
 
   resources :surveys do
     collection do
@@ -23,8 +29,6 @@ Rails.application.routes.draw do
     member do
       get 'edit_questions'
       patch 'update_questions'
-      get 'new_reply/:link_hash', to: 'surveys#new_reply', as: 'new_reply'
-      patch 'create_reply/:link_hash', to: 'surveys#create_reply', as: 'create_reply'
     end
     resources :mail_messages do
       member do

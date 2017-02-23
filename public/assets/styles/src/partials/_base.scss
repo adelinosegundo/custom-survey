@@ -6,6 +6,25 @@
 body {
     background: $white;
 }
+
+ul[role=tablist] {
+    display: none;
+}
+
+.wizard {
+    .content {
+        .body {
+            position: relative;
+            height: auto;
+            padding: 50px;
+            padding-top: 25px;
+            padding-bottom: 0px;
+            width: 100%;
+        }
+    } 
+    .actions {
+    }
+}
     
 .dl-horizontal dt {
     float: left;

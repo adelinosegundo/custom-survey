@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   include ApplicationHelper
-  before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :new_reply, :create_reply, :edit_questions, :update_questions]
+  before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :edit_questions, :update_questions]
   before_action :set_reply, only: [:new_reply, :create_reply]
 
   layout 'coopera', only: [:new_reply, :confirm]
@@ -33,6 +33,7 @@ class SurveysController < ApplicationController
   
   # GET /surveys/new_reply
   def new_reply
+    @survey = @reply.survey
     recipient_data = @reply.mail_message.survey
       .users_data[@reply.recipient.email]
     render text: translate_tags(recipient_data, render_to_string(:new_reply)), layout: false
@@ -40,6 +41,8 @@ class SurveysController < ApplicationController
 
   # PATCH /surveys/1/create_reply
   def create_reply
+    @survey = @reply.survey
+
     @reply.answers = reply_params[:replies][:answers]
     @reply.save
 

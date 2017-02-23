@@ -2,12 +2,16 @@ ul#side-menu.nav
   li.nav-header
     span.block.m-t-xs
       strong.font-bold
-        = link_to current_user.email.upcase, edit_user_registration_path
+        = current_user.email
   li
     a[href="#{authenticated_home_path}"]
       i.fa.fa-th-large
       |  Dashboard
   li
     a[href="#{surveys_path}"]
-      i.fa.fa-th-large
+      i.fa.fa-search
       |  Surveys
+  li
+    a[href="#{edit_user_registration_path}"]
+      i.fa.fa-user
+      |  Profile

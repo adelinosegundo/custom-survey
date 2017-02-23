@@ -55,7 +55,7 @@ class MailMessagesController < ApplicationController
 
   # POST /mail_messages/:id/deliver
   def deliver
-    @mail_message.delay.deliver params[:reply_id] || nil
+    @mail_message.deliver params[:reply_id] || nil
     redirect_to survey_mail_message_path(@survey, @mail_message), notice: 'Successfully started delivering'
   end
 

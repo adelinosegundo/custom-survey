@@ -1,19 +1,20 @@
-- alternatives_input = "radio_button" unless item.accepts_multiple
-- alternatives_input = "check_box" if item.accepts_multiple
-h5
-  = "#{'*' if item.is_required }#{item.number}. #{item.title}"
-p
-  = item.description
-- item.alternatives.each do |alternative|
-      - if item.accepts_multiple
-        .checkbox
-          = f.label item.number, value: alternative.value 
-            = f.check_box item.number, {multiple: true}, alternative.value, nil
-            = alternative.value
-          
-      - else
-        .radio
-          = f.label item.number, value: alternative.value
-            = f.radio_button item.number, alternative.value, required: item.is_required
-            = alternative.value
-hr
+.form-group
+  - alternatives_input = "radio_button" unless item.accepts_multiple
+  - alternatives_input = "check_box" if item.accepts_multiple
+  h5
+    = "#{'*' if item.is_required }#{item.number}. #{item.title}"
+  p
+    = item.description
+  - item.alternatives.each do |alternative|
+        - if item.accepts_multiple
+          .checkbox
+            = f.label item.number, value: alternative.value 
+              = f.check_box item.number, {multiple: true}, alternative.value, nil
+              = alternative.value
+            
+        - else
+          .radio
+            = f.label item.number, value: alternative.value
+              = f.radio_button item.number, alternative.value, required: item.is_required
+              = alternative.value
+  hr

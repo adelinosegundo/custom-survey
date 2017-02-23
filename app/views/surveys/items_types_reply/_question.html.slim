@@ -1,7 +1,8 @@
-h5
-  = "#{'*' if item.is_required }#{item.number}. #{item.title}"
-p
-  = item.description
-p
-  = f.text_field item.number, placeholder: 'Answer', class: "form-control", required: item.is_required
-hr
+.form-group
+  h5
+    = "#{'*' if item.is_required }#{item.number}. #{item.title}"
+  p
+    = item.description
+  p
+    = f.text_field item.number, placeholder: 'Answer', class: "form-control", required: item.is_required
+  hr

@@ -43,6 +43,46 @@
  * --------------------------------*/
 
 $(document).ready(function(){
+    $("#edit_survey").steps({
+        bodyTag: "fieldset",
+        forceMoveForward: false,
+        enableCancelButton: false,
+        onStepChanging: function (event, currentIndex, newIndex) {
+            if (currentIndex > newIndex) {
+                return true;
+            }
+            var form = $(this);
+            if (currentIndex < newIndex) {
+                $(".body:eq(" + newIndex + ") label.error", form).remove();
+                $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+            }
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        },
+        onStepChanged: function (event, currentIndex, priorIndex) {
+            if (currentIndex === 2 && priorIndex === 3) {
+                $(this).steps("previous");
+            }
+        },
+        onFinishing: function (event, currentIndex) {
+            var form = $(this);
+            form.validate().settings.ignore = ":disabled";
+            return form.valid();
+        },
+        onFinished: function (event, currentIndex) {
+            var form = $(this);
+            form.submit();
+        } 
+    }).validate({
+        errorPlacement: function (error, element) {
+            element.before(error);
+        },
+        rules: {
+            confirm: {
+                equalTo: "#password"
+            }
+        }
+    });
     var config = {
         '.chosen-select'           : {width:"inherit"},
         '.chosen-select-deselect'  : {allow_single_deselect:true},
@@ -124,22 +164,3 @@ function rearrage(){
 $(document).ready(survey_ready)
 $(document).on('page:load', survey_ready)
 
-jQuery.extend(jQuery.validator.messages, {
-    required: "Este campo é de preenchimento obrigatório.",
-    remote: "Please fix this field.",
-    email: "Please enter a valid email address.",
-    url: "Please enter a valid URL.",
-    date: "Please enter a valid date.",
-    dateISO: "Please enter a valid date (ISO).",
-    number: "Please enter a valid number.",
-    digits: "Please enter only digits.",
-    creditcard: "Please enter a valid credit card number.",
-    equalTo: "Please enter the same value again.",
-    accept: "Please enter a value with a valid extension.",
-    maxlength: jQuery.validator.format("Please enter no more than {0} characters."),
-    minlength: jQuery.validator.format("Please enter at least {0} characters."),
-    rangelength: jQuery.validator.format("Please enter a value between {0} and {1} characters long."),
-    range: jQuery.validator.format("Please enter a value between {0} and {1}."),
-    max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
-    min: jQuery.validator.format("Please enter a value greater than or equal to {0}.")
-});
