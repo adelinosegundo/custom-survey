@@ -12,10 +12,20 @@
       = link_to 'Back'.html_safe, survey_mail_messages_path(@survey), class: "btn btn-lg btn-outline btn-white m-t-lg m-r-sm"
 .wrapper.wrapper-content.animated.fadeInRight
   .row
-    .ibox.float-e-margins
-      .ibox-title
-        h5
-          | Edit Mail Message
-          small
-      .ibox-content
-        = render 'form'
+    .col-lg-9
+      .ibox.float-e-margins
+        .ibox-title
+          h5
+            | Edit Mail Message
+            small
+        .ibox-content
+          = render 'form'
+    .col-lg-3
+      .ibox.float-e-margins
+        .ibox-title
+          h5
+            | Avaliable Tags
+            small
+        .ibox-content
+          = render 'surveys/cheatsheet'
+          p ps: Write reply_link where you wish to print the link to survey reply
