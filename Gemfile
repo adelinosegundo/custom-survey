@@ -55,11 +55,6 @@ group :development do
   gem "letter_opener"
 end
 
-group :development, :test do
-  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
-  gem 'pry-byebug'
-end
-
 group :production do
   gem 'unicorn'
   gem 'mina'

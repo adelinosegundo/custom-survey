@@ -1,13 +1,12 @@
 = form_for(@survey, html: { class: "form-horizontal" }, url: update_questions_survey_path(@survey)) do |f|
-  #suvery.container
-    #items
+  #survey.row
+    #items.col-xs-12
       = f.fields_for :items do |item|
         = render 'item_fields', f: item
-    .add-links
-      .form-group
+    .col-xs-12
         = link_to_add_association 'New Page', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn col-sm-3", :wrap_object => Proc.new { |item| item = Item.new(actable: PageBreak.new )}
         = link_to_add_association 'Message', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn col-sm-3", :wrap_object => Proc.new { |item| item = Item.new(actable: Message.new )}
         = link_to_add_association 'Text Question', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn col-sm-3", :wrap_object => Proc.new { |item| item = Item.new(actable: Question.new )}
         = link_to_add_association 'Multiple Choice Question', f, :items, id: :add_item, data: {'association-insertion-node': '#items', 'association-insertion-method': 'append'}, class: "btn col-sm-3", :wrap_object => Proc.new { |item| item = Item.new(actable: MultipleChoiceQuestion.new )}
-      .form-group
-        = f.submit "Submit", class: "form-control m-l-sm"
+    .col-xs-12
+        = f.submit "Submit", class: "form-control"

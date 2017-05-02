@@ -18,6 +18,10 @@ class Item < ActiveRecord::Base
 
   accepts_nested_attributes_for :actable, allow_destroy: true
 
+  default_scope { order(:sequence) }
+
+  validates :sequence, uniqueness: true
+
   def actable_attributes=(actable_attributes)
     self.actable ||= actable_type.constantize.new
     actable.assign_attributes(actable_attributes)

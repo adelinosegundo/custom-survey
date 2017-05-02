@@ -1,21 +1,4 @@
 GIT
-  remote: git://github.com/nixme/jazz_hands.git
-  revision: 5e4b48f145883ecb14b55bf04eacc28ac9662676
-  branch: bring-your-own-debugger
-  specs:
-    jazz_hands (0.5.2)
-      awesome_print (~> 1.2)
-      coolline (>= 0.4.2)
-      hirb (~> 0.7.1)
-      pry (~> 0.9.12)
-      pry-doc (~> 0.4.6)
-      pry-git (~> 0.2.3)
-      pry-rails (~> 0.3.2)
-      pry-remote (>= 0.1.7)
-      pry-stack_explorer (~> 0.4.9)
-      railties (>= 3.0, < 5.0)
-
-GIT
   remote: https://github.com/galetahub/ckeditor.git
   revision: 11d3a5b905646c6fd397f7710f95fb9eb29f0865
   specs:
@@ -72,14 +55,10 @@ GEM
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
     arel (6.0.4)
-    awesome_print (1.7.0)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
-    byebug (2.7.0)
-      columnize (~> 0.3)
-      debugger-linecache (~> 1.2)
     capybara (2.14.0)
       addressable
       mime-types (>= 1.16)
@@ -98,7 +77,6 @@ GEM
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     cocoon (1.2.9)
-    coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -106,14 +84,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    columnize (0.9.0)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
-    coolline (0.5.0)
-      unicode_utils (~> 1.4)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
-    debugger-linecache (1.2.0)
     devise (4.2.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -121,7 +95,6 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
-    diffy (3.2.0)
     dotenv (2.2.1)
     dotenv-rails (2.2.1)
       dotenv (= 2.2.1)
@@ -138,11 +111,6 @@ GEM
       thor (~> 0.14)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    grit (2.5.0)
-      diff-lcs (~> 1.1)
-      mime-types (~> 1.15)
-      posix-spawn (~> 0.3.6)
-    hirb (0.7.3)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
     i18n (0.8.1)
@@ -169,7 +137,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.5)
       mime-types (>= 1.16, < 4)
-    method_source (0.8.2)
     mime-types (1.25.1)
     mina (1.0.6)
       open4 (~> 1.3.4)
@@ -195,29 +162,6 @@ GEM
       equatable (~> 0.5.0)
       tty-color (~> 0.4.0)
     pg (0.20.0)
-    posix-spawn (0.3.13)
-    pry (0.9.12.6)
-      coderay (~> 1.0)
-      method_source (~> 0.8)
-      slop (~> 3.4)
-    pry-byebug (1.3.2)
-      byebug (~> 2.7)
-      pry (~> 0.9.12)
-    pry-doc (0.4.6)
-      pry (>= 0.9)
-      yard (>= 0.8)
-    pry-git (0.2.3)
-      diffy
-      grit
-      pry (>= 0.9.8)
-    pry-rails (0.3.5)
-      pry (>= 0.9.10)
-    pry-remote (0.1.8)
-      pry (~> 0.9)
-      slop (~> 3.0)
-    pry-stack_explorer (0.4.9.2)
-      binding_of_caller (>= 0.7)
-      pry (>= 0.9.11)
     public_suffix (2.0.5)
     rack (1.6.5)
     rack-protection (1.5.3)
@@ -297,7 +241,6 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (~> 3.0)
-    slop (3.6.0)
     spring (2.0.1)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -328,7 +271,6 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode_utils (1.4.0)
     unicorn (5.3.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
@@ -342,7 +284,6 @@ GEM
     wisper (1.6.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
-    yard (0.9.9)
 
 PLATFORMS
   ruby
@@ -363,7 +304,6 @@ DEPENDENCIES
   factory_girl_rails
   figaro
   httparty
-  jazz_hands!
   jbuilder (~> 2.0)
   jquery-datatables-rails
   jquery-rails
@@ -375,7 +315,6 @@ DEPENDENCIES
   mina-unicorn
   mini_magick
   pg (~> 0.15)
-  pry-byebug
   rails (= 4.2.5)
   redis
   rspec-rails (~> 3.0)
