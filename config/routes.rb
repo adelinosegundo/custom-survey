@@ -18,10 +18,6 @@ Rails.application.routes.draw do
     end
   end
 
-
-  get ':link_hash', to: 'surveys#new_reply', as: 'new_reply_survey'
-  patch ':link_hash', to: 'surveys#create_reply', as: 'create_reply_survey'
-
   resources :surveys do
     collection do
       get 'confirm'
@@ -38,4 +34,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get ':link_hash', to: 'surveys#new_reply', as: 'new_reply_survey'
+  patch ':link_hash', to: 'surveys#create_reply', as: 'create_reply_survey'
 end
