@@ -62,7 +62,7 @@ end
 
 group :production do
   gem 'unicorn'
-  gem 'mina'
+  gem 'mina', '0.3.7'
   gem 'mina-data_sync', :require => false
   gem 'mina-sidekiq', :require => false
   gem 'mina-unicorn', :require => false

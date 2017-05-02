@@ -77,8 +77,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { :host => '104.236.97.231' }
-  config.action_controller.default_url_options = { host: '104.236.97.231' }
+  config.action_mailer.default_url_options = { :host => 'survey.dimap.ufrn.br' }
+  config.action_controller.default_url_options = { host: 'survey.dimap.ufrn.br' }
 end
 
-Rails.application.routes.default_url_options[:host] = '104.236.97.231'
+Rails.application.routes.default_url_options[:host] = 'survey.dimap.ufrn.br'
