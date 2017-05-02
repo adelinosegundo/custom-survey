@@ -1,0 +1,37 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  #page-heading
+    .col-xs-6
+      h2
+        = 'Users'
+      ol.breadcrumb
+        li
+          = link_to 'Users', users_path
+        li.active
+          strong Listing Users
+    .col-xs-6.text-right
+      = link_to 'New User'.html_safe, new_user_path, class: "btn btn-lg btn-outline btn-primary m-t-lg m-r-sm"
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .ibox.float-e-margins
+      .ibox-title
+        h5
+          | List User
+          small
+      .ibox-content
+        table#users-table.table.table-bordered.table-striped
+          thead
+            tr
+              th(rowspan="2") Email
+              th(colspan="5"class="table-actions text-center") Actions
+            tr
+              th(width="100px"class="text-center") Edit
+              th(width="100px"class="text-center") Destroy
+          tbody
+            - @users.each do |user|
+              tr
+                td
+                  = user.email
+                td.text-center
+                  = link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(user)
+                td.text-center
+                  = link_to "<i class='fa fa-times'></i>".html_safe, user, method: :delete, data: { confirm: 'Are you sure?' }

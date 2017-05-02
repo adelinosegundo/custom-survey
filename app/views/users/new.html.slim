@@ -1,0 +1,21 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  #page-heading
+    .col-xs-6
+      h2
+        = 'Users'
+      ol.breadcrumb
+        li
+          = link_to 'Users', users_path
+        li.active
+          strong New User
+    .col-xs-6.text-right
+      = link_to 'Back'.html_safe, users_path, class: "btn btn-lg btn-outline btn-white m-t-lg m-r-sm"
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .ibox.float-e-margins
+      .ibox-title
+        h5
+          | New User
+          small
+      .ibox-content
+        = render 'form'
