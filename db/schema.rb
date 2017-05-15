@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216122259) do
+ActiveRecord::Schema.define(version: 20170515162719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20161216122259) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
+
+  create_table "answers", force: :cascade do |t|
+    t.string   "value"
+    t.integer  "reply_id"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "answers", ["item_id"], name: "index_answers_on_item_id", using: :btree
+  add_index "answers", ["reply_id"], name: "index_answers_on_reply_id", using: :btree
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -39,16 +50,27 @@ ActiveRecord::Schema.define(version: 20161216122259) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "conditions", force: :cascade do |t|
+    t.string   "reference_type"
+    t.string   "reference"
+    t.string   "comparator"
+    t.string   "value"
+    t.integer  "conditionable_id"
+    t.string   "conditionable_type"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer  "sequence"
-    t.integer  "survey_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "actable_id"
     t.string   "actable_type"
+    t.integer  "page_id"
   end
 
-  add_index "items", ["survey_id"], name: "index_items_on_survey_id", using: :btree
+  add_index "items", ["page_id"], name: "index_items_on_page_id", using: :btree
 
   create_table "logs", force: :cascade do |t|
     t.string   "action"
@@ -92,6 +114,16 @@ ActiveRecord::Schema.define(version: 20161216122259) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.integer  "survey_id"
+    t.integer  "sequence"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "pages", ["survey_id"], name: "index_pages_on_survey_id", using: :btree
+
   create_table "questions", force: :cascade do |t|
     t.integer  "number"
     t.string   "title"
@@ -110,7 +142,6 @@ ActiveRecord::Schema.define(version: 20161216122259) do
 
   create_table "replies", force: :cascade do |t|
     t.string   "link_hash"
-    t.json     "answers"
     t.integer  "mail_message_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
@@ -151,8 +182,11 @@ ActiveRecord::Schema.define(version: 20161216122259) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "alternatives", "multiple_choice_questions"
-  add_foreign_key "items", "surveys"
+  add_foreign_key "answers", "items"
+  add_foreign_key "answers", "replies"
+  add_foreign_key "items", "pages"
   add_foreign_key "logs", "replies"
   add_foreign_key "mail_messages", "surveys"
+  add_foreign_key "pages", "surveys"
   add_foreign_key "replies", "mail_messages"
 end

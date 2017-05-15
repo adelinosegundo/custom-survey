@@ -20,7 +20,7 @@
     = f.check_box :accepts_multiple, class: "form-control"
 .form-group
   label.col-sm-2.control-label Alternatives
-  = link_to_add_association 'add', f, :alternatives, id: :add_alternative, class: "btn btn-primary", data: {'association-insertion-node': "#alternatives#{f.object.sequence}", 'association-insertion-method': 'append'}
-div[id="alternatives#{f.object.sequence}"]
-  = f.fields_for :alternatives do |alternative|
-    = render 'alternative_fields', f: alternative
+  = link_to_add_association 'add', f, :alternatives, id: :add_alternative, class: "btn btn-primary", data: {'association-insertion-traversal': 'next', 'association-insertion-node': ".alternatives", 'association-insertion-method': 'append'}
+  .alternatives
+    = f.fields_for :alternatives do |alternative|
+      = render 'alternative_fields', f: alternative

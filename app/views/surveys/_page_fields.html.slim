@@ -1,0 +1,23 @@
+.ibox.float-e-margins.animated.slideInDown.nested-fields
+  - item = f.object
+  .ibox-title
+    h5
+      | Edit Survey
+      small
+  .ibox-content
+    .form-group
+      = f.label :sequence, class: "col-sm-2 control-label"
+      .col-sm-3
+        = f.text_field :sequence, class: "form-control"
+      .col-sm-7
+        .pull-right
+          = link_to_remove_association "<i class='remove-item fa fa-times fa-2x'></i>".html_safe, f
+    = render 'conditions/form', f: f
+    hr
+    .row
+      .items.col-xs-12
+        = f.fields_for :items do |item|
+          = render 'item_fields', f: item
+      = link_to_add_association 'Message', f, :items, id: :add_item, data: {'association-insertion-traversal': 'siblings', 'association-insertion-node': '.items', 'association-insertion-method': 'append'}, class: "btn col-sm-4", :wrap_object => Proc.new { |item| item = Item.new(actable: Message.new )}
+      = link_to_add_association 'Text Question', f, :items, id: :add_item, data: {'association-insertion-traversal': 'siblings', 'association-insertion-node': '.items', 'association-insertion-method': 'append'}, class: "btn col-sm-4", :wrap_object => Proc.new { |item| item = Item.new(actable: Question.new )}
+      = link_to_add_association 'Multiple Choice Question', f, :items, id: :add_item, data: {'association-insertion-traversal': 'siblings', 'association-insertion-node': '.items', 'association-insertion-method': 'append'}, class: "btn col-sm-4", :wrap_object => Proc.new { |item| item = Item.new(actable: MultipleChoiceQuestion.new )}

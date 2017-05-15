@@ -2,11 +2,15 @@
   .col-xs-12
     h1
       = @survey.name
-    = form_for(@survey, url: {controller: "surveys", action: "create_reply", id: @survey.id}, html: {id: :edit_survey, class: "form wizard-big"}) do |f|
+    = form_for(@survey, url: {controller: "surveys", action: "create_reply", id: @survey.id}, html: {id: :edit_survey, class: "form"}) do |f|
+      = hidden_field_tag :page_number, @page_number
+      = hidden_field_tag :link_hash, @reply.link_hash
       = f.fields_for :replies, @reply do |reply|      
-        = reply.fields_for :answers do |answers|
           h1 .
           fieldset
             .row
-              - @survey.items.order(:sequence).each do |item|
-                = render 'surveys/items_types_reply/'+item.get_survey_template_name, f: answers, item: item.specific
+              - @page.items.each do |item|
+                = reply.fields_for :answers, Answer.find_or_initialize_by(item: item, reply: @reply) do |answer|
+                  = answer.hidden_field :item_id, value: item.id
+                  = render 'surveys/items_types_reply/'+item.get_survey_template_name, f: answer, item: item.specific
+              = f.submit "Enviar"

@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   include ApplicationHelper
-  before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :edit_questions, :update_questions]
+  before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :edit_questions, :update_questions, :create_reply]
   before_action :set_reply, only: [:new_reply, :create_reply]
 
   layout 'coopera', only: [:new_reply, :confirm]
@@ -34,6 +34,8 @@ class SurveysController < ApplicationController
   # GET /surveys/new_reply
   def new_reply
     @survey = @reply.survey
+    @page_number = params[:page_number] || 1
+    @page = @survey.get_page_for_reply @reply, @page_number.to_i
     recipient_data = @reply.mail_message.survey
       .users_data[@reply.recipient.email]
     render text: translate_tags(recipient_data, render_to_string(:new_reply)), layout: false
@@ -41,12 +43,15 @@ class SurveysController < ApplicationController
 
   # PATCH /surveys/1/create_reply
   def create_reply
-    @survey = @reply.survey
-
-    @reply.answers = reply_params[:replies][:answers]
-    @reply.save
-
-    redirect_to confirm_surveys_path
+    @survey.update reply_params
+    reply = @survey.replies.find_by(link_hash: params[:link_hash])
+    page_number = params[:page_number]
+    next_page = @survey.next_page_for_reply reply, page_number.to_i
+    unless next_page 
+      redirect_to confirm_surveys_path
+    else
+      redirect_to new_reply_survey_path(link_hash: params[:link_hash], page_number: next_page)
+    end
   end
 
   # POST /surveys
@@ -96,7 +101,7 @@ class SurveysController < ApplicationController
     end
 
     def reply_params
-      params.require(:survey).permit!
+      params.require(:survey).permit(replies_attributes: [ :id, { answers_attributes: [ :id, :item_id, :value, { value: [] } ] }])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -105,15 +110,19 @@ class SurveysController < ApplicationController
     end
 
     def survey_questions_params
-      params.require(:survey).permit(items_attributes: [
-        :id, :_destroy, :sequence, :actable_type, 
-        { actable_attributes: 
-          [
-            :id, :_destroy, :title, :number, :description, :is_required, # Question Attributes
-            :accepts_multiple, { alternatives_attributes: [:id, :_destroy, :value]}, # MultipleChoiceQuestion Attributes
-            :content # Message Attributes
-          ]
-        }
-      ])
+      params.require(:survey).permit(pages_attributes: [:id, :sequence, :_destroy, { 
+        conditions_attributes: [ :id, :_destroy, :reference_type, :reference, :comparator, :value ],
+        items_attributes: [
+          :id, :_destroy, :sequence, :actable_type,
+          { conditions_attributes: [ :id, :_destroy, :reference_type, :reference, :comparator, :value ],
+            actable_attributes: 
+            [
+              :id, :_destroy, :title, :number, :description, :is_required, # Question Attributes
+              :accepts_multiple, { alternatives_attributes: [:id, :_destroy, :value]}, # MultipleChoiceQuestion Attributes
+              :content # Message Attributes
+            ]
+          }
+        ]
+      }])
     end
 end

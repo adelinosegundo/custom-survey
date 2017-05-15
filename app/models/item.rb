@@ -13,14 +13,15 @@
 
 class Item < ActiveRecord::Base
   actable dependent: :destroy
+  include Conditionable
   
-  belongs_to :survey
+  belongs_to :page
 
   accepts_nested_attributes_for :actable, allow_destroy: true
 
   default_scope { order(:sequence) }
 
-  validates :sequence, uniqueness: true
+  validates :sequence, uniqueness: { scope: :page_id }
 
   def actable_attributes=(actable_attributes)
     self.actable ||= actable_type.constantize.new

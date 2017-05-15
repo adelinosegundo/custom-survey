@@ -9,12 +9,12 @@
         - if item.accepts_multiple
           .checkbox
             = f.label item.number, value: alternative.value 
-              = f.check_box item.number, {multiple: true}, alternative.value, nil
+              = f.check_box :value, { multiple: true, checked: (f.object.value.split(', ').include?(alternative.value) rescue false)}, alternative.value, nil
               = alternative.value
             
         - else
           .radio
             = f.label item.number, value: alternative.value
-              = f.radio_button item.number, alternative.value, required: item.is_required
+              = f.radio_button :value, alternative.value, required: item.is_required
               = alternative.value
   hr

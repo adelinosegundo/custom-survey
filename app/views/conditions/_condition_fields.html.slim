@@ -1,0 +1,14 @@
+.nested-fields.animated.slideInDown
+  .hr-line-dashed
+  .form-group
+    .col-sm-2
+      = f.select :reference_type, ["question", "tag"], class: "form-control"
+    .col-sm-4
+      = f.text_field :reference, class: "form-control", placeholder: "Number or tag name"
+    .col-sm-2
+      = f.select :comparator, Condition::COMPARATORS, class: "form-control"
+    .col-sm-3
+      = f.text_field :value, class: "form-control", placeholder: "Value"
+    .col-sm-1
+      .pull-right
+        = link_to_remove_association "<i class='remove-item fa fa-times fa-2x'></i>".html_safe, f

@@ -1,0 +1,6 @@
+.form-group
+  = f.label :conditions, class: "col-sm-2 control-label"
+  .conditions.col-sm-10
+    = f.fields_for :conditions do |condition|
+      = render 'conditions/condition_fields', f: condition
+  = link_to_add_association 'Condition', f, :conditions, id: :add_item, data: {'association-insertion-traversal': 'siblings', 'association-insertion-node': '.conditions', 'association-insertion-method': 'append'}, class: "btn col-xs-12", partial: 'conditions/condition_fields'

@@ -4,5 +4,5 @@
   p
     = item.description
   p
-    = f.text_field item.number, placeholder: 'Answer', class: "form-control", required: item.is_required
+    = f.text_field :value, placeholder: 'Answer', class: "form-control", required: item.is_required
   hr

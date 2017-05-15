@@ -40,7 +40,7 @@
                 td
                   = mail_message.replies.where(sended: true).size
                 td
-                  = mail_message.replies.where.not(answers: nil).size
+                  = mail_message.replies.answered.size
                 td.text-center
                   = link_to "<i class='fa fa-search'></i>".html_safe, survey_mail_message_path(@survey, mail_message)
                 td.text-center

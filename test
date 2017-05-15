@@ -1,1 +1,5 @@
-rspec -f h --out report.html
+Condicionais -> 
+  - Questões anteriores
+  - Dados do usuário
+  - Exportar dados CSV
+  

@@ -16,8 +16,12 @@ class Reply < ActiveRecord::Base
   belongs_to :mail_message
   belongs_to :recipient
 
+  has_many :answers, dependent: :destroy
+  has_one :survey, through: :mail_message
+
+  accepts_nested_attributes_for :answers, allow_destroy: true
+
+  scope :answered, -> { joins(:answers).where.not(answers: {id: nil}) }
   scope :delivered, -> { where(sended: true) }
   scope :undelivered, -> { where(sended: false) }
-
-  has_one :survey, through: :mail_message
 end

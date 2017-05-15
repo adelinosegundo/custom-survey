@@ -8,6 +8,8 @@
     .col-sm-7
       .pull-right
         = link_to_remove_association "<i class='remove-item fa fa-times fa-2x'></i>".html_safe, f
+  = render 'conditions/form', f: f
+  .hr-line-dashed
   = f.hidden_field :actable_type, class: "form-control"
   = f.fields_for :actable do |ff|
     = render 'surveys/items_types/'+f.object.get_survey_template_name, f: ff

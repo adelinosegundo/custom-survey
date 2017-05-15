@@ -4,46 +4,6 @@
  * --------------------------------*/
 
 $(document).ready(function(){
-    $("#edit_survey").steps({
-        bodyTag: "fieldset",
-        forceMoveForward: false,
-        enableCancelButton: false,
-        onStepChanging: function (event, currentIndex, newIndex) {
-            if (currentIndex > newIndex) {
-                return true;
-            }
-            var form = $(this);
-            if (currentIndex < newIndex) {
-                $(".body:eq(" + newIndex + ") label.error", form).remove();
-                $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
-            }
-            form.validate().settings.ignore = ":disabled,:hidden";
-            return form.valid();
-        },
-        onStepChanged: function (event, currentIndex, priorIndex) {
-            if (currentIndex === 2 && priorIndex === 3) {
-                $(this).steps("previous");
-            }
-        },
-        onFinishing: function (event, currentIndex) {
-            var form = $(this);
-            form.validate().settings.ignore = ":disabled";
-            return form.valid();
-        },
-        onFinished: function (event, currentIndex) {
-            var form = $(this);
-            form.submit();
-        } 
-    }).validate({
-        errorPlacement: function (error, element) {
-            element.before(error);
-        },
-        rules: {
-            confirm: {
-                equalTo: "#password"
-            }
-        }
-    });
     var config = {
         '.chosen-select'           : {width:"inherit"},
         '.chosen-select-deselect'  : {allow_single_deselect:true},
