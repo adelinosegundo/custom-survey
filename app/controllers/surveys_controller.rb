@@ -29,6 +29,7 @@ class SurveysController < ApplicationController
   end
 
   def edit_questions
+    @survey.pages = [Page.new] if @survey.pages.empty?
   end
   
   # GET /surveys/new_reply
