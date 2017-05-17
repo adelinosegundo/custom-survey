@@ -20,7 +20,7 @@ class MailMessage < ActiveRecord::Base
 
   def create_replies
     self.recipients_avaliable.each do |recipient|
-      self.replies.build(recipient: recipient, link_hash: Digest::MD5.hexdigest(recipient.id.to_s)).save
+      self.replies.build(recipient: recipient, link_hash: Digest::MD5.hexdigest(self.id.to_s+recipient.id.to_s)).save
     end
   end
   
