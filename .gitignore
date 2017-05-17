@@ -18,3 +18,5 @@ node_modules
 config/application.yml
 
 public/uploads
+
+.DS_Store
