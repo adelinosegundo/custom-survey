@@ -15,7 +15,11 @@ class Condition < ActiveRecord::Base
           number: reference.to_i, 
           id: reply.survey.items.where(actable_type: "MultipleChoiceQuestion").pluck(:actable_id)
         ).acting_as.id
-      reply_value = reply.answers.find_by(item_id: item_id, reply_id: reply.id).value
+      answer = reply.answers.find_by(item_id: item_id, reply_id: reply.id)
+      unless answer
+        return false
+      end
+      reply_value = answer.value
     when "tag"
       mail_message = reply.mail_message
       survey = mail_message.survey
@@ -24,26 +28,52 @@ class Condition < ActiveRecord::Base
       reply_value = recipient_data[reference]
     end
     case comparator
-    when '>'
-      return true if reply_value > value
-      return false
-    when '>='
-      return true if reply_value >= value
-      return false
-    when '<'
-      return true if reply_value < value
-      return false
-    when '<='
-      return true if reply_value <= value
-      return false
-    when '='
-      return true if reply_value == value
-      return false
-    when '!='
-      return true if reply_value != value
-      return false
+    when '>' then
+      if reply_value > value
+        result = true
+      else
+        result = false
+      end
+    when '>=' then
+      if reply_value >= value
+        result = true
+      else
+        result = false
+      end
+    when '<' then
+      if reply_value < value
+        result = true
+      else
+        result = false
+      end
+    when '<=' then
+      if reply_value <= value
+        result = true
+      else
+        result = false
+      end
+    when '=' then
+      if reply_value == value
+        result = true
+      else
+        result = false
+      end
+    when '!=' then
+      if reply_value != value
+        result = true
+      else
+        result = false
+      end
     else
-      return false
+      result = false
     end
+
+    unless result
+      if conditionable_type == "Page"
+        reply.answers.where(item_id: conditionable.items).destroy_all
+      end
+    end
+
+    return result
   end
 end
