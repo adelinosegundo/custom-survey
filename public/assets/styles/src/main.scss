@@ -1,13 +1,26 @@
-// @import "settings";
-// @import "../../bower_components/foundation/scss/foundation";
+// Global
+@import "global/variables";
+
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+body, html {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+
+  font-family: 'Open Sans', sans-serif, arial;
+  color: $c-black;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
+* {
+  min-height: 0;
+  min-width: 0;
+}
 
 
-/*
- * Import modules
- * ----------------------------------------------------- */
-@import "modules/all";
-
-/*
- * Import partials
- * ----------------------------------------------------- */
-@import "partials/base";
+// Layouts
+@import "layouts/replies";
