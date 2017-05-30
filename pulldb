@@ -1,0 +1,6 @@
+rake db:drop
+rake db:create
+mina data_sync:pull
+rake db:migrate
+
+scp -r root@survey.dimap.ufrn.br:/home/rails/application/shared/public/uploads public/
