@@ -1,0 +1,13 @@
+<div class="form-group">
+  
+  <div class="form-group-statement">
+    <h1 class="form-group-title">
+      <span class="form-group-title-number"><%= item.number %></span>
+      <%= item.title %>
+    </h1>
+    <p class="form-group-desc"><%= item.description %></p>
+  </div>
+
+  <%= f.text_field :value, placeholder: 'answer', class: "form-control", required: item.is_required %>
+
+</div>

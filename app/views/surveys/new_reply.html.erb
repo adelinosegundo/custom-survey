@@ -1,8 +1,13 @@
-<%= @survey.name %>  
-
 <main class="reply">
-  <div class="reply-inner">
-    <%= form_for(@survey, url: {controller: "surveys", action: "create_reply", id: @survey.id}, html: {id: :edit_survey, class: "form"}) do |f| %>
+
+  <header class="reply-header">
+    <h1 class="reply-header-title"><%= @survey.name %></h1>
+  </header>
+
+  <div class="reply-form-wrapper">
+
+    <%= form_for(@survey, url: { controller: "surveys", action: "create_reply", id: @survey.id }, html: { id: :edit_survey, class: "form form-reply form-validated" }) do |f| %>
+
       <%= hidden_field_tag :page_number, @page_number %>
       <%= hidden_field_tag :link_hash, @reply.link_hash %>
       
@@ -10,11 +15,15 @@
         <% @page.items.each do |item| %>
           <%= reply.fields_for :answers, Answer.find_or_initialize_by(item: item, reply: @reply) do |answer| %>
             <%= answer.hidden_field :item_id, value: item.id %>
-            <%= render 'surveys/items_types_reply/'+item.get_survey_template_name, f: answer, item: item.specific %>
+            <%= render "surveys/items_types_reply/#{item.get_survey_template_name}", f: answer, item: item.specific %>
           <% end %>
         <% end %>
       <% end %>
-      <%= f.submit "Enviar" %>
+
+      <div class="form-footer">
+        <button type="submit" class="btn btn-purple btn-lg">Enviar</button>
+      </div>
+
     <% end %>
   </div>
 </main>

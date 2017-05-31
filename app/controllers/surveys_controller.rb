@@ -1,10 +1,9 @@
 class SurveysController < ApplicationController
   include ApplicationHelper
-  
-  before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :edit_questions, :update_questions, :create_reply]
-  before_action :set_reply, only: [:new_reply, :create_reply]
 
   layout 'public', only: [:new_reply, :confirm]
+  before_action :set_survey, only: [:show, :edit, :update, :destroy, :new_step, :edit_step, :edit_questions, :update_questions, :create_reply]
+  before_action :set_reply, only: [:new_reply, :create_reply]
 
   def index
     @surveys = Survey.all

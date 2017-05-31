@@ -1,0 +1,25 @@
+<div class="form-group">
+  
+  <div class="form-group-statement">
+    <h1 class="form-group-title">
+      <span class="form-group-title-number"><%= item.number %></span>
+      <%= item.title %>
+    </h1>
+    <p class="form-group-desc"><%= item.description %></p>
+  </div>
+
+  <% item.alternatives.each do |alternative| %>
+    <% if item.accepts_multiple %>
+      <div class="checkbox">
+        <%= f.check_box :value, { multiple: true, checked: (f.object.value.split(', ').include?(alternative.value) rescue false)},alternative.value, nil %>
+        <%= f.label :value, value: alternative.value %>
+      </div>
+    <% else %>
+      <div class="radio">
+        <%= f.radio_button :value, alternative.value, required: item.is_required %>
+        <%= f.label :value, value: alternative.value %>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

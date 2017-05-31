@@ -1,0 +1,19 @@
+.btn {
+	// padding: 10px 20px;
+	border-radius: 0;
+}
+.btn.btn-lg {
+	padding: 12px 26px;
+	font-size: 20px;
+}
+.btn-purple {
+	background-color: $c-purple;
+	color: $c-white;
+	text-transform: uppercase;
+	font-weight: 700;
+	// font-size: 20px;
+	&:hover {
+		background-color: $c-beige;
+		color: $c-purple;
+	}
+}
