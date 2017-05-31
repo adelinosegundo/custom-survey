@@ -1,12 +1,12 @@
 <main class="reply">
 
-  <header class="reply-header">
+  <header class="reply-header animated fadeIn">
     <h1 class="reply-header-title"><%= @survey.name %></h1>
   </header>
 
   <div class="reply-form-wrapper">
 
-    <%= form_for(@survey, url: { controller: "surveys", action: "create_reply", id: @survey.id }, html: { id: :edit_survey, class: "form form-reply form-validated" }) do |f| %>
+    <%= form_for(@survey, url: { controller: "surveys", action: "create_reply", id: @survey.id }, html: { id: :edit_survey, class: "form form-reply form-validate" }) do |f| %>
 
       <%= hidden_field_tag :page_number, @page_number %>
       <%= hidden_field_tag :link_hash, @reply.link_hash %>
@@ -21,9 +21,12 @@
       <% end %>
 
       <div class="form-footer">
-        <button type="submit" class="btn btn-purple btn-lg">Enviar</button>
+        <a href="#" class="btn btn-beige btn-lg btn-left"><i class="fa fa-angle-double-left"></i> Voltar</a>
+        <button type="submit" class="btn btn-purple btn-lg"><i class="fa fa-paper-plane m-r-sm"></i> Enviar</button>
       </div>
 
     <% end %>
   </div>
+
+  <div class="reply-footer"></div>
 </main>

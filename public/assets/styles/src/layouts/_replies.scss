@@ -17,4 +17,15 @@
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 0 10px;
+	background-color: #fff;
+	z-index: 2;
+	position: relative;
+	display: block;
+}
+.reply .reply-footer {
+	width: 100%;
+	display: block;
+	background-color: $c-purple;
+	min-height: 100px;
+	border-top: 3px solid $c-beige;
 }
