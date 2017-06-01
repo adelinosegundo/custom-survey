@@ -1,0 +1,22 @@
+@-webkit-keyframes bgGrayPurple {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+@-moz-keyframes bgGrayPurple {
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+@keyframes bgGrayPurple { 
+    0%{background-position:0% 9%}
+    50%{background-position:100% 92%}
+    100%{background-position:0% 9%}
+}
+
+.bg-animated-purple-gray {
+    background-color: $c-purple;
+    background: linear-gradient(270deg, $c-gray, $c-purple);
+    background-size: 200% 200%;
+    animation: bgGrayPurple 30s ease infinite;
+}
