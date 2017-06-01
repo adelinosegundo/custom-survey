@@ -7,11 +7,11 @@ var uglify      = require('gulp-uglify');
 var rename      = require('gulp-rename');
 
 var paths = {
-  scripts_src: 'public/assets/scripts/src/**/*.js',
-  scripts_dist: 'public/assets/scripts',
-  sass_src: 'public/assets/styles/src/**/*.{scss,sass,css}',
-  sass_dist: 'public/assets/styles',
-  sass_main: 'public/assets/styles/src/main.scss',
+  scripts_src: 'public/assets@public/scripts/src/**/*.js',
+  scripts_dist: 'public/assets@public/scripts',
+  sass_src: 'public/assets@public/styles/src/**/*.{scss,sass,css}',
+  sass_dist: 'public/assets@public/styles',
+  sass_main: 'public/assets@public/styles/src/main.scss',
 };
 
 var paths_admin = {
@@ -31,7 +31,7 @@ gulp.task('clean', function(cb) {
 
 gulp.task('sass', ['clean'], function () {
   gulp.src(paths.sass_main)
-    .pipe(sass({outputStyle: 'compressed', errLogToConsole: true, includePaths: ['public/assets/styles/src']}))
+    .pipe(sass({outputStyle: 'compressed', errLogToConsole: true, includePaths: ['public/assets@public/styles/src']}))
     .pipe(prefix("last 500 version"))
     .pipe(gulp.dest(paths.sass_dist));
 });
