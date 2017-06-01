@@ -5,7 +5,7 @@
     = form_for(@survey, url: {controller: "surveys", action: "create_reply", id: @survey.id}, html: {id: :edit_survey, class: "form"}) do |f|
       = hidden_field_tag :page_number, @page_number
       = hidden_field_tag :link_hash, @reply.link_hash
-      = f.fields_for :replies, @reply do |reply|      
+      = f.fields_for :replies, @reply do |reply|
           h1 .
           fieldset
             .row
