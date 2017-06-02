@@ -36,5 +36,11 @@
 @import "custom";
 @import "pdf";
 
+// Globals
+@import "global/variables";
+@import "global/base";
+@import "global/animations";
 
+// Components
+@import "components/navbars";
 

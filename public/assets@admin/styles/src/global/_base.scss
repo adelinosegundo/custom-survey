@@ -1,0 +1,20 @@
+body, html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  font-family: 'Open Sans', sans-serif, arial;
+  display: block;
+  position: relative;
+  font-weight: 600;
+
+  @extend .bg-animated-purple-gray;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
+* {
+  min-height: 0;
+  min-width: 0;
+}

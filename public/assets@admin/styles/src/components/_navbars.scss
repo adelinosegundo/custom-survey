@@ -1,0 +1,60 @@
+.navbar-default.navbar-static-side .sidebar-collapse {
+  #side-menu.nav {
+    li.nav-header {
+      padding: 50px 25px;
+      .nav-header-title {
+        font-size: 20px;
+        font-weight: 700;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+      }
+    }
+    li {
+      a {
+        color: $c-white;
+      }
+      &:nth-child(odd) {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      &:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      &.active, &:hover {
+        a {
+          background-color: rgba(41, 56, 70, 0.6);
+        }
+      }
+    }
+  }
+}
+
+.navbar.navbar-static-top {
+  #header.navbar-header {
+    .navbar-minimalize {
+      display: none;
+    }
+  }
+  .nav.navbar-top-links {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    li.welcome-message {
+      margin-right: auto;
+      span {
+        font-size: 15px;
+        color: $c-purple;
+        font-weight: 700;
+      }
+    }
+    li {
+      &:first-child {
+        margin-left: 30px;
+      }
+    }
+    li span {
+      display: block;
+    }
+  }
+}
