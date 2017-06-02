@@ -124,3 +124,19 @@ $(function () {
 //   ziprange: "O c&oacute;digo postal deve estar entre 902xx-xxxx e 905xx-xxxx",
 //   cpfBR: "Por favor, forne&ccedil;a um CPF v&aacute;lido."
 // });
+$(function () {
+  // Reply form
+  function replyFromWrapperMinHeight() {
+    var windowHeight = $(window).outerHeight();
+    var replyHeagerHeight = $('.reply .reply-header').outerHeight();
+    console.log(replyHeagerHeight);
+    var replyFooterHeight = $('.reply .reply-footer').outerHeight();
+    console.log(replyFooterHeight);
+
+    var minReplyFormWrapperHeight = windowHeight - replyHeagerHeight - replyFooterHeight - 20;
+
+    $('.reply .reply-form-wrapper').css('min-height', minReplyFormWrapperHeight);
+  }
+
+  replyFromWrapperMinHeight();
+});

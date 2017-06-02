@@ -10,7 +10,7 @@
 
       <%= hidden_field_tag :page_number, @page_number %>
       <%= hidden_field_tag :link_hash, @reply.link_hash %>
-      
+
       <%= f.fields_for :replies, @reply do |reply| %>
         <% @page.items.each do |item| %>
           <%= reply.fields_for :answers, Answer.find_or_initialize_by(item: item, reply: @reply) do |answer| %>
@@ -28,5 +28,6 @@
     <% end %>
   </div>
 
-  <div class="reply-footer"></div>
+  <div class="reply-footer">
+  </div>
 </main>
