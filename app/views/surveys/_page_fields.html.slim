@@ -2,17 +2,16 @@
   - item = f.object
   .ibox-title
     h5
-      | Edit Survey
+      | Page
       small
   .ibox-content
     .form-group
-      = f.label :sequence, class: "col-sm-2 control-label"
+      = f.label :sequence, "Page", class: "col-sm-2 control-label"
       .col-sm-3
         = f.text_field :sequence, class: "form-control"
       .col-sm-7
         .pull-right
           = link_to_remove_association "<i class='remove-item fa fa-times fa-2x'></i>".html_safe, f
-    = render 'conditions/form', f: f
     hr
     .row
       .items.col-xs-12
