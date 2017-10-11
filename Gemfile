@@ -43,6 +43,7 @@ group :development, :test do
   gem 'capybara-screenshot'
   gem 'launchy'
   gem 'database_cleaner'
+  gem 'railroady'
 end
 
 group :test do

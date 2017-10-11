@@ -22,7 +22,7 @@ class Survey < ActiveRecord::Base
   has_many :items, through: :pages, dependent: :destroy
   accepts_nested_attributes_for :pages, allow_destroy: true
   accepts_nested_attributes_for :replies
-  
+
   validates :name, :title, :users_data_file, :users_data, :email_tag, presence: true
 
   mount_uploader :users_data_file, UsersDataUploader
@@ -72,9 +72,10 @@ class Survey < ActiveRecord::Base
   def get_page_for_reply reply, page_number
     i = 0
     self.pages.each do |page|
-      if page.compare_with_reply(reply)
-        i += 1
-      end
+      # if page.compare_with_reply(reply)
+      #   i += 1
+      # end
+      i += 1
       return page if i == page_number
     end
   end
@@ -82,12 +83,13 @@ class Survey < ActiveRecord::Base
   def next_page_for_reply reply, page_number
     i = 0
     self.pages.each do |page|
-      if page.compare_with_reply(reply)
-        i += 1
-      end
+      # if page.compare_with_reply(reply)
+      #   i += 1
+      # end
+      i += 1
       return i if i == page_number+1
     end
-    
+
     return false
   end
 end

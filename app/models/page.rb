@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
-  include Conditionable
-  
+  # include Conditionable
+
   belongs_to :survey
 
   has_many :items, -> { order(:sequence) }, dependent: :destroy

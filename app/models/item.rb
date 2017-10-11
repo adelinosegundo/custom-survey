@@ -13,17 +13,17 @@
 
 class Item < ActiveRecord::Base
   actable dependent: :destroy
-  include Conditionable
-  
+  # include Conditionable
+
   belongs_to :page
+
+  has_many :answers, dependent: :destroy
 
   accepts_nested_attributes_for :actable, allow_destroy: true
 
   default_scope { order(:sequence) }
 
-  validates :sequence, uniqueness: { scope: :page_id }
-
-  def actable_attributes=(actable_attributes)
+  def actable_attributes=(actable_attributes = {})
     self.actable ||= actable_type.constantize.new
     actable.assign_attributes(actable_attributes)
   end
