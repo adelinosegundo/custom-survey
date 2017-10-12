@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
-  
-  devise_for :users, :skip => [:registrations] 
-  as :user do
-    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-    put 'users' => 'devise/registrations#update', :as => 'user_registration'
-  end
+
+  devise_for :users, :skip => [:registrations]
+
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_scope :user do
@@ -18,20 +15,28 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, except: [:show]
-  resources :surveys do
+  resources :users, except: [:show] do
+    collection do
+      get 'invite'
+      post 'invite'
+    end
+  end
+  resources :surveys, except: :show do
     collection do
       get 'confirm'
     end
     member do
+      get 'invite'
+      post 'invite'
+      get 'results'
       get 'edit_questions'
       patch 'update_questions'
-    end
-    resources :mail_messages do
-      member do
-        get 'recipients'
-        get 'answers_as'
-        post 'deliver'
+
+      resources :deliveries, as: :survey_deliveries, path: :deliver, controller: "surveys/deliveries", only: [:index] do
+        collection do
+          post :perform
+          post :update, as: :update, path: :update
+        end
       end
     end
   end

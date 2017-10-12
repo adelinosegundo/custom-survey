@@ -8,6 +8,10 @@
 #  created_at                  :datetime         not null
 #  updated_at                  :datetime         not null
 #
+# Foreign Keys
+#
+#  fk_rails_637b66a76c  (multiple_choice_question_id => multiple_choice_questions.id)
+#
 
 class Alternative < ActiveRecord::Base
   belongs_to :multiple_choice_question

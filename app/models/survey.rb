@@ -14,31 +14,40 @@
 #
 
 class Survey < ActiveRecord::Base
-  has_many :mail_messages, dependent: :destroy
-  has_many :replies, through: :mail_messages
-  has_many :recipients, through: :replies
+  resourcify
+
+  has_one :mail_message, dependent: :destroy
+
+  has_many :recipients
 
   has_many :pages, -> { order(:sequence) }, dependent: :destroy
   has_many :items, through: :pages, dependent: :destroy
   accepts_nested_attributes_for :pages, allow_destroy: true
-  accepts_nested_attributes_for :replies
+  accepts_nested_attributes_for :recipients
 
   validates :name, :title, :users_data_file, :users_data, :email_tag, presence: true
 
   mount_uploader :users_data_file, UsersDataUploader
 
-  after_save :update_recipients
-
   before_validation :tags_and_json_from_csv
 
-  def update_recipients
-  	self.users_data_mails.each do |email|
-  		Recipient.where(email: email).first_or_create
-  	end
+  before_create :build_mail_message
+
+  def create_recipients
+    active_recipients_emails.each do |email|
+      self.recipients.build(
+        email: email,
+        link_hash: Digest::MD5.hexdigest(self.id.to_s+email)
+      ).save
+    end
+  end
+
+  def active_recipients_emails
+    Recipient.filter_inactive(self.users_data_mails)
   end
 
   def users_data_mails
-  	self.users_data.keys
+    self.users_data.keys
   end
 
   def tags_and_json_from_csv
@@ -69,10 +78,10 @@ class Survey < ActiveRecord::Base
     return true
   end
 
-  def get_page_for_reply reply, page_number
+  def get_page_for_recipient recipient, page_number
     i = 0
     self.pages.each do |page|
-      # if page.compare_with_reply(reply)
+      # if page.compare_with_recipient(recipient)
       #   i += 1
       # end
       i += 1
@@ -80,10 +89,10 @@ class Survey < ActiveRecord::Base
     end
   end
 
-  def next_page_for_reply reply, page_number
+  def next_page_for_recipient recipient, page_number
     i = 0
     self.pages.each do |page|
-      # if page.compare_with_reply(reply)
+      # if page.compare_with_recipient(recipient)
       #   i += 1
       # end
       i += 1

@@ -9,33 +9,34 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_mail_messages_on_survey_id  (survey_id)
+#
+# Foreign Keys
+#
+#  fk_rails_7fc27c3ffc  (survey_id => surveys.id)
+#
 
 class MailMessage < ActiveRecord::Base
   belongs_to :survey
 
-  has_many :replies, dependent: :destroy
-  has_many :recipients, through: :replies
+  has_many :recipients, through: :survey
 
-  after_create :create_replies
+  after_save :setup_recipients
 
-  def create_replies
-    self.recipients_avaliable.each do |recipient|
-      self.replies.build(recipient: recipient, link_hash: Digest::MD5.hexdigest(self.id.to_s+recipient.id.to_s)).save
-    end
+  def setup_recipients
+    survey.create_recipients if self.ready? && survey.recipients.empty?
   end
-  
-  def deliver reply_id
-    self.replies
+
+  def deliver recipient_id
+    self.recipients
       .undelivered
-      .where(id: reply_id ? [reply_id] : self.replies.pluck(:id))
-      .limit(100)
-      .collect{ |reply| SuportMailer.deliver_survey_mail_message(reply).deliver_later }
+      .where(id: recipient_id ? [recipient_id] : self.recipients.pluck(:id))
+      .collect{ |recipient| SuportMailer.deliver_survey_mail_message(recipient).deliver_later }
   end
 
-  def recipients_avaliable
-    Recipient.active.where(email: self.survey.users_data_mails)
-  end
-
-  def recipients_that_replied
+  def ready?
+    !self.subject.blank? && !self.content.blank?
   end
 end

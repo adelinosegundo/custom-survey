@@ -5,7 +5,7 @@ module Conditionable
     has_many :conditions, as: :conditionable, dependent: :destroy
     accepts_nested_attributes_for :conditions, allow_destroy: true
 
-    def compare_with_reply reply
+    def compare_with_recipient recipient
       ([false] & self.conditions.map{ |condition| condition.compare(reply)}).empty?
     end
   end

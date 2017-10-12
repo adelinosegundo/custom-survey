@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515162719) do
+ActiveRecord::Schema.define(version: 20171012052938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,14 +25,13 @@ ActiveRecord::Schema.define(version: 20170515162719) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "value"
-    t.integer  "reply_id"
     t.integer  "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "recipient_id"
   end
 
   add_index "answers", ["item_id"], name: "index_answers_on_item_id", using: :btree
-  add_index "answers", ["reply_id"], name: "index_answers_on_reply_id", using: :btree
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -76,12 +75,10 @@ ActiveRecord::Schema.define(version: 20170515162719) do
     t.string   "action"
     t.string   "value"
     t.integer  "question_number"
-    t.integer  "reply_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "recipient_id"
   end
-
-  add_index "logs", ["reply_id"], name: "index_logs_on_reply_id", using: :btree
 
   create_table "mail_messages", force: :cascade do |t|
     t.string   "subject"
@@ -136,21 +133,23 @@ ActiveRecord::Schema.define(version: 20170515162719) do
   create_table "recipients", force: :cascade do |t|
     t.string   "email"
     t.boolean  "subscribed", default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
-  create_table "replies", force: :cascade do |t|
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "sended",     default: false
     t.string   "link_hash"
-    t.integer  "mail_message_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "recipient_id"
-    t.boolean  "sended",          default: false
+    t.integer  "survey_id"
   end
 
-  add_index "replies", ["mail_message_id"], name: "index_replies_on_mail_message_id", using: :btree
-  add_index "replies", ["recipient_id"], name: "index_replies_on_recipient_id", using: :btree
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "surveys", force: :cascade do |t|
     t.string   "name"
@@ -176,17 +175,33 @@ ActiveRecord::Schema.define(version: 20170515162719) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
+    t.integer  "invitations_count",      default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   add_foreign_key "alternatives", "multiple_choice_questions"
   add_foreign_key "answers", "items"
-  add_foreign_key "answers", "replies"
   add_foreign_key "items", "pages"
-  add_foreign_key "logs", "replies"
   add_foreign_key "mail_messages", "surveys"
   add_foreign_key "pages", "surveys"
-  add_foreign_key "replies", "mail_messages"
+  add_foreign_key "recipients", "surveys"
 end

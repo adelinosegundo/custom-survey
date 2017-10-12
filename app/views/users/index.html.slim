@@ -9,7 +9,8 @@
         li.active
           strong Listing Users
     .col-xs-6.text-right
-      = link_to 'New User'.html_safe, new_user_path, class: "btn btn-lg btn-outline btn-primary m-t-lg m-r-sm"
+      = link_to 'Invite'.html_safe, invite_users_path, class: "btn btn-lg btn-outline btn-primary m-t-lg m-r-sm"
+      = link_to 'Create'.html_safe, new_user_path, class: "btn btn-lg btn-outline btn-primary m-t-lg m-r-sm"
 .wrapper.wrapper-content.animated.fadeInRight
   .row
     .ibox.float-e-margins
@@ -22,6 +23,7 @@
           thead
             tr
               th(rowspan="2") Email
+              th(rowspan="2") Active?
               th(colspan="5"class="table-actions text-center") Actions
             tr
               th(width="100px"class="text-center") Edit
@@ -31,6 +33,8 @@
               tr
                 td
                   = user.email
+                td
+                  = user.last_sign_in_at.nil? ? "No" : "Yes"
                 td.text-center
                   = link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(user)
                 td.text-center

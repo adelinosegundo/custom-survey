@@ -1,31 +1,27 @@
 <ul id="side-menu" class="nav">
 
-  <li class="nav-header">
-    <h1 class="nav-header-title">Custom Survey</h1>
-    <span class="block m-t-xs">
-      <strong class="font-bold"><%= current_user.email %></strong>
-    </span>
-  </li>
+    <li class="nav-header">
+        <h1 class="nav-header-title">Custom Survey</h1>
+        <span class="block m-t-xs">
+            <strong class="font-bold"><%= current_user.email %></strong>
+        </span>
+    </li>
 
-  <li>
-    <a href="<%= authenticated_home_path %>">
-      <i class="fa fa-th-large"></i> Dashboard
-    </a>
-  </li>
-  <li>
-    <a href="<%= surveys_path %>">
-      <i class="fa fa-search"></i>Surveys
-    </a>
-  </li>
-  <li>
-    <a href="<%= users_path %>">
-      <i class="fa fa-users"></i> Users
-    </a>
-  </li>
-  <li>
-    <a href="<%= edit_user_path(current_user) %>">
-      <i class="fa fa-user"></i> Profile
-    </a>
-  </li>
-
+    <li>
+        <a href="<%= authenticated_home_path %>">
+            <i class="fa fa-th-large"></i> Dashboard
+        </a>
+    </li>
+    <li>
+        <a href="<%= surveys_path %>">
+            <i class="fa fa-search"></i>Surveys
+        </a>
+    </li>
+    <% if policy([:user], User).index? %>
+        <li>
+            <a href="<%= users_path %>">
+                <i class="fa fa-users"></i> Users
+            </a>
+        </li>
+    <% end %>
 </ul>

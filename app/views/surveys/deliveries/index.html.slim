@@ -1,0 +1,73 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  #page-heading
+    .col-xs-6
+      h2
+        = 'Deliver'
+      ol.breadcrumb
+        li
+          = link_to 'Surveys', surveys_path
+        li.active
+          strong
+            = @survey.name
+            | Deliver
+    .col-xs-6.text-right
+      = link_to 'Back'.html_safe, surveys_path, class: "btn btn-lg btn-outline btn-white m-t-lg m-r-sm"
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-9
+      .ibox.float-e-margins
+        .ibox-title
+          h5
+            | Edit Mail Message
+            small
+        .ibox-content
+          = render 'form'
+    .col-lg-3
+      .ibox.float-e-margins
+        .ibox-title
+          h5
+            | Avaliable Tags
+            small
+        .ibox-content
+          = render 'surveys/cheatsheet'
+          p ps: Write reply_link where you wish to print the link to survey reply
+  .row
+    .ibox.float-e-margins
+      .ibox-title
+        h5
+          | Mail Message
+          small
+      .ibox-content
+        - if policy([:surveys, :delivery], @survey).perform?
+          = link_to 'Send All'.html_safe, perform_survey_deliveries_path(@survey), method: :post, class: "btn btn-lg btn-outline btn-white m-t-lg m-r-sm"
+        - else
+          a.btn.btn-lg.btn-outline.btn-white.m-t-lg.m-r-sm[disable=true] Send All
+          | Setup message to enable delivery!
+
+        .hr-line-dashed
+        table[data-source="#{survey_deliveries_path(@survey)}" class="table table-bordered table-striped"]
+          thead
+            tr
+              th Email
+              th.text-center[width=100] Sent
+              th.text-center[width=100] Replied
+              th.text-center[width=100] Test Reply
+              th.text-center[width=100] Send
+          tbody
+            - @mail_message.recipients.each do |recipient|
+              tr
+                td
+                  = recipient.email
+                td.text-center
+                  = recipient.sended ? "Yes" : "No"
+                td.text-center
+                  = recipient.answers.any? ? "Yes" : "No"
+                td.text-center
+                  = link_to new_reply_survey_path(recipient.link_hash), target: :_blank do
+                    i.fa.fa-search
+                td.text-center
+                  - unless recipient.sended
+                    = link_to perform_survey_deliveries_path(@survey, @mail_message, recipient_id: recipient.id), method: :post, data: { confirm: 'Are you sure?' } do
+                      i.fa.fa-send-o
+                  - else
+                    i.fa.fa-send

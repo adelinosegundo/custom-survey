@@ -4,16 +4,26 @@
 #
 #  id           :integer          not null, primary key
 #  sequence     :integer
-#  survey_id    :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  actable_id   :integer
 #  actable_type :string
+#  page_id      :integer
+#
+# Indexes
+#
+#  index_items_on_page_id  (page_id)
+#
+# Foreign Keys
+#
+#  fk_rails_91bce3eb3e  (page_id => pages.id)
 #
 
 class Item < ActiveRecord::Base
   actable dependent: :destroy
   # include Conditionable
+
+  QUESTIONS_TYPE = %w[MultipleChoiceQuestion Question].freeze
 
   belongs_to :page
 
@@ -22,6 +32,8 @@ class Item < ActiveRecord::Base
   accepts_nested_attributes_for :actable, allow_destroy: true
 
   default_scope { order(:sequence) }
+
+  scope :questions, -> { where(actable_type: QUESTIONS_TYPE) }
 
   def actable_attributes=(actable_attributes = {})
     self.actable ||= actable_type.constantize.new

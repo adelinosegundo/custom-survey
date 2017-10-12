@@ -1,0 +1,42 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  #page-heading
+    .col-xs-6
+      h2
+        = "Result of #{@survey.name}"
+      ol.breadcrumb
+        li
+          = link_to 'Surveys', surveys_path
+        li.active
+          strong Suurvey Result
+    .col-xs-6.text-right
+      = link_to "<i class='fa fa-cloud-download'></i> CSV".html_safe, results_survey_path(@survey, format: :csv), class: "btn btn-lg btn-outline btn-white m-t-lg m-r-sm"
+      = link_to 'Back'.html_safe, surveys_path, class: "btn btn-lg btn-outline btn-white m-t-lg m-r-sm"
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .ibox.float-e-margins
+      .ibox-title
+        h5
+          | Survey Result
+          small
+      .ibox-content
+        .container
+          .row
+            .col-xs-12
+              strong = "Recipients: #{@survey.recipients.size}"
+          .row
+            .col-xs-12
+              strong = "Answered: #{@survey.recipients.answered.size}"
+          - @survey.items.questions.each do |item|
+            - question = item.specific
+            - if question.class == Question
+              hr
+              .row
+                .col-xs-12
+                  strong
+                    = "Question #{question.number} - #{question.title}"
+              - @survey.recipients.answered.each do |recipient|
+                .row
+                  .col-xs-12
+                    - answer = recipient.answers.where(item_id: item.id).first
+                    - if answer
+                      = "#{recipient.email} | #{ answer.value }"

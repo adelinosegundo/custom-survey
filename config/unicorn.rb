@@ -10,15 +10,17 @@ timeout 30
 # Fill path to your app
 working_directory app_dir
 
-# Set up socket location
-listen "#{shared_dir}/sockets/unicorn.sock", :backlog => 64
+if Rails.env.production?
+  # Set up socket location
+  listen "#{shared_dir}/sockets/unicorn.sock", :backlog => 64
 
-# Loging
-stderr_path "#{shared_dir}/log/unicorn.stderr.log"
-stdout_path "#{shared_dir}/log/unicorn.stdout.log"
+  # Loging
+  stderr_path "#{shared_dir}/log/unicorn.stderr.log"
+  stdout_path "#{shared_dir}/log/unicorn.stdout.log"
 
-# Set master PID location
-pid "#{shared_dir}/pids/unicorn.pid"
+  # Set master PID location
+  pid "#{shared_dir}/pids/unicorn.pid"
+end
 
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!

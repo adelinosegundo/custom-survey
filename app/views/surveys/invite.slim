@@ -1,0 +1,33 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  #page-heading
+    .col-xs-6
+      h2
+        = 'Surveys'
+      ol.breadcrumb
+        li
+          = link_to 'Surveys', surveys_path
+        li.active
+          strong = "Invite Users for #{@survey.name}"
+    .col-xs-6.text-right
+      = link_to 'Back'.html_safe, surveys_path, class: "btn btn-lg btn-outline btn-white m-t-lg m-r-sm"
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .ibox.float-e-margins
+      .ibox-title
+        h5
+          | Invite Users
+          small
+      .ibox-content
+        = form_tag(invite_survey_path(@survey), html: { class: "form-horizontal" }) do
+          #user.row
+            = fields_for :users do |f|
+              .form-group
+                = f.label :emails, class: "col-sm-2 control-label"
+                .col-sm-10
+                  = f.text_field :emails, class: "form-control", placeholder: "Comma separated emails."
+            br
+            br
+            br
+            .col-xs-12
+              = submit_tag "Submit", class: "form-control m-l-sm"
+
