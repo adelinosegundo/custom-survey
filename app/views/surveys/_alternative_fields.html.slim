@@ -1,4 +1,7 @@
-.form-group
-  = f.label :value, class: "col-sm-2 control-label"
-  .col-sm-10
-    = f.text_field :value, class: "form-control"
+.nested-fields
+  .form-group
+    = f.label :value, class: "col-sm-2 control-label"
+    .col-sm-9
+      = f.text_field :value, class: "form-control"
+    .col-sm-1
+      = link_to_remove_association "<i class='remove-item fa fa-times fa-2x'></i>".html_safe, f

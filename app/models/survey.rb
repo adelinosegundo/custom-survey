@@ -78,6 +78,11 @@ class Survey < ActiveRecord::Base
     return true
   end
 
+  def last_page? page_number
+    return true unless next_page_for_recipient(nil, page_number.to_i)
+    return false
+  end
+
   def get_page_for_recipient recipient, page_number
     i = 0
     self.pages.each do |page|

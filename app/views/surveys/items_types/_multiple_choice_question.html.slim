@@ -19,8 +19,11 @@
   .col-sm-10
     = f.check_box :accepts_multiple, class: "form-control"
 .form-group
-  label.col-sm-2.control-label Alternatives
-  = link_to_add_association 'add', f, :alternatives, id: :add_alternative, class: "btn btn-primary", data: {'association-insertion-traversal': 'next', 'association-insertion-node': ".alternatives", 'association-insertion-method': 'append'}
-  .alternatives
-    = f.fields_for :alternatives do |alternative|
-      = render 'alternative_fields', f: alternative
+  .col-xs-2
+    label.control-label Alternatives
+  .col-xs-1
+    = link_to_add_association '+ add', f, :alternatives, id: :add_alternative, class: "btn btn-primary", data: {'association-insertion-traversal': 'cousins', 'association-insertion-node': ".alternatives", 'association-insertion-method': 'append'}
+  .col-xs-12
+    .alternatives
+      = f.fields_for :alternatives do |alternative|
+        = render 'alternative_fields', f: alternative

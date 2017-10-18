@@ -36,3 +36,10 @@ function re_order(){
     order_input.val(index+1);
   })
 }
+
+void function($) {
+    $.fn.cousins = function(selector) {
+        return this.parent().siblings().children(selector);
+        //         ^ parent ^ uncles   ^ cousins
+    };
+}(jQuery);

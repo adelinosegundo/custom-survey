@@ -4,6 +4,9 @@
       = f.fields_for :pages do |page|
         = render 'page_fields', f: page
     .col-xs-12
-        = link_to_add_association 'New Page', f, :pages, id: :add_page, data: {'association-insertion-node': '#pages', 'association-insertion-method': 'append'}, class: "btn btn-info col-sm-3"
+      = link_to_add_association 'New Page', f, :pages, id: :add_page, data: {'association-insertion-node': '#pages', 'association-insertion-method': 'append'}, class: "form-control btn btn-primary"
+    br
+    br
+    br
     .col-xs-12
-        = f.submit "Submit", class: "form-control"
+      = f.submit "Submit", class: "form-control"
