@@ -40,3 +40,15 @@
                     - answer = recipient.answers.where(item_id: item.id).first
                     - if answer
                       = "#{recipient.email} | #{ answer.value }"
+            - if question.class == MultipleChoiceQuestion
+              hr
+              .row
+                .col-xs-12
+                  strong
+                    = "Question #{question.number} - #{question.title}"
+              - @survey.recipients.answered.each do |recipient|
+                .row
+                  .col-xs-12
+                    - answer = recipient.answers.where(item_id: item.id).first
+                    - if answer
+                      = "#{recipient.email} | #{ answer.value }"
