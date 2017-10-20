@@ -33,12 +33,15 @@ class Survey < ActiveRecord::Base
 
   before_create :build_mail_message
 
+  after_save :create_recipients
+
   def create_recipients
+    emails = self.recipients.pluck(:email)
     active_recipients_emails.each do |email|
       self.recipients.build(
         email: email,
         link_hash: Digest::MD5.hexdigest(self.id.to_s+email)
-      ).save
+      ).save unless emails.include?(email)
     end
   end
 

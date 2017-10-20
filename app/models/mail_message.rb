@@ -23,11 +23,11 @@ class MailMessage < ActiveRecord::Base
 
   has_many :recipients, through: :survey
 
-  after_save :setup_recipients
+  # after_save :setup_recipients
 
-  def setup_recipients
-    survey.create_recipients if self.ready? && survey.recipients.empty?
-  end
+  # def setup_recipients
+  #   survey.create_recipients if self.ready? && survey.recipients.empty?
+  # end
 
   def deliver recipient_id
     self.recipients
