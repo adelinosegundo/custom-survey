@@ -10,7 +10,6 @@ gem 'pg', '~> 0.15'
 gem 'migration_data'
 gem 'unicorn'
 gem 'sidekiq'
-gem 'redis'
 gem 'httparty'
 gem "figaro"
 

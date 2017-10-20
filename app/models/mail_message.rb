@@ -33,7 +33,7 @@ class MailMessage < ActiveRecord::Base
     self.recipients
       .undelivered
       .where(id: recipient_id ? [recipient_id] : self.recipients.pluck(:id))
-      .collect{ |recipient| SuportMailer.deliver_survey_mail_message(recipient).deliver_later }
+      .collect{ |recipient| SuportMailer.deliver_survey_mail_message(recipient).deliver_later! }
   end
 
   def ready?
