@@ -58,7 +58,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'annotate'
-  gem 'letter_opener',    '~> 1.4.1'
+  gem 'letter_opener'
 end
 
 gem 'rack-handlers'

@@ -67,7 +67,7 @@
                     i.fa.fa-search
                 td.text-center
                   - unless recipient.sended
-                    = link_to perform_survey_deliveries_path(@survey, @mail_message, recipient_id: recipient.id), method: :post, data: { confirm: 'Are you sure?' } do
+                    = link_to perform_survey_deliveries_path(@survey, recipient_id: recipient.id), method: :post, data: { confirm: 'Are you sure?' } do
                       i.fa.fa-send-o
                   - else
                     i.fa.fa-send

@@ -1,6 +1,6 @@
 class Surveys::DeliveriesController < ApplicationController
   before_action :set_survey
-  before_action :set_mail_message, only: [:index, :update, :deliver]
+  before_action :set_mail_message, only: [:index, :update, :deliver, :perform]
 
   def index
     authorize_namespace @survey
@@ -20,7 +20,7 @@ class Surveys::DeliveriesController < ApplicationController
     authorize_namespace @survey
 
     @mail_message.deliver params[:recipient_id] || nil
-    redirect_to survey_deliveries(@survey, @mail_message), notice: 'Successfully started delivering'
+    redirect_to survey_deliveries_path(@survey), notice: 'Successfully started delivering'
   end
 
   private

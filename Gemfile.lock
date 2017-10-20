@@ -321,7 +321,7 @@ DEPENDENCIES
   jquery-datatables-rails
   jquery-rails
   launchy
-  letter_opener (~> 1.4.1)
+  letter_opener
   migration_data
   mina
   mina-data_sync

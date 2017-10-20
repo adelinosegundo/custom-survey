@@ -17,7 +17,11 @@ module ApplicationHelper
     tags = text.scan(/<<(.*?)>>/imu).flatten
     tags.each do |tag|
       tag_striped = tag.strip
-      text["<<#{tag}>>"] = user_data[tag]
+      begin
+        text["<<#{tag}>>"] = user_data[tag_striped]
+      rescue
+        text["<<#{tag}>>"] = ""
+      end
     end
 
 
@@ -27,5 +31,9 @@ module ApplicationHelper
   def escape_characters_in_string string
     pattern = /(\'|\"|\.|\*|\/|\-|\\|\)|\$|\+|\(|\^|\?|\!|\~|\`)/
     string.gsub(pattern){|match|"\\"  + match}
+  end
+
+  def build_reply_link_for_recipient recipient
+    "<a href='#{new_reply_survey_url(recipient.link_hash)}'>#{recipient.survey.title}</a>"
   end
 end
