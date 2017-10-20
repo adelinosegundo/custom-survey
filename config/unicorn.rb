@@ -10,7 +10,7 @@ timeout 30
 # Fill path to your app
 working_directory app_dir
 
-if Rails.env.production?
+if ENV["RAILS_ENV"] == "production"
   # Set up socket location
   listen "#{shared_dir}/sockets/unicorn.sock", :backlog => 64
 
