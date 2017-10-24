@@ -43,7 +43,8 @@
         - else
           a.btn.btn-lg.btn-outline.btn-white.m-t-lg.m-r-sm[disable=true] Send All
           | Setup message to enable delivery!
-
+        div
+          h3 Delivered: (#{@survey.recipients.delivered.size}/#{@survey.recipients.size})
         .hr-line-dashed
         table[data-source="#{survey_deliveries_path(@survey)}" class="table table-bordered table-striped"]
           thead

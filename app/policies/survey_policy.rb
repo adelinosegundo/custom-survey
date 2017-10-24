@@ -14,7 +14,7 @@ class SurveyPolicy < ApplicationPolicy
   end
 
   def results?
-    (owner? || collaborator?) && @record.recipients.answered.any?
+    (owner? || collaborator?)
   end
 
   def invite?

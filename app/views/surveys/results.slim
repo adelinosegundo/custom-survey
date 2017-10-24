@@ -25,6 +25,9 @@
               strong = "Recipients: #{@survey.recipients.size}"
           .row
             .col-xs-12
+              strong = "Delivered: #{@survey.recipients.delivered.size}"
+          .row
+            .col-xs-12
               strong = "Answered: #{@survey.recipients.answered.size}"
           - @survey.items.questions.each do |item|
             - question = item.specific
