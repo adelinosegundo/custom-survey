@@ -19,7 +19,7 @@ class Surveys::DeliveriesController < ApplicationController
   def perform
     authorize_namespace @survey
 
-    @mail_message.delay.deliver params[:recipient_id] || nil
+    @mail_message.delay(retry: false).deliver params[:recipient_id] || nil
     redirect_to survey_deliveries_path(@survey), notice: 'Successfully started delivering'
   end
 
