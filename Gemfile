@@ -10,11 +10,13 @@ gem 'pg', '~> 0.15'
 gem 'migration_data'
 gem 'unicorn'
 gem 'sidekiq'
-gem 'redis'
 gem 'httparty'
 gem "figaro"
 
 gem 'devise'
+gem 'devise_invitable', '~> 1.7.0'
+gem 'rolify'
+gem 'pundit'
 
 gem 'carrierwave'
 gem 'mini_magick'
@@ -43,6 +45,7 @@ group :development, :test do
   gem 'capybara-screenshot'
   gem 'launchy'
   gem 'database_cleaner'
+  gem 'railroady'
 end
 
 group :test do
@@ -54,11 +57,13 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'annotate'
-  gem "letter_opener"
+  gem 'letter_opener'
 end
 
+gem 'rack-handlers'
+gem 'unicorn'
+
 group :production do
-  gem 'unicorn'
   gem 'mina'
   gem 'mina-data_sync', :require => false
   gem 'mina-sidekiq', :require => false

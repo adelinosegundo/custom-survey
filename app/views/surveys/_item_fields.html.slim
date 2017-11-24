@@ -2,13 +2,12 @@
 .nested-fields.animated.slideInDown
   .hr-line-dashed
   .form-group
-    = f.label :sequence, class: "col-sm-2 control-label"
+    = f.label :sequence, "Item", class: "col-sm-2 control-label"
     .col-sm-3
       = f.text_field :sequence, class: "form-control"
     .col-sm-7
       .pull-right
         = link_to_remove_association "<i class='remove-item fa fa-times fa-2x'></i>".html_safe, f
-  = render 'conditions/form', f: f
   .hr-line-dashed
   = f.hidden_field :actable_type, class: "form-control"
   = f.fields_for :actable do |ff|

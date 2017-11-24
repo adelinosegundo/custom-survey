@@ -1,5 +1,25 @@
+# == Schema Information
+#
+# Table name: answers
+#
+#  id           :integer          not null, primary key
+#  value        :string
+#  item_id      :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  recipient_id :integer
+#
+# Indexes
+#
+#  index_answers_on_item_id  (item_id)
+#
+# Foreign Keys
+#
+#  fk_rails_685535a3b6  (item_id => items.id)
+#
+
 class Answer < ActiveRecord::Base
-  belongs_to :reply
+  belongs_to :recipient
   belongs_to :item
 
   before_save :value_array

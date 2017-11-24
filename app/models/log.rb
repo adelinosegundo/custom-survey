@@ -6,11 +6,11 @@
 #  action          :string
 #  value           :string
 #  question_number :integer
-#  reply_id        :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  recipient_id    :integer
 #
 
 class Log < ActiveRecord::Base
-  belongs_to :reply
+  belongs_to :recipient
 end

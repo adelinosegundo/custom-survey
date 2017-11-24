@@ -7,13 +7,32 @@
 #  subscribed :boolean          default(TRUE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  sended     :boolean          default(FALSE)
+#  link_hash  :string
+#  survey_id  :integer
+#
+# Foreign Keys
+#
+#  fk_rails_75010e303a  (survey_id => surveys.id)
 #
 
 class Recipient < ActiveRecord::Base
-  scope :active, -> { where.not(subscribed: false) }
+  belongs_to :survey
+  has_many :answers, dependent: :destroy
 
-  has_many :replies
-  has_many :mail_messages, through: :replies
+  validates :email, uniqueness: { scope: :survey_id }
+  validates :link_hash, uniqueness: true
 
-  validates :email, uniqueness: true
+  scope :active, -> { where(subscribed: true) }
+  scope :inactive, -> { where(subscribed: false) }
+
+  scope :answered, -> { joins(:answers).where.not(answers: {id: nil}).distinct }
+  scope :delivered, -> { where(sended: true) }
+  scope :undelivered, -> { where(sended: false) }
+
+  accepts_nested_attributes_for :answers
+
+  def self.filter_inactive emails
+    emails - Recipient.inactive.pluck(:email)
+  end
 end

@@ -1,0 +1,12 @@
+= form_for [@mail_message], url: update_survey_deliveries_path(@survey), method: :post, :html => { class: "form-horizontal" } do |f|
+  fieldset[disabled=!policy([:surveys, :delivery], @survey).edit?]
+    .form-group
+      = f.label :subject, class: "control-label col-sm-2"
+      .col-sm-10
+        = f.text_field :subject, class: "form-control"
+    .form-group
+      = f.label :content, class: "control-label col-sm-2"
+      .col-sm-10
+        = f.text_area :content, class: "form-control ckeditor"
+    .form-group
+      = f.submit "Submit", class: "btn form-control"

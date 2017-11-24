@@ -1,0 +1,14 @@
+<div class="form-clarified-wrapper">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form form-clarified form-validate' }) do |f| %>
+    <div class="form-header">
+        <h1 class="form-header-logotype">Custom Survey</h1>
+    </div>
+    <div class="form-group">
+        <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control", required: true %>
+    </div>
+    <div class="form-buttons">
+        <button class="btn btn-lg btn-purple" type="submit">Send me instruction</button>
+    </div>
+    <a class="" href="<%= new_session_path(resource_name) %>">sign_in</button>
+    <% end %>
+</div>
