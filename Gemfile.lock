@@ -141,6 +141,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.5)
       mime-types (>= 1.16, < 4)
+    mailgun (0.11)
     migration_data (0.3.0)
     mime-types (1.25.1)
     mina (1.0.6)
@@ -322,6 +323,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   letter_opener
+  mailgun
   migration_data
   mina
   mina-data_sync

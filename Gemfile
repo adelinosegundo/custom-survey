@@ -12,6 +12,7 @@ gem 'unicorn'
 gem 'sidekiq'
 gem 'httparty'
 gem "figaro"
+gem 'mailgun'
 
 gem 'devise'
 gem 'devise_invitable', '~> 1.7.0'
