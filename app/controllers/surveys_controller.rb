@@ -92,6 +92,10 @@ class SurveysController < ApplicationController
   end
 
   def results
+    respond_to do |format|
+      format.html
+      format.csv { send_data @survey.to_csv, filename: "results-#{@survey.name}.csv" }
+    end
   end
 
   def invite

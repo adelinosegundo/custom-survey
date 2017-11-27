@@ -24,6 +24,8 @@ class Answer < ActiveRecord::Base
 
   before_save :value_array
 
+  scope :from_recipient, -> (recipient_id) {where(recipient_id: recipient_id)}
+
   def value_array
     self.value = self.value.gsub("[", "").gsub("]", "").gsub("\"", "") if self.item.actable_type == "MultipleChoiceQuestion" && self.item.specific.accepts_multiple && self.value
   end
