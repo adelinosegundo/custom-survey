@@ -73,7 +73,7 @@ class Survey < ActiveRecord::Base
       key = csv_row[main_index]
       result_json[key] = {}
       tags.each_with_index do |tag, i|
-        result_json[key][tag] = csv_row[i].force_encoding('ISO-8859-1')
+        result_json[key][tag] = csv_row[i]&.force_encoding('ISO-8859-1')
       end
     end
 
