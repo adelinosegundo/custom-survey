@@ -18,10 +18,12 @@ class Survey < ActiveRecord::Base
 
   has_one :mail_message, dependent: :destroy
 
-  has_many :recipients
+  has_many :recipients, dependent: :destroy
+  has_many :answers, through: :recipients
 
   has_many :pages, -> { order(:sequence) }, dependent: :destroy
-  has_many :items, through: :pages, dependent: :destroy
+  has_many :items, through: :pages
+  has_many :questions, -> { where(actable_type: ['Question', 'MultipleChoiceQuestion']) }, through: :pages, source: :items, dependent: :destroy
   accepts_nested_attributes_for :pages, allow_destroy: true
   accepts_nested_attributes_for :recipients
 
@@ -71,7 +73,8 @@ class Survey < ActiveRecord::Base
       key = csv_row[main_index]
       result_json[key] = {}
       tags.each_with_index do |tag, i|
-        result_json[key][tag] = csv_row[i].force_encoding('ISO-8859-1')
+        result_json[key][tag] = csv_row[i]
+        result_json[key][tag] = csv_row[i].force_encoding('ISO-8859-1') if csv_row[i].present?
       end
     end
 
@@ -108,5 +111,15 @@ class Survey < ActiveRecord::Base
     end
 
     return false
+  end
+
+  def to_csv
+    CSV.generate(headers: true) do |csv|
+      csv << ['email'] + self.questions.map(&:actable).map(&:title)
+
+      self.recipients.answered.each do |recipient|
+        csv << [recipient.email] + self.answers.from_recipient(recipient.id).pluck(:value)
+      end
+    end
   end
 end

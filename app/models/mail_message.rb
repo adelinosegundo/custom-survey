@@ -30,13 +30,9 @@ class MailMessage < ActiveRecord::Base
   # end
 
   def deliver recipient_id
-    if self.recipients.undelivered.size > 100
-      self.delay_for(1.hour, retry: false).deliver recipient_id
-    end
     self.recipients
       .undelivered
       .where(id: recipient_id ? [recipient_id] : self.recipients.pluck(:id))
-      .limit(100)
       .collect{ |recipient| SuportMailer.deliver_survey_mail_message(recipient).deliver_later! }
   end
 

@@ -99,6 +99,8 @@ GEM
       actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
     diff-lcs (1.3)
+    domain_name (0.5.20170223)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.1)
     dotenv-rails (2.2.1)
       dotenv (= 2.2.1)
@@ -115,6 +117,8 @@ GEM
       thor (~> 0.14)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
     i18n (0.8.1)
@@ -141,6 +145,10 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.5)
       mime-types (>= 1.16, < 4)
+    mailgun_rails (0.9.0)
+      actionmailer (>= 3.2.13)
+      json (>= 1.7.7)
+      rest-client (>= 1.6.7)
     migration_data (0.3.0)
     mime-types (1.25.1)
     mina (1.0.6)
@@ -159,6 +167,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     necromancer (0.4.0)
+    netrc (0.11.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     open4 (1.3.4)
@@ -210,6 +219,10 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rest-client (2.0.1)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rolify (5.1.0)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
@@ -282,6 +295,9 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     unicorn (5.3.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
@@ -322,6 +338,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   letter_opener
+  mailgun_rails
   migration_data
   mina
   mina-data_sync
