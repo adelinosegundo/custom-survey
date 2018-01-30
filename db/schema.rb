@@ -106,11 +106,6 @@ ActiveRecord::Schema.define(version: 20171012052938) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "page_breaks", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "pages", force: :cascade do |t|
     t.integer  "survey_id"
     t.integer  "sequence"
