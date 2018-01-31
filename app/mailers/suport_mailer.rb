@@ -14,6 +14,8 @@ class SuportMailer < ApplicationMailer
     subject = translate_tags recipient_data, mail_message.subject.dup
 
     recipient.update(sended: true)
-    mail(:to => recipient.email, :subject => subject, delivery_method: :smtp)
+    mail = mail(:to => recipient.email, :subject => subject, delivery_method: :smtp)
+    mail.delivery_method
+    mail.delivery_method.settings.merge!(Rails.application.secrets.gmail_smtp)
   end
 end
