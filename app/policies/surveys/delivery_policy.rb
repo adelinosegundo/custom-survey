@@ -10,7 +10,7 @@ class Surveys::DeliveryPolicy < ApplicationPolicy
   end
 
   def update?
-    (owner? || collaborator?) && @record.recipients.delivered.empty?
+    (owner? || collaborator?)
   end
 
   def perform?

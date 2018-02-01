@@ -5,11 +5,17 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   # POST /unsubscribe?:id
   def unsubscribe
   end
 
   private
+
+  def user_not_authorized
+    redirect_to root_path, notice: "Não autorizado!", flash: { status: 'error' }
+  end
 
   def layout_by_resource
     if devise_controller? && !current_user
