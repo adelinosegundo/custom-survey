@@ -15,12 +15,12 @@
       .form-group
         = f.label :password, class: "col-sm-2 control-label"
         .col-sm-3
-          = f.text_field :password, class: "form-control"
+          = f.password_field :password, class: "form-control"
 
       .form-group
         = f.label :password_confirmation, class: "col-sm-2 control-label"
         .col-sm-3
-          = f.text_field :password_confirmation, class: "form-control"
+          = f.password_field :password_confirmation, class: "form-control"
 
     .col-xs-12
       = f.submit "Submit", class: "form-control m-l-sm"

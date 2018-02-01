@@ -44,7 +44,8 @@ class UsersController < ApplicationController
     authorize_namespace @user
 
     if @user.update(user_params)
-      redirect_to users_path, notice: 'User was successfully created.'
+      sign_in :user, @user
+      redirect_to edit_user_path(@user), notice: 'User was successfully created.'
     else
       render :edit
     end
