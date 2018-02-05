@@ -65,7 +65,7 @@ class SurveysController < ApplicationController
     authorize_namespace @survey
 
     if @survey.update(survey_params)
-      redirect_to edit_survey_path(@survey), notice: 'Survey was successfully updated.'
+      redirect_to request.referer, notice: 'Survey was successfully updated.'
     else
       render :edit
     end
@@ -128,7 +128,9 @@ class SurveysController < ApplicationController
   end
 
   def survey_params
-    params.require(:survey).permit(:name, :title, :users_data_file, :email_tag)
+    params.require(:survey).permit(:name, :title, :users_data_file, :email_tag, {
+      mail_config: [ :from, :authentication, :address, :port, :domain, :user_name, :password, :enable_starttls_auto ]
+    })
   end
 
   def survey_questions_params

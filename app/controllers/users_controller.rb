@@ -43,6 +43,11 @@ class UsersController < ApplicationController
   def update
     authorize_namespace @user
 
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+    end
+    
     if @user.update(user_params)
       sign_in :user, @user
       redirect_to edit_user_path(@user), notice: 'User was successfully created.'
@@ -83,6 +88,8 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :password, :password_confirmation, {
+        mail_config: [ :from, :authentication, :address, :port, :domain, :user_name, :password, :enable_starttls_auto ]
+      })
     end
 end

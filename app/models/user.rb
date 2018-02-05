@@ -23,6 +23,7 @@
 #  invited_by_id          :integer
 #  invited_by_type        :string
 #  invitations_count      :integer          default(0)
+#  mail_config            :jsonb
 #
 # Indexes
 #
@@ -42,6 +43,7 @@ class User < ActiveRecord::Base
   has_many :survey, through: :roles
 
   default_scope { preload(:roles) }
+  scope :with_roles, -> (roles_names) { joins(:roles).where(roles: {name: roles_names}) }
 
   def self.invite_all emails, survey=nil
     emails.each do |email|

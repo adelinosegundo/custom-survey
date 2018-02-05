@@ -11,10 +11,14 @@
 #  avaliable_tags  :string           default([]), is an Array
 #  email_tag       :string
 #  users_data_file :string
+#  mail_config     :jsonb
 #
 
 class Survey < ActiveRecord::Base
   resourcify
+
+  has_many :owners, -> { unscoped.with_roles([:owner]).distinct }, source: :users, through: :roles
+  has_many :collaborators, -> { unscoped.with_roles([:collaborator]).distinct }, source: :users, through: :roles
 
   has_one :mail_message, dependent: :destroy
 
@@ -36,6 +40,20 @@ class Survey < ActiveRecord::Base
   before_create :build_mail_message
 
   after_save :create_recipients
+
+  def owner
+    self.owners.first
+  end
+
+  def mail_config_from
+    if self.mail_config && self.mail_config['from'].present?
+      self.mail_config['from']
+    elsif self.owner.mail_config && self.owner.mail_config['from'].present?
+      self.owner.mail_config['from']
+    else
+      ENV['MAILER_DEFAULT_FROM']
+    end
+  end
 
   def create_recipients
     emails = self.recipients.pluck(:email)

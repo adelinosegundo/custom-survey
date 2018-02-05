@@ -5,7 +5,11 @@
         .col-xs-12
           = message
   hr
-  #user.row
+  .row
+    .col-sm-offset-2.col-sm-2
+      h3 User Config
+
+  .row
     .form-group
       = f.label :email, class: "col-sm-2 control-label"
       .col-sm-3
@@ -21,6 +25,15 @@
         = f.label :password_confirmation, class: "col-sm-2 control-label"
         .col-sm-3
           = f.password_field :password_confirmation, class: "form-control"
+    hr
+    .row
+      .col-sm-offset-2.col-sm-2
+        h3 Mail Config
+    = f.fields_for :mail_config do |ff|
+      .form-group
+        = ff.label :from, class: "col-sm-2 control-label"
+        .col-sm-3
+          = ff.text_field :from, class: "form-control", placeholder: "test <test@mail.com>", value: @user.mail_config['from']
 
     .col-xs-12
       = f.submit "Submit", class: "form-control m-l-sm"

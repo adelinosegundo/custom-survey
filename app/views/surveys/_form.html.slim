@@ -18,6 +18,15 @@
       = f.label :email_tag, class: "col-sm-2 control-label"
       .col-sm-3
         = f.text_field :email_tag, class: "form-control"
+    hr
+    .row
+      .col-sm-offset-2.col-sm-2
+        h3 Mail Config
+    = f.fields_for :mail_config do |ff|
+      .form-group
+        = ff.label :from, class: "col-sm-2 control-label"
+        .col-sm-3
+          = ff.text_field :from, class: "form-control", placeholder: "test <test@mail.com>", value: (@survey.mail_config && @survey.mail_config['from'] ? @survey.mail_config['from'] : '')
     .add-links
       .form-group
         = f.submit "Submit", class: "form-control m-l-sm"
