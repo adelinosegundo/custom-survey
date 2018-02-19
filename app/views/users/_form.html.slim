@@ -15,7 +15,7 @@
       .col-sm-3
         = f.text_field :email, class: "form-control"
 
-    - if @user.new_record? or @user == current_user
+    - if @user.new_record? or @user == current_user or current_user.has_role(:admin)
       .form-group
         = f.label :password, class: "col-sm-2 control-label"
         .col-sm-3
