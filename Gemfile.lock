@@ -179,7 +179,7 @@ GEM
     public_suffix (2.0.5)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
-    rack (1.6.5)
+    rack (1.6.12)
     rack-handlers (0.7.3)
       rack
     rack-protection (1.5.3)
