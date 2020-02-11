@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.5.7"
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.8'
 gem 'dotenv-rails', :require => 'dotenv/rails-now'
 gem 'active_record-acts_as'
 
