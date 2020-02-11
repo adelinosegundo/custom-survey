@@ -8,7 +8,7 @@ gem 'active_record-acts_as'
 
 gem 'pg', '~> 0.15'
 gem 'migration_data'
-gem 'unicorn'
+gem 'puma'
 gem 'sidekiq'
 gem 'httparty'
 gem "figaro"
