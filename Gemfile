@@ -69,6 +69,7 @@ group :production do
   gem 'mina-data_sync', :require => false
   gem 'mina-sidekiq', :require => false
   gem 'mina-unicorn', :require => false
+  gem 'rails_12factor'
 end
 
 gem 'sdoc', '~> 0.4.0', group: :doc
