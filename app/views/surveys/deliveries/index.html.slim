@@ -55,7 +55,7 @@
               th.text-center[width=100] Test Reply
               th.text-center[width=100] Send
           tbody
-            - @mail_message.recipients.each do |recipient|
+            - @mail_message.recipients.last(20).each do |recipient|
               tr
                 td
                   = recipient.email
