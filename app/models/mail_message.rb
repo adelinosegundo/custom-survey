@@ -34,11 +34,13 @@ class MailMessage < ActiveRecord::Base
     #  self.delay_for(1.hour, retry: false).deliver recipient_id
     # end
     # .limit(100)
-    
-    self.recipients
-      .undelivered
-      .where(id: recipient_id ? [recipient_id] : self.recipients.pluck(:id))
-      .collect{ |recipient| SuportMailer.deliver_survey_mail_message(recipient).deliver_later! }
+
+
+    _recipients = self.recipients.undelivered
+    _recipients = _recipients.where(id: recipient_id) if recipient_id
+    _recipients.collect do |recipient|
+      SuportMailer.deliver_survey_mail_message(recipient).deliver_later!
+    end
   end
 
   def ready?

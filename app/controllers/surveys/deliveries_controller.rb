@@ -19,7 +19,11 @@ class Surveys::DeliveriesController < ApplicationController
   def perform
     authorize_namespace @survey
 
-    @mail_message.delay(retry: false).deliver params[:recipient_id] || nil
+    recipients = @mail_message.recipients.undelivered
+    recipients = recipients.where(id: params[:recipient_id]) if params[:recipient_id]
+    recipients.each_slice(ENV['DELIVER_BATCH_SIZE']).with_index do |_recipients, index|
+      @mail_message.delay_for((index+1).hour, retry: false).deliver(_recipients.map(&:id))
+    end
     redirect_to survey_deliveries_path(@survey), notice: 'Successfully started delivering'
   end
 
